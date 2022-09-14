@@ -1,2 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Controller;
+using Model;
+using System.Net.Mail;
+
+Data.Initialize();
+Data.NextRace();
+Console.WriteLine(Data.currentTrack.Name);
+
+
+for (; ; )
+{
+	Thread.Sleep(100);
+}
