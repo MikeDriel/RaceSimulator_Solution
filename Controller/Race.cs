@@ -10,17 +10,19 @@ namespace Controller
 {
 	public class Race
 	{
-		Track Track;
+		public Track Track;
 		List<IParticipant> Participants;
 		DateTime StartTime;
 		private Random _random;
 		private Dictionary<Section, SectionData> _positions;
 
-		public Race(Track Track, List<IParticipant> Participants)
+		public Race(Track track, List<IParticipant> participants)
 		{
-			Track = Track;
-			Participants = Participants;
+			Track = track;
+			Participants = participants;
 			_random = new Random(DateTime.Now.Millisecond);
+			StartTime = new DateTime();
+			
 		}
 
 		public SectionData GetSectionData(Section section)
@@ -38,8 +40,8 @@ namespace Controller
 		{
 			foreach (IParticipant participant in Participants)
 			{
-				participant.Equipment.Quality = _random.Next(1, 100);
-				participant.Equipment.Performance = _random.Next(1, 100);
+				participant.Equipment.Quality = _random.Next(1, 10);
+				participant.Equipment.Performance = _random.Next(1, 10);
 			}
 		}
 	}

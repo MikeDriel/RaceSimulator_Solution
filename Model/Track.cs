@@ -8,8 +8,8 @@ namespace Model
 {
     public class Track
     {
-        public string Name { get; set; }
-        public LinkedList<Section> Sections { get; set; }
+        public string Name;
+        public LinkedList<Section> Sections;
 
         public Track(string name, LinkedList<Section> sections)
         {

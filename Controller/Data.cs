@@ -7,7 +7,7 @@ namespace Controller
 	{
 		public static Competition Competition;
 		public static Race CurrentRace;
-		public static Track currentTrack;
+		
 
 
 		public static void Initialize()
@@ -37,7 +37,7 @@ namespace Controller
 		
 		public static void NextRace()
 		{
-			currentTrack = Competition.NextTrack();
+			Track currentTrack = Competition.NextTrack();
 			if (currentTrack != null)
 			{
 				CurrentRace = new Race(currentTrack, Competition.Participants);

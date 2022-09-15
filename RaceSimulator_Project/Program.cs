@@ -4,7 +4,11 @@ using System.Net.Mail;
 
 Data.Initialize();
 Data.NextRace();
-Console.WriteLine(Data.currentTrack.Name);
+Console.WriteLine(Data.CurrentRace.Track.Name);
+Data.NextRace();
+Console.WriteLine(Data.CurrentRace.Track.Name);
+Data.NextRace();
+Console.WriteLine(Data.CurrentRace.Track.Name);
 
 
 for (; ; )
