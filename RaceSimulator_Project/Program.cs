@@ -1,14 +1,13 @@
 ﻿using Controller;
 using Model;
+using RaceSimulator_Project;
 using System.Net.Mail;
 
 Data.Initialize();
 Data.NextRace();
-Console.WriteLine(Data.CurrentRace.Track.Name);
-Data.NextRace();
-Console.WriteLine(Data.CurrentRace.Track.Name);
-Data.NextRace();
-Console.WriteLine(Data.CurrentRace.Track.Name);
+Visualisatie.Initialize();
+Visualisatie.DrawTrack(Data.CurrentRace.Track);
+
 
 
 for (; ; )

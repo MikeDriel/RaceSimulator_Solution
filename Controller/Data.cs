@@ -5,9 +5,9 @@ namespace Controller
 {
 	public static class Data
 	{
-		public static Competition Competition;
-		public static Race CurrentRace;
-		
+		public static Competition Competition { get; set; }
+		public static Race CurrentRace { get; set; }
+
 
 
 		public static void Initialize()
@@ -28,11 +28,11 @@ namespace Controller
 
 		public static void AddTracks()
 		{
-			Competition.Tracks.Enqueue(new Track("BloemendaalsTrack", new LinkedList<Section>()));
-			Competition.Tracks.Enqueue(new Track("BigVroomVroomBrrr", new LinkedList<Section>()));
-			Competition.Tracks.Enqueue(new Track("Zandvoort", new LinkedList<Section>()));
-			Competition.Tracks.Enqueue(new Track("RainbowRoad", new LinkedList<Section>()));
-			Competition.Tracks.Enqueue(new Track("KoopaTroopa", new LinkedList<Section>()));
+			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
+			Competition.Tracks.Enqueue(new Track("BigVroomVroomBrrr", TrackBuilder("Vierkant")));
+			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Vierkant")));
+			Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
+			Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
 		}
 		
 		public static void NextRace()
@@ -42,6 +42,37 @@ namespace Controller
 			{
 				CurrentRace = new Race(currentTrack, Competition.Participants);
 			}
+		}
+
+
+		public static SectionType[] TrackBuilder(string trackName)
+		{
+			
+			if (trackName.Equals("Vierkant"))
+			{
+				SectionType[] builder = new SectionType[]
+				{
+					SectionType.StartGrid,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.RightCorner,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.RightCorner,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.RightCorner,
+					SectionType.Straight,
+					SectionType.Finish,
+					SectionType.Straight,
+					SectionType.RightCorner
+				};
+				return builder;
+			}
+			return null;
 		}
 	}
 }

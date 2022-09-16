@@ -10,11 +10,11 @@ namespace Controller
 {
 	public class Race
 	{
-		public Track Track;
-		List<IParticipant> Participants;
-		DateTime StartTime;
-		private Random _random;
-		private Dictionary<Section, SectionData> _positions;
+		public Track Track { get; set; }
+		List<IParticipant> Participants { get; set; }
+		DateTime StartTime { get; set; }
+		private Random _random { get; set; }
+		private Dictionary<Section, SectionData> _positions { get; set; }
 
 		public Race(Track track, List<IParticipant> participants)
 		{
