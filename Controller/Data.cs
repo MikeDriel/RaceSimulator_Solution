@@ -52,23 +52,8 @@ namespace Controller
 			{
 				SectionType[] builder = new SectionType[]
 				{
-					SectionType.StartGrid,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.RightCorner,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.RightCorner,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.RightCorner,
-					SectionType.Straight,
-					SectionType.Finish,
-					SectionType.Straight,
-					SectionType.RightCorner
+					SectionType.Finish
+				
 				};
 				return builder;
 			}

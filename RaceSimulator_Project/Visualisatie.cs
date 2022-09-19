@@ -10,10 +10,14 @@ namespace RaceSimulator_Project
 {
 	public static class Visualisatie
 	{
-
+		static int X;
+		static int Y;
+		static int aantalSections;
 		public static void Initialize()
 		{
-			
+			X = 0;
+			Y = 0;
+			aantalSections = 0;
 		}
 
 		public static void DrawTrack(Track track)
@@ -23,19 +27,19 @@ namespace RaceSimulator_Project
 				switch (section.SectionTypes)
 				{
 					case SectionType.StartGrid:
-						Console.Write("S");
+						PrintToConsole(_StartGridHorizontal);
 						break;
 					case SectionType.Straight:
-						Console.Write(_StraightHorizontal);
+						PrintToConsole(_StraightHorizontal);
 						break;
 					case SectionType.Finish:
-						Console.Write(_finishHorizontal);
+						PrintToConsole(_finishHorizontal);
 						break;
 					case SectionType.LeftCorner:
-						Console.Write("/");
+						PrintToConsole(_LeftCornerHorizontal);
 						break;
 					case SectionType.RightCorner:
-						Console.Write("\\");
+						PrintToConsole(_RightCornerHorizontal);
 						break;
 				}
 			}
@@ -43,13 +47,31 @@ namespace RaceSimulator_Project
 
 		#region graphics
 		private static string[] _finishHorizontal = { "----", "  # ", "  # ", "----" };
-		private static string[] _StraightHorizontal = { "----------" };
-		private static string[] _LeftCornerHorizontal = { "----", "  # ", "  # ", "----" };
-		private static string[] _RightCornerHorizontal = { "----", "  # ", "  # ", "----" };
-		private static string[] _StartGridHorizontal = { "----", "  # ", "  # ", "----" };
+		private static string[] _StraightHorizontal = {};
+		private static string[] _LeftCornerHorizontal = {};
+		private static string[] _RightCornerHorizontal = {};
+		private static string[] _StartGridHorizontal = {};
+		
+		private static string[] _finishVertical = {};
+		private static string[] _StraightVertical = {};
+		private static string[] _LeftCornerVertical = {};
+		private static string[] _RightCornerVertical = {};
+		private static string[] _StartGridVertical = {};
 		#endregion
 
-		public static void print
-	}
+		public static void PrintToConsole(string[] tekenArray)
+		{
+			int teller = 0;
+			foreach (string s in tekenArray)
+			{
+				Console.SetCursorPosition(X, Y);
+				Console.Write(s);
 
+				Y++;
+			}
+			teller++;
+			aantalSections = 12 * teller;
+			
+		}
+	}
 }

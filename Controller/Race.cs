@@ -22,20 +22,18 @@ namespace Controller
 			Participants = participants;
 			_random = new Random(DateTime.Now.Millisecond);
 			StartTime = new DateTime();
-			
+
 		}
 
 		public SectionData GetSectionData(Section section)
 		{
 			if (!_positions.ContainsKey(section))
 			{
-				{
 					_positions.Add(section, new SectionData());
-				}
 			}
 			return _positions[section];
 		}
-		
+
 		public void RandomizeEquipment()
 		{
 			foreach (IParticipant participant in Participants)
