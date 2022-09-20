@@ -22,6 +22,11 @@ namespace Model
         Straight,
         Finish,
         LeftCorner,
-        RightCorner
-    }
+        RightCorner,
+		StartGridV,
+		StraightV,
+		FinishV,
+		LeftCornerV,
+		RightCornerV
+	}
 }
