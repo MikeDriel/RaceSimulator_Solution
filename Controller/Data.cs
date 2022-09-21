@@ -29,7 +29,7 @@ namespace Controller
 		public static void AddTracks()
 		{
 			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
-			Competition.Tracks.Enqueue(new Track("BigVroomVroomBrrr", TrackBuilder("Vierkant")));
+			Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
 			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Vierkant")));
 			Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
 			Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
@@ -79,25 +79,19 @@ namespace Controller
 				{
 					SectionType[] builder = new SectionType[]
 					{
-					SectionType.LeftCornerV,
-
-					SectionType.Straight,
-					SectionType.Straight,
-
+					SectionType.Finish,
+					SectionType.StartGrid,
 					SectionType.RightCorner,
-
-					SectionType.StraightV,
-					SectionType.StraightV,
-
-					SectionType.LeftCorner,
-
-					SectionType.Straight,
-					SectionType.Straight,
-
 					SectionType.RightCornerV,
+					SectionType.RightCorner,
+					SectionType.RightCornerV,
+					SectionType.RightCorner,
+					SectionType.RightCornerV,
+					SectionType.RightCorner,
+					SectionType.RightCornerV,
+					SectionType.RightCorner,
+					SectionType.RightCornerV
 
-					SectionType.StraightV,
-					SectionType.StraightV
 					};
 					return builder;
 			}

@@ -78,6 +78,7 @@ namespace RaceSimulator_Project
 			}
 		}
 
+		//Hier staan de tracks
 		#region graphics
 		private static string[] _finishHorizontal = { 
 			"-----",

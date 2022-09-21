@@ -5,6 +5,7 @@ using System.Net.Mail;
 
 Data.Initialize();
 Data.NextRace();
+Data.NextRace();
 
 Visualisatie.Initialize();
 Visualisatie.DrawTrack(Data.CurrentRace.Track);
