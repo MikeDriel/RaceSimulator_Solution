@@ -1,10 +1,12 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static RaceSimulator_Project.Visualisatie;
 
 namespace RaceSimulator_Project
 {
@@ -24,8 +26,8 @@ namespace RaceSimulator_Project
 
 		public static void Initialize()
 		{
-			X = 0;
-			Y = 0;
+			X = 40;
+			Y = 5;
 			Direction = 90;
 		}
 
@@ -46,11 +48,11 @@ namespace RaceSimulator_Project
 						PrintToConsole(_finishHorizontal);
 						break;
 					case SectionType.LeftCorner:
-						Direction = 270;
+						determineDirection(SectionType.LeftCorner, Direction);
 						PrintToConsole(_LeftCornerHorizontal);
 						break;
 					case SectionType.RightCorner:
-						Direction = 180;
+						determineDirection(SectionType.RightCorner, Direction);
 						PrintToConsole(_RightCornerHorizontal);
 						break;
 
@@ -65,11 +67,11 @@ namespace RaceSimulator_Project
 						PrintToConsole(_finishVertical);
 						break;
 					case SectionType.LeftCornerV:
-						Direction = 90;
+						determineDirection(SectionType.LeftCornerV, Direction); ;
 						PrintToConsole(_LeftCornerVertical);
 						break;
 					case SectionType.RightCornerV:
-						Direction = 0;
+						determineDirection(SectionType.RightCornerV, Direction);
 						PrintToConsole(_RightCornerVertical);
 						break;
 				}
@@ -77,17 +79,68 @@ namespace RaceSimulator_Project
 		}
 
 		#region graphics
-		private static string[] _finishHorizontal = { "-----", "  #  ", "     ", "  #  ", "-----" };
-		private static string[] _StraightHorizontal = { "-----", "     ", "     ", "     ", "-----" };
-		private static string[] _LeftCornerHorizontal = { "    |", "    |", "    |", "    |", "----/" };
-		private static string[] _RightCornerHorizontal = { "----\\", "    |", "    |", "    |", "    |" };
-		private static string[] _StartGridHorizontal = { "-----", " O   ", "     ", " O   ", "-----" };
+		private static string[] _finishHorizontal = { 
+			"-----",
+			"  #  ",
+			"  #  ",
+			"  #  ",
+			"-----"
+		};
+		private static string[] _StraightHorizontal = { 
+			"-----", 
+			"     ", 
+			"     ", 
+			"     ", 
+			"-----" };
+		private static string[] _LeftCornerHorizontal = { 
+			"/   |", 
+			"    |", 
+			"    |", 
+			"    |", 
 
-		private static string[] _finishVertical = { "|   |", "|   |", "|# #|", "|   |", "|   |" };
-		private static string[] _StraightVertical = { "|   |", "|   |", "|   |", "|   |", "|   |" };
-		private static string[] _LeftCornerVertical = { "/----", "|    ", "|    ", "|    ", "|    " };
-		private static string[] _RightCornerVertical = { "|    ", "|    ", "|    ", "|    ", "\\----" };
-		private static string[] _StartGridVertical = { "|   |", "|   |", "|O O|", "|   |", "|   |" };
+			"----/" };
+		private static string[] _RightCornerHorizontal = { 
+			"----\\", 
+			"    |", 
+			"    |", 
+			"    |", 
+			"\\   |" };
+		private static string[] _StartGridHorizontal = { 
+			"-----", 
+			" O   ", 
+			"     ", 
+			" O   ", 
+			"-----" };
+		private static string[] _finishVertical = { 
+			"|   |", 
+			"|   |", 
+			"|# #|", 
+			"|   |", 
+			"|   |" };
+		private static string[] _StraightVertical = { 
+			"|   |", 
+			"|   |", 
+			"|   |", 
+			"|   |", 
+			"|   |" };
+		private static string[] _LeftCornerVertical = { 
+			"/----", 
+			"|    ", 
+			"|    ", 
+			"|    ", 
+			"|   /" };
+		private static string[] _RightCornerVertical = { 
+			"|   \\", 
+			"|    ", 
+			"|    ", 
+			"|    ", 
+			"\\----" };
+		private static string[] _StartGridVertical = { 
+			"|   |", 
+			"|   |", 
+			"|O O|", 
+			"|   |", 
+			"|   |" };
 		#endregion
 
 		public static void PrintToConsole(string[] tekenArray)
@@ -115,6 +168,52 @@ namespace RaceSimulator_Project
 				Y += -10;
 			}
 
+		}
+		public static void determineDirection(SectionType type, int dir)
+		{
+			switch (type)
+			{
+				case SectionType.RightCorner:
+					if (dir == 90)
+					{
+						Direction = 180;
+					}
+					else if (dir == 0)
+					{
+						Direction = 270;
+					}
+					break;
+				case SectionType.LeftCorner:
+					if (dir == 180)
+					{
+						Direction = 270;
+					}
+					else if (dir == 90)
+					{
+						Direction = 0;
+					}
+					break;
+				case SectionType.RightCornerV:
+					if (dir == 270)
+					{
+						Direction = 0;
+					}
+					else if (dir == 180)
+					{
+						Direction = 90;
+					}
+					break;
+				case SectionType.LeftCornerV:
+					if (dir == 0)
+					{
+						Direction = 90;
+					}
+					else if (dir == 270)
+					{
+						Direction = 180;
+					}
+					break;
+			}
 		}
 	}
 }

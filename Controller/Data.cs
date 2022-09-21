@@ -54,8 +54,8 @@ namespace Controller
 				{
 					SectionType.LeftCornerV,
 
-					SectionType.Straight,
-					SectionType.Straight,
+					SectionType.Finish,
+					SectionType.StartGrid,
 
 					SectionType.RightCorner,
 
@@ -73,6 +73,33 @@ namespace Controller
 					SectionType.StraightV
 				};
 				return builder;
+				}
+
+				else if (trackName.Equals("Slang"))
+				{
+					SectionType[] builder = new SectionType[]
+					{
+					SectionType.LeftCornerV,
+
+					SectionType.Straight,
+					SectionType.Straight,
+
+					SectionType.RightCorner,
+
+					SectionType.StraightV,
+					SectionType.StraightV,
+
+					SectionType.LeftCorner,
+
+					SectionType.Straight,
+					SectionType.Straight,
+
+					SectionType.RightCornerV,
+
+					SectionType.StraightV,
+					SectionType.StraightV
+					};
+					return builder;
 			}
 			return null;
 		}
