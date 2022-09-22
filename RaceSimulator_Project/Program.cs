@@ -5,9 +5,10 @@ using System.Net.Mail;
 
 Data.Initialize();
 Data.NextRace();
-Data.NextRace();
+Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
 
-Visualisatie.Initialize();
+Visualisatie.Initialize(Data.CurrentRace);
+
 Visualisatie.DrawTrack(Data.CurrentRace.Track);
 
 

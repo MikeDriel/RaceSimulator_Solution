@@ -15,7 +15,7 @@ namespace Controller
 		public List<IParticipant> Participants { get; set; }
 		public DateTime StartTime { get; set; }
 		private Random _random { get; set; }
-		private Dictionary<Section, SectionData> _positions { get; set; }
+		public Dictionary<Section, SectionData> _positions { get; set; }
 
 		public Race(Track track, List<IParticipant> participants)
 		{
@@ -43,7 +43,7 @@ namespace Controller
 				participant.Equipment.Performance = _random.Next(1, 10);
 			}
 		}
-		
+
 		public void PlaceDriversOnStart(Track track, List<IParticipant> participants)
 		{
 			int index = 0;
@@ -57,14 +57,14 @@ namespace Controller
 						{
 							index = track.Sections.Count;
 						}
-						
+
 						SectionData sectionData = GetSectionData(track.Sections.ElementAt(index - (i / 2)));
-						
+
 						if (sectionData.Left == null)
 						{
 							sectionData.Left = participants[i];
 						}
-						
+
 						if (sectionData.Right == null && participants.Count % 2 == 0)
 						{
 							sectionData.Right = participants[i + 1];

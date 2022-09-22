@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Controller;
 using Model;
 using NUnit.Framework;
 
@@ -31,7 +32,7 @@ namespace ControllerTest
 		public void NextTrack_OneInQueue_ReturnTrack()
 		{
 			{
-				_competition.Tracks.Enqueue(new Track("TestTrack", new LinkedList<Section>()));
+				_competition.Tracks.Enqueue(new Track("TestTrack", Data.TrackBuilder()));
 				Track result = _competition.NextTrack();
 				Assert.AreEqual("TestTrack", result.Name);
 			}
