@@ -148,8 +148,9 @@ namespace RaceSimulator_Project
 		{
 				foreach (string s in tekenArray)
 				{
-					Console.SetCursorPosition(X, Y);
-					Console.Write(s);
+				string nummerString = s.Replace("1", " ").Replace("2", " ");
+				Console.SetCursorPosition(X, Y);
+				Console.Write(nummerString);
 				
 					Y++;
 				}
@@ -170,46 +171,46 @@ namespace RaceSimulator_Project
 			}
 
 		}
-		public static void determineDirection(SectionType type, int dir)
+		public static void determineDirection(SectionType sectiontype, int directionOfTrack)
 		{
-			switch (type)
+			switch (sectiontype)
 			{
 				case SectionType.RightCorner:
-					if (dir == 90)
+					if (directionOfTrack == 90)
 					{
 						Direction = 180;
 					}
-					else if (dir == 0)
+					else if (directionOfTrack == 0)
 					{
 						Direction = 270;
 					}
 					break;
 				case SectionType.LeftCorner:
-					if (dir == 180)
+					if (directionOfTrack == 180)
 					{
 						Direction = 270;
 					}
-					else if (dir == 90)
+					else if (directionOfTrack == 90)
 					{
 						Direction = 0;
 					}
 					break;
 				case SectionType.RightCornerV:
-					if (dir == 270)
+					if (directionOfTrack == 270)
 					{
 						Direction = 0;
 					}
-					else if (dir == 180)
+					else if (directionOfTrack == 180)
 					{
 						Direction = 90;
 					}
 					break;
 				case SectionType.LeftCornerV:
-					if (dir == 0)
+					if (directionOfTrack == 0)
 					{
 						Direction = 90;
 					}
-					else if (dir == 270)
+					else if (directionOfTrack == 270)
 					{
 						Direction = 180;
 					}
