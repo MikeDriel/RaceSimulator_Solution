@@ -36,6 +36,7 @@ namespace RaceSimulator_Project
 			Race = race;
 		}
 
+		//Calls certain functions depending on the SectionType of the section
 		public static void DrawTrack(Track track)
 		{
 			foreach (Section section in track.Sections)
@@ -83,13 +84,13 @@ namespace RaceSimulator_Project
 			}
 		}
 
-		//Hier staan de tracks
+		//THE TRACKS ARE HERE!!!
 		#region graphics
 		private static string[] _finishHorizontal = {
 			"-----",
 			"1 #  ",
 			"  #  ",
-			" 2#  ",
+			"2 #  ",
 			"-----"
 		};
 		private static string[] _StraightHorizontal = {
@@ -113,9 +114,9 @@ namespace RaceSimulator_Project
 			"\\   |" };
 		private static string[] _StartGridHorizontal = {
 			"-----",
-			" 1  O ",
-			"     ",
-			" 2  O ",
+			" 1  )",
+			"    )",
+			" 2  )",
 			"-----" };
 		private static string[] _finishVertical = {
 			"|   |",
@@ -143,18 +144,21 @@ namespace RaceSimulator_Project
 			"\\----" };
 		private static string[] _StartGridVertical = {
 			"|   |",
-			"|   |",
 			"|O O|",
+			"|   |",
 			"|1 2|",
 			"|   |" };
 		#endregion
 
+		//Replaces the numbers in the track with the first letter of the drivers name
 		public static string ReplaceString(string stringMetNummer, IParticipant participant1, IParticipant participant2)
 		{
 
 			return stringMetNummer.Replace("1", participant1.Name[0].ToString()).Replace("2", participant2.Name[0].ToString());
 		}
 
+
+		//Print the track to the console
 		public static void PrintToConsole(string[] tekenArray, SectionData sectionData)
 		{
 			foreach (string s in tekenArray)
@@ -189,6 +193,8 @@ namespace RaceSimulator_Project
 			}
 
 		}
+
+		//Determine the direction of the track
 		public static void determineDirection(SectionType sectiontype, int directionOfTrack)
 		{
 			switch (sectiontype)
