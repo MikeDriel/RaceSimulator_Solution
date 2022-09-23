@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+	//The data for a section
 	public class SectionData
 	{
 		public IParticipant Left { get; set; }

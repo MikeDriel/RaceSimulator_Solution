@@ -13,6 +13,7 @@ namespace Model
 		public int Speed { get; set; }
 		public bool IsBroken { get; set; }
 
+		//Constructor for car
 		public Car(int quality, int performance, int speed, bool isBroken)
 		{
 			Quality = quality;

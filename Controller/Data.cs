@@ -9,7 +9,7 @@ namespace Controller
 		public static Race CurrentRace { get; set; }
 
 
-
+		//Initializes the competition, Participants and tracks
 		public static void Initialize()
 		{
 			Competition = new Competition();
@@ -17,6 +17,7 @@ namespace Controller
 			AddTracks();
 		}
 
+		//Adds participants to the competition
 		public static void AddParticipants()
 		{
 			Competition.Participants.Add(new Driver("Mike", 0, new Car(10, 10, 10, false), TeamColors.Red));
@@ -27,6 +28,7 @@ namespace Controller
 			//Competition.Participants.Add(new Driver("KoopaTroopa", 0, new Car(10, 10, 10, false), TeamColors.Yellow));
 		}
 
+		//Adds tracks to the competition
 		public static void AddTracks()
 		{
 			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
@@ -36,6 +38,7 @@ namespace Controller
 			Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
 		}
 
+		//Adds the track and participants to the current race
 		public static void NextRace()
 		{
 			Track currentTrack = Competition.NextTrack();
@@ -45,7 +48,7 @@ namespace Controller
 			}
 		}
 
-
+		//builder for the different races sorted by name
 		public static SectionType[] TrackBuilder(string trackName)
 		{
 

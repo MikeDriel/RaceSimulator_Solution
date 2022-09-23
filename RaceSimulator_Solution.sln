@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceSimulator_Project", "Ra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Controller\Controller.csproj", "{552A8EC2-1179-4D56-9850-EC5F17F82155}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{5E3781E0-289C-477F-93BC-6F639BC5A2E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{5E3781E0-289C-477F-93BC-6F639BC5A2E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerTest", "ControllerTest\ControllerTest.csproj", "{342BB791-BB39-4365-9720-67CCCAC20C6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllerTest", "ControllerTest\ControllerTest.csproj", "{342BB791-BB39-4365-9720-67CCCAC20C6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceSimulatorTest", "RaceSimulatorTest\RaceSimulatorTest.csproj", "{D50F65BA-C04B-4F2B-A616-E20AE10967F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{342BB791-BB39-4365-9720-67CCCAC20C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342BB791-BB39-4365-9720-67CCCAC20C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342BB791-BB39-4365-9720-67CCCAC20C6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D50F65BA-C04B-4F2B-A616-E20AE10967F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D50F65BA-C04B-4F2B-A616-E20AE10967F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D50F65BA-C04B-4F2B-A616-E20AE10967F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D50F65BA-C04B-4F2B-A616-E20AE10967F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

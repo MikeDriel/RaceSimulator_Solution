@@ -32,7 +32,7 @@ namespace ControllerTest
 		public void NextTrack_OneInQueue_ReturnTrack()
 		{
 			{
-				_competition.Tracks.Enqueue(new Track("TestTrack", Data.TrackBuilder()));
+				_competition.Tracks.Enqueue(new Track("TestTrack", Data.TrackBuilder("Vierkant")));
 				Track result = _competition.NextTrack();
 				Assert.AreEqual("TestTrack", result.Name);
 			}
@@ -44,7 +44,7 @@ namespace ControllerTest
 
 			Track result;
 			
-				_competition.Tracks.Enqueue(new Track("TestTrack", new LinkedList<Section>()));
+				_competition.Tracks.Enqueue(new Track("TestTrack", Data.TrackBuilder("Vierkant")));
 				result = _competition.NextTrack();
 				result = _competition.NextTrack();
 				Assert.IsNull(result);
@@ -57,8 +57,8 @@ namespace ControllerTest
 
 			Track result;
 			
-			_competition.Tracks.Enqueue(new Track("TestTrack", new LinkedList<Section>()));
-			_competition.Tracks.Enqueue(new Track("TestTrack2", new LinkedList<Section>()));
+			_competition.Tracks.Enqueue(new Track("TestTrack", Data.TrackBuilder("Vierkant")));
+			_competition.Tracks.Enqueue(new Track("TestTrack2", Data.TrackBuilder("Vierkant")));
 			result = _competition.NextTrack();
 			Assert.AreEqual("TestTrack", result.Name);
 			result = _competition.NextTrack();

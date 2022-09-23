@@ -16,7 +16,8 @@ namespace Model
 		}
 	}
 
-    public enum SectionType
+	//Enum for the different types of sections
+	public enum SectionType
     {
         StartGrid,
         Straight,

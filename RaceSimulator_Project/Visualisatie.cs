@@ -19,13 +19,14 @@ namespace RaceSimulator_Project
 		static int Direction;
 		static Race Race;
 
-		public enum Directions
-		{
-			Up = 0,
-			Right = 90,
-			Down = 180,
-			Left = 270
-		}
+		//Unused enum so i dont forget what left and right is
+		//public enum Directions
+		//{
+		//	Up = 0,
+		//	Right = 90,
+		//	Down = 180,
+		//	Left = 270
+		//}
 
 		public static void Initialize(Race race)
 		{
@@ -159,12 +160,12 @@ namespace RaceSimulator_Project
 			foreach (string s in tekenArray)
 			{
 				string temp = s;
-				
+
 				if (sectionData.Left != null && sectionData.Right != null)
 				{
 					temp = ReplaceString(s, sectionData.Left, sectionData.Right);
 				}
-				
+
 
 				Console.SetCursorPosition(X, Y);
 				Console.Write(temp.Replace("1", " ").Replace("2", " "));

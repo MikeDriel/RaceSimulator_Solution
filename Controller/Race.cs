@@ -17,6 +17,7 @@ namespace Controller
 		private Random _random { get; set; }
 		public Dictionary<Section, SectionData> _positions { get; set; }
 
+		//Constructor for Race
 		public Race(Track track, List<IParticipant> participants)
 		{
 			Track = track;
@@ -26,6 +27,7 @@ namespace Controller
 			_positions = new Dictionary<Section, SectionData>();
 		}
 
+		//Gets the sectiondata for the given section, if it doesn't exist, it creates it
 		public SectionData GetSectionData(Section section)
 		{
 			if (!_positions.ContainsKey(section))
@@ -35,6 +37,7 @@ namespace Controller
 			return _positions[section];
 		}
 
+		//Randomizes equipment for all participants
 		public void RandomizeEquipment()
 		{
 			foreach (IParticipant participant in Participants)
@@ -44,6 +47,7 @@ namespace Controller
 			}
 		}
 
+		//Places drivers on the startgrid and behind it until no more participants are left in the list
 		public void PlaceDriversOnStart(Track track, List<IParticipant> participants)
 		{
 			int index = 0;

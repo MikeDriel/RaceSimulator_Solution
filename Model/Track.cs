@@ -11,12 +11,14 @@ namespace Model
         public string Name { get; set; }
 		public LinkedList<Section> Sections { get; set; }
 
+		//Constructor for Track
 		public Track(string name, SectionType[] sectionType)
         {
             Name = name;
 			Sections = SectionTypeToLinkedList(sectionType);
 		}
 
+		//Converts the array of sectiontypes to a linkedlist of sections
 		public LinkedList<Section> SectionTypeToLinkedList(SectionType[] sectionTypes)
         {
 			LinkedList<Section> sectionList = new LinkedList<Section>();
@@ -26,6 +28,5 @@ namespace Model
 			}
 			return sectionList;
 		}
-		
 	}
 }
