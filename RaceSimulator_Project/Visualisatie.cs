@@ -241,5 +241,10 @@ namespace RaceSimulator_Project
 					break;
 			}
 		}
+		
+		public static void OnDriversChanged(object source, DriversChangedEventArgs e)
+		{
+			DrawTrack(e.Track);
+		}
 	}
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,15 @@ namespace Controller
 {
 	public class Race
 	{
+		
+		public event EventHandler<DriversChangedEventArgs> DriversChanged;
+		
 		public Track Track { get; set; }
 		public List<IParticipant> Participants { get; set; }
 		public DateTime StartTime { get; set; }
 		private Random _random { get; set; }
-		public Dictionary<Section, SectionData> _positions { get; set; }
+		private Dictionary<Section, SectionData> _positions { get; set; }
+		private System.Timers.Timer _timer { get; set; }
 
 		//Constructor for Race
 		public Race(Track track, List<IParticipant> participants)
@@ -25,6 +30,8 @@ namespace Controller
 			_random = new Random(DateTime.Now.Millisecond);
 			StartTime = new DateTime();
 			_positions = new Dictionary<Section, SectionData>();
+			_timer = new System.Timers.Timer(500);
+			_timer.Elapsed += OnTimedEvent;
 		}
 
 		//Gets the sectiondata for the given section, if it doesn't exist, it creates it
@@ -46,6 +53,7 @@ namespace Controller
 				participant.Equipment.Performance = _random.Next(1, 10);
 			}
 		}
+
 
 		//Places drivers on the startgrid and behind it until no more participants are left in the list
 		public void PlaceDriversOnStart(Track track, List<IParticipant> participants)
@@ -78,6 +86,19 @@ namespace Controller
 				}
 				index++;
 			}
+		}
+		
+		
+		//TimerEvent
+		public void OnTimedEvent(object source, EventArgs e)
+		{
+			DriversChanged.Invoke(this, EventArgs.Empty);
+		}
+
+		//Start timer
+		public void Start()
+		{
+			_timer.Start();
 		}
 	}
 }

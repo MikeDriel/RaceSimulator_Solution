@@ -15,6 +15,7 @@
 		Green,
 		Yellow,
 		Grey,
-		Blue
+		Blue,
+		Purple
 	}
 }
