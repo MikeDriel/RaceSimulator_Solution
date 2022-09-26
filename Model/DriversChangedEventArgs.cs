@@ -12,5 +12,10 @@ namespace Model
 	{
 		public Track Track { get; set; }
 
+		public DriversChangedEventArgs(Track track)
+		{
+			Track = track;
+		}
+
 	}
 }

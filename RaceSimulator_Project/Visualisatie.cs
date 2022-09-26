@@ -34,6 +34,8 @@ namespace RaceSimulator_Project
 			Y = 5;
 			Direction = 90;
 			Race = race;
+
+			Data.CurrentRace.DriversChanged += OnDriversChanged;
 		}
 
 		//Calls certain functions depending on the SectionType of the section
@@ -156,7 +158,6 @@ namespace RaceSimulator_Project
 
 			return stringMetNummer.Replace("1", participant1.Name[0].ToString()).Replace("2", participant2.Name[0].ToString());
 		}
-
 
 		//Print the track to the console
 		public static void PrintToConsole(string[] tekenArray, SectionData sectionData)

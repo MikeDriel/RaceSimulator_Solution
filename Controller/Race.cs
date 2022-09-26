@@ -12,8 +12,8 @@ namespace Controller
 {
 	public class Race
 	{
-		
-		public event EventHandler<DriversChangedEventArgs> DriversChanged;
+		public delegate void DriversEventHandler(object sender, DriversChangedEventArgs e);
+		public event DriversEventHandler DriversChanged;
 		
 		public Track Track { get; set; }
 		public List<IParticipant> Participants { get; set; }
@@ -92,7 +92,8 @@ namespace Controller
 		//TimerEvent
 		public void OnTimedEvent(object source, EventArgs e)
 		{
-			DriversChanged.Invoke(this, EventArgs.Empty);
+			//Console.WriteLine("TimerTest");
+			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
 		}
 
 		//Start timer
