@@ -6,8 +6,9 @@
 		int Points { get; set; }
 		IEquipment Equipment { get; set; }
 		TeamColors TeamColors { get; set; }
+		public Section CurrentSection { get; set; }
 
-}
+	}
 	
 	public enum TeamColors
 	{

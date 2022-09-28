@@ -75,7 +75,7 @@ namespace RaceSimulator_Project
 						PrintToConsole(_finishVertical, Race.GetSectionData(section));
 						break;
 					case SectionType.LeftCornerV:
-						determineDirection(SectionType.LeftCornerV, Direction); ;
+						determineDirection(SectionType.LeftCornerV, Direction); 
 						PrintToConsole(_LeftCornerVertical, Race.GetSectionData(section));
 						break;
 					case SectionType.RightCornerV:
@@ -245,6 +245,7 @@ namespace RaceSimulator_Project
 		
 		public static void OnDriversChanged(object source, DriversChangedEventArgs e)
 		{
+			Console.Clear();
 			DrawTrack(e.Track);
 		}
 	}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +13,9 @@ namespace Controller
 {
 	public class Race
 	{
-		public delegate void DriversEventHandler(object sender, DriversChangedEventArgs e);
+		public delegate void DriversEventHandler(object source, DriversChangedEventArgs e);
 		public event DriversEventHandler DriversChanged;
-		
+
 		public Track Track { get; set; }
 		public List<IParticipant> Participants { get; set; }
 		public DateTime StartTime { get; set; }
@@ -75,11 +76,13 @@ namespace Controller
 						if (sectionData.Left == null)
 						{
 							sectionData.Left = participants[i];
+							participants[i].CurrentSection = section;
 						}
 
 						if (sectionData.Right == null && participants.Count % 2 == 0)
 						{
 							sectionData.Right = participants[i + 1];
+							participants[i].CurrentSection = section;
 						}
 					}
 					return;
@@ -87,19 +90,61 @@ namespace Controller
 				index++;
 			}
 		}
-		
-		
+
+
 		//TimerEvent
 		public void OnTimedEvent(object source, EventArgs e)
 		{
-			//Console.WriteLine("TimerTest");
+			//Hier moet speed and perfomance calculatie en ook wanneer naar next track
+
 			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
 		}
 
+		public void CalculateSpeedAndPerformance()
+		{
+			foreach (IParticipant participant in Participants)
+			{
+				participant.Equipment.Speed = participant.Equipment.Quality * participant.Equipment.Performance;
+			}
+		}
+
+
+		public void MoveDriver(IParticipant participant)
+		{
+			int i = 0;
+			foreach (Section section in Track.Sections)
+			{
+				SectionData sectionData = GetSectionData(participant.CurrentSection);
+
+				if (sectionData.Left == participant)
+				{
+					sectionData.Left = null;
+				}
+				else if (sectionData.Right == participant)
+				{
+					sectionData.Right = null;
+				}
+
+				int index = Track.Sections.Count;
+				SectionData nextSectionData = GetSectionData(Track.Sections.ElementAt(index + 1));
+
+				if (nextSectionData.Left == null)
+				{
+					nextSectionData.Left = participant;
+				}
+				else if (nextSectionData.Right == null)
+				{
+					nextSectionData.Right = participant;
+				}
+			}
+		}
+		
 		//Start timer
 		public void Start()
 		{
 			_timer.Start();
 		}
 	}
+
+	
 }
