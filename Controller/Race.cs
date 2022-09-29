@@ -78,7 +78,7 @@ namespace Controller
 						if (sectionData.Left == null)
 						{
 							sectionData.Left = participants[i];
-							
+
 							participants[i].CurrentSection = track.Sections.ElementAt(index - (i / 2));
 						}
 
@@ -96,7 +96,7 @@ namespace Controller
 				index++;
 			}
 		}
-		
+
 		public void CheckForMoveDriver()
 		{
 			//_timer.Stop(); // just 4 testing
@@ -112,7 +112,7 @@ namespace Controller
 			}
 			//_timer.Start(); // just 4 testing
 		}
-		
+
 		public void MoveDriver(IParticipant participant)
 		{
 			int i = 0;
@@ -120,6 +120,8 @@ namespace Controller
 			{
 				if (section == participant.CurrentSection)
 				{
+
+					//This part checks the fist section of the track with the drivers
 					SectionData sectionData = GetSectionData(section);
 
 					if (sectionData.Left == participant)
@@ -131,11 +133,12 @@ namespace Controller
 						sectionData.Right = null;
 					}
 
-					if (Track.Sections.Count <= (i + 1 ))
+					if (Track.Sections.Count <= (i + 1))
 					{
 						i = -1;
 					}
 
+					//This part checks the second section behind the first one of the track with the drivers
 					SectionData nextSectionData = GetSectionData(Track.Sections.ElementAt(i + 1));
 
 					if (nextSectionData.Left == null)
@@ -147,7 +150,8 @@ namespace Controller
 						nextSectionData.Right = participant;
 					}
 					participant.CurrentSection = Track.Sections.ElementAt(i + 1);
-					
+
+					//Checks if the drivers go over a finish section for the x'th amount of time and then makes them go poof to the shadow realm
 					if (CheckFinish(participant) == true)
 					{
 						participant.CurrentSection = null;
@@ -164,9 +168,10 @@ namespace Controller
 				}
 				i++;
 			}
-			
+
 		}
 
+		//Checks if drivers touch the finish
 		public Boolean CheckFinish(IParticipant participant)
 		{
 			if (participant.CurrentSection.SectionTypes == SectionType.Finish)
@@ -193,6 +198,17 @@ namespace Controller
 		public void Start()
 		{
 			_timer.Start();
+		}
+
+		
+
+		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
+		public void CleanUp()
+		{
+			Console.WriteLine("Cleaning up");
+			DriversChanged = null;
+			_timer.Stop();
+			Console.WriteLine("Cleaning done");
 		}
 	}
 }

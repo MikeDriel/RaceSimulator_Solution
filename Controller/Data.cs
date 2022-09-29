@@ -36,6 +36,7 @@ namespace Controller
 			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Vierkant")));
 			Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
 			Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
+
 		}
 
 		//Adds the track and participants to the current race
