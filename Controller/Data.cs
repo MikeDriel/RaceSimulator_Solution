@@ -58,8 +58,8 @@ namespace Controller
 				{
 					SectionType.LeftCornerV,
 
-					SectionType.Finish,
 					SectionType.StartGrid,
+					SectionType.Finish,
 
 					SectionType.RightCorner,
 

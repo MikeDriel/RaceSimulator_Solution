@@ -96,7 +96,6 @@ namespace Controller
 		public void OnTimedEvent(object source, EventArgs e)
 		{
 			//Hier moet speed and perfomance calculatie en ook wanneer naar next track
-
 			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
 		}
 
@@ -145,6 +144,4 @@ namespace Controller
 			_timer.Start();
 		}
 	}
-
-	
 }

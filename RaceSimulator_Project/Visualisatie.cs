@@ -14,25 +14,30 @@ namespace RaceSimulator_Project
 {
 	public static class Visualisatie
 	{
-		static int X;
-		static int Y;
-		static int Direction;
+		static int x;
+		static int y;
+		static Direction direction;
 		static Race Race;
 
-		//Unused enum so i dont forget what left and right is
-		//public enum Directions
-		//{
-		//	Up = 0,
-		//	Right = 90,
-		//	Down = 180,
-		//	Left = 270
-		//}
+		
+		public enum Direction
+		{
+			Up = 0,
+			Right = 90,
+			Down = 180,
+			Left = 270
+		}
 
+		/// <summary>
+		/// hey hallo
+		/// 
+		/// </summary>
+		/// <param name="race"></param>
 		public static void Initialize(Race race)
 		{
-			X = 40;
-			Y = 5;
-			Direction = 90;
+			x = 40;
+			y = 5;
+			direction = Direction.Right;
 			Race = race;
 
 			Data.CurrentRace.DriversChanged += OnDriversChanged;
@@ -56,11 +61,11 @@ namespace RaceSimulator_Project
 						PrintToConsole(_finishHorizontal, Race.GetSectionData(section));
 						break;
 					case SectionType.LeftCorner:
-						determineDirection(SectionType.LeftCorner, Direction);
+						DetermineDirection(SectionType.LeftCorner, direction);
 						PrintToConsole(_LeftCornerHorizontal, Race.GetSectionData(section));
 						break;
 					case SectionType.RightCorner:
-						determineDirection(SectionType.RightCorner, Direction);
+						DetermineDirection(SectionType.RightCorner, direction);
 						PrintToConsole(_RightCornerHorizontal, Race.GetSectionData(section));
 						break;
 
@@ -75,11 +80,11 @@ namespace RaceSimulator_Project
 						PrintToConsole(_finishVertical, Race.GetSectionData(section));
 						break;
 					case SectionType.LeftCornerV:
-						determineDirection(SectionType.LeftCornerV, Direction); 
+						DetermineDirection(SectionType.LeftCornerV, direction); 
 						PrintToConsole(_LeftCornerVertical, Race.GetSectionData(section));
 						break;
 					case SectionType.RightCornerV:
-						determineDirection(SectionType.RightCornerV, Direction);
+						DetermineDirection(SectionType.RightCornerV, direction);
 						PrintToConsole(_RightCornerVertical, Race.GetSectionData(section));
 						break;
 				}
@@ -134,9 +139,9 @@ namespace RaceSimulator_Project
 			"|   |" };
 		private static string[] _LeftCornerVertical = {
 			"/----",
-			"|  2 ",
-			"|1   ",
+			"|  1 ",
 			"|    ",
+			"| 2  ",
 			"|   /" };
 		private static string[] _RightCornerVertical = {
 			"|   \\",
@@ -172,72 +177,72 @@ namespace RaceSimulator_Project
 				}
 
 
-				Console.SetCursorPosition(X, Y);
+				Console.SetCursorPosition(x, y);
 				Console.Write(temp.Replace("1", " ").Replace("2", " "));
 
-				Y++;
+				y++;
 			}
 
-			if (Direction == 90)
+			if (direction == Direction.Right)
 			{
-				Y += -5;
-				X += 5;
+				y += -5;
+				x += 5;
 			}
-			if (Direction == 270)
+			if (direction == Direction.Left)
 			{
-				Y += -5;
-				X += -5;
+				y += -5;
+				x += -5;
 			}
-			if (Direction == 0)
+			if (direction == Direction.Up)
 			{
-				Y += -10;
+				y += -10;
 			}
 
 		}
 
 		//Determine the direction of the track
-		public static void determineDirection(SectionType sectiontype, int directionOfTrack)
+		public static void DetermineDirection(SectionType sectiontype, Direction directionOfTrack)
 		{
 			switch (sectiontype)
 			{
-				case SectionType.RightCorner:
-					if (directionOfTrack == 90)
+				case SectionType.RightCorner://goed
+					if (directionOfTrack == Direction.Right)
 					{
-						Direction = 180;
+						direction = Direction.Down;
 					}
-					else if (directionOfTrack == 0)
+					else if (directionOfTrack == Direction.Up)
 					{
-						Direction = 270;
+						direction = Direction.Left;
 					}
 					break;
 				case SectionType.LeftCorner:
-					if (directionOfTrack == 180)
+					if (directionOfTrack == Direction.Right)
 					{
-						Direction = 270;
+						direction = Direction.Up;
 					}
-					else if (directionOfTrack == 90)
+					else if (directionOfTrack == Direction.Down)
 					{
-						Direction = 0;
+						direction = Direction.Left;
 					}
 					break;
 				case SectionType.RightCornerV:
-					if (directionOfTrack == 270)
+					if (directionOfTrack == Direction.Left)
 					{
-						Direction = 0;
+						direction = Direction.Up;
 					}
-					else if (directionOfTrack == 180)
+					else if (directionOfTrack == Direction.Down)
 					{
-						Direction = 90;
+						direction = Direction.Right;
 					}
 					break;
-				case SectionType.LeftCornerV:
-					if (directionOfTrack == 0)
+				case SectionType.LeftCornerV: //goed
+					if (directionOfTrack == Direction.Up)
 					{
-						Direction = 90;
+						direction = Direction.Right;
 					}
-					else if (directionOfTrack == 270)
+					else if (directionOfTrack == Direction.Left)
 					{
-						Direction = 180;
+						direction = Direction.Down;
 					}
 					break;
 			}
