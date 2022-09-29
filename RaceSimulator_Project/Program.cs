@@ -16,9 +16,7 @@ Visualisatie.DrawTrack(Data.CurrentRace.Track);
 
 Data.CurrentRace.Start();
 
-Data.CurrentRace.Start();
-
 for (; ; )
 {
-	Thread.Sleep(100);
+	Thread.Sleep(500);
 }

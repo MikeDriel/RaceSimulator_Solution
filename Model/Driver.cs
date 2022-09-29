@@ -13,6 +13,8 @@ namespace Model
         public IEquipment Equipment { get; set; }
         public TeamColors TeamColors { get; set; }
 		public Section CurrentSection { get; set; }
+		public int DistanceCovered { get; set; }
+		public int Loops { get; set; }
 
 		public Driver(string name, int points, IEquipment equipment, TeamColors teamColors)
         {

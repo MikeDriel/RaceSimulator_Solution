@@ -20,10 +20,10 @@ namespace Controller
 		//Adds participants to the competition
 		public static void AddParticipants()
 		{
-			Competition.Participants.Add(new Driver("Mike", 0, new Car(10, 10, 10, false), TeamColors.Red));
-			Competition.Participants.Add(new Driver("Jan", 0, new Car(10, 10, 10, false), TeamColors.Green));
-			Competition.Participants.Add(new Driver("Thomas", 0, new Car(10, 10, 10, false), TeamColors.Grey));
-			Competition.Participants.Add(new Driver("Yasmine", 0, new Car(10, 10, 10, false), TeamColors.Purple));
+			Competition.Participants.Add(new Driver("Mike", 0, new Car(5, 5, 5, false), TeamColors.Red));
+			Competition.Participants.Add(new Driver("Jan", 0, new Car(5, 5, 5, false), TeamColors.Green));
+			Competition.Participants.Add(new Driver("Thomas", 0, new Car(5, 5, 5, false), TeamColors.Grey));
+			Competition.Participants.Add(new Driver("Yasmine", 0, new Car(5, 1, 5, false), TeamColors.Purple));
 			//Competition.Participants.Add(new Driver("Pieter", 0, new Car(10, 10, 10, false), TeamColors.Blue));
 			//Competition.Participants.Add(new Driver("KoopaTroopa", 0, new Car(10, 10, 10, false), TeamColors.Yellow));
 		}
@@ -59,6 +59,7 @@ namespace Controller
 					SectionType.LeftCornerV,
 
 					SectionType.StartGrid,
+					SectionType.Straight,
 					SectionType.Finish,
 
 					SectionType.RightCorner,
@@ -68,6 +69,7 @@ namespace Controller
 
 					SectionType.LeftCorner,
 
+					SectionType.Straight,
 					SectionType.Straight,
 					SectionType.Straight,
 
@@ -83,30 +85,7 @@ namespace Controller
 				{
 					SectionType[] builder = new SectionType[]
 					{
-					SectionType.Finish,
-					SectionType.StartGrid,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.Finish,
-					SectionType.StartGrid,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.RightCornerV
+						SectionType.Straight,
 
 					};
 					return builder;

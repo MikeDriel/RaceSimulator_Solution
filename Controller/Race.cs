@@ -13,8 +13,7 @@ namespace Controller
 {
 	public class Race
 	{
-		public delegate void DriversEventHandler(object source, DriversChangedEventArgs e);
-		public event DriversEventHandler DriversChanged;
+		public event EventHandler<DriversChangedEventArgs> DriversChanged;
 
 		public Track Track { get; set; }
 		public List<IParticipant> Participants { get; set; }
@@ -33,6 +32,7 @@ namespace Controller
 			_positions = new Dictionary<Section, SectionData>();
 			_timer = new System.Timers.Timer(500);
 			_timer.Elapsed += OnTimedEvent;
+			RandomizeEquipment();
 		}
 
 		//Gets the sectiondata for the given section, if it doesn't exist, it creates it
@@ -50,8 +50,8 @@ namespace Controller
 		{
 			foreach (IParticipant participant in Participants)
 			{
-				participant.Equipment.Quality = _random.Next(1, 10);
-				participant.Equipment.Performance = _random.Next(1, 10);
+				participant.Equipment.Quality = _random.Next(1, 11);
+				participant.Equipment.Performance = _random.Next(1, 11);
 			}
 		}
 
@@ -59,6 +59,7 @@ namespace Controller
 		//Places drivers on the startgrid and behind it until no more participants are left in the list
 		public void PlaceDriversOnStart(Track track, List<IParticipant> participants)
 		{
+			// Index to keep track of on which section the foreach loop is currently
 			int index = 0;
 			foreach (Section section in track.Sections)
 			{
@@ -73,16 +74,21 @@ namespace Controller
 
 						SectionData sectionData = GetSectionData(track.Sections.ElementAt(index - (i / 2)));
 
+
 						if (sectionData.Left == null)
 						{
 							sectionData.Left = participants[i];
-							participants[i].CurrentSection = section;
+							
+							participants[i].CurrentSection = track.Sections.ElementAt(index - (i / 2));
 						}
 
 						if (sectionData.Right == null && participants.Count % 2 == 0)
 						{
 							sectionData.Right = participants[i + 1];
-							participants[i].CurrentSection = section;
+
+							participants[i + 1].CurrentSection = track.Sections.ElementAt(index - (i / 2));
+
+
 						}
 					}
 					return;
@@ -90,54 +96,99 @@ namespace Controller
 				index++;
 			}
 		}
-
-
-		//TimerEvent
-		public void OnTimedEvent(object source, EventArgs e)
+		
+		public void CheckForMoveDriver()
 		{
-			//Hier moet speed and perfomance calculatie en ook wanneer naar next track
-			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
-		}
-
-		public void CalculateSpeedAndPerformance()
-		{
+			//_timer.Stop(); // just 4 testing
 			foreach (IParticipant participant in Participants)
 			{
-				participant.Equipment.Speed = participant.Equipment.Quality * participant.Equipment.Performance;
+				//Calculate the distance the driver can move
+				participant.DistanceCovered += participant.Equipment.Speed * participant.Equipment.Performance;
+				if (participant.DistanceCovered >= 100)
+				{
+					participant.DistanceCovered += -100;
+					MoveDriver(participant);
+				}
 			}
+			//_timer.Start(); // just 4 testing
 		}
-
-
+		
 		public void MoveDriver(IParticipant participant)
 		{
 			int i = 0;
 			foreach (Section section in Track.Sections)
 			{
-				SectionData sectionData = GetSectionData(participant.CurrentSection);
+				if (section == participant.CurrentSection)
+				{
+					SectionData sectionData = GetSectionData(section);
 
-				if (sectionData.Left == participant)
-				{
-					sectionData.Left = null;
-				}
-				else if (sectionData.Right == participant)
-				{
-					sectionData.Right = null;
-				}
+					if (sectionData.Left == participant)
+					{
+						sectionData.Left = null;
+					}
+					else if (sectionData.Right == participant)
+					{
+						sectionData.Right = null;
+					}
 
-				int index = Track.Sections.Count;
-				SectionData nextSectionData = GetSectionData(Track.Sections.ElementAt(index + 1));
+					if (Track.Sections.Count <= (i + 1 ))
+					{
+						i = -1;
+					}
 
-				if (nextSectionData.Left == null)
-				{
-					nextSectionData.Left = participant;
+					SectionData nextSectionData = GetSectionData(Track.Sections.ElementAt(i + 1));
+
+					if (nextSectionData.Left == null)
+					{
+						nextSectionData.Left = participant;
+					}
+					else if (nextSectionData.Right == null)
+					{
+						nextSectionData.Right = participant;
+					}
+					participant.CurrentSection = Track.Sections.ElementAt(i + 1);
+					
+					if (CheckFinish(participant) == true)
+					{
+						participant.CurrentSection = null;
+						if (nextSectionData.Left == participant)
+						{
+							nextSectionData.Left = null;
+						}
+						else if (nextSectionData.Right == participant)
+						{
+							nextSectionData.Right = null;
+						}
+					}
+					return;
 				}
-				else if (nextSectionData.Right == null)
-				{
-					nextSectionData.Right = participant;
-				}
+				i++;
 			}
+			
 		}
-		
+
+		public Boolean CheckFinish(IParticipant participant)
+		{
+			if (participant.CurrentSection.SectionTypes == SectionType.Finish)
+			{
+				participant.Loops += 1;
+				//Number determines the amount of laps the drivers have to do
+				if (participant.Loops == 1)
+				{
+					return true;
+				}
+				else return false;
+			}
+			else return false;
+		}
+
+		//TimerEvent
+		public void OnTimedEvent(object source, EventArgs e)
+		{
+			CheckForMoveDriver();
+			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
+		}
+
 		//Start timer
 		public void Start()
 		{

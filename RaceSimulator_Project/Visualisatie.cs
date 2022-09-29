@@ -164,6 +164,20 @@ namespace RaceSimulator_Project
 			return stringMetNummer.Replace("1", participant1.Name[0].ToString()).Replace("2", participant2.Name[0].ToString());
 		}
 
+		public static string ReplaceString(string stringMetNummer, IParticipant participant)
+		{
+			if (Race.GetSectionData(participant.CurrentSection).Left == participant)
+			{
+				return stringMetNummer.Replace("1", participant.Name[0].ToString());
+			}
+			else if (Race.GetSectionData(participant.CurrentSection).Right == participant)
+			{
+				return stringMetNummer.Replace("2", participant.Name[0].ToString());
+			}
+			return null;
+		}
+		
+
 		//Print the track to the console
 		public static void PrintToConsole(string[] tekenArray, SectionData sectionData)
 		{
@@ -174,6 +188,14 @@ namespace RaceSimulator_Project
 				if (sectionData.Left != null && sectionData.Right != null)
 				{
 					temp = ReplaceString(s, sectionData.Left, sectionData.Right);
+				}
+				else if (sectionData.Left != null)
+				{
+					temp = ReplaceString(s, sectionData.Left);
+				}
+				else if (sectionData.Right != null )
+				{
+					temp = ReplaceString(s, sectionData.Right);
 				}
 
 
@@ -197,7 +219,6 @@ namespace RaceSimulator_Project
 			{
 				y += -10;
 			}
-
 		}
 
 		//Determine the direction of the track
@@ -205,7 +226,7 @@ namespace RaceSimulator_Project
 		{
 			switch (sectiontype)
 			{
-				case SectionType.RightCorner://goed
+				case SectionType.RightCorner:
 					if (directionOfTrack == Direction.Right)
 					{
 						direction = Direction.Down;
@@ -235,7 +256,7 @@ namespace RaceSimulator_Project
 						direction = Direction.Right;
 					}
 					break;
-				case SectionType.LeftCornerV: //goed
+				case SectionType.LeftCornerV: 
 					if (directionOfTrack == Direction.Up)
 					{
 						direction = Direction.Right;

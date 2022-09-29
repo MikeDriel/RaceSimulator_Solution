@@ -7,6 +7,8 @@
 		IEquipment Equipment { get; set; }
 		TeamColors TeamColors { get; set; }
 		public Section CurrentSection { get; set; }
+		public int DistanceCovered { get; set; }
+		public int Loops { get; set; }
 
 	}
 	
