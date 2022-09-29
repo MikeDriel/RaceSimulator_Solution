@@ -205,10 +205,12 @@ namespace Controller
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
 		{
+			Console.Clear();
 			Console.WriteLine("Cleaning up");
 			DriversChanged = null;
 			_timer.Stop();
 			Console.WriteLine("Cleaning done");
+			GC.Collect(0);
 		}
 	}
 }
