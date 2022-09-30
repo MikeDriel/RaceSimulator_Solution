@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-
-	//Delagate
-	public class DriversChangedEventArgs : EventArgs
+	public class RaceEndEventArgs
 	{
 		public Track Track { get; set; }
 
-		public DriversChangedEventArgs(Track track)
+		public RaceEndEventArgs(Track track)
 		{
 			Track = track;
 		}

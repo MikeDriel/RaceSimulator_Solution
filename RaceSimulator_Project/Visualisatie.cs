@@ -41,6 +41,7 @@ namespace RaceSimulator_Project
 			Race = race;
 
 			Data.CurrentRace.DriversChanged += OnDriversChanged;
+			Data.CurrentRace.RaceEnd += OnRaceEnd;
 		}
 
 		//Calls certain functions depending on the SectionType of the section
@@ -273,6 +274,11 @@ namespace RaceSimulator_Project
 		{
 			Console.Clear();
 			DrawTrack(e.Track);
+		}
+
+		public static void OnRaceEnd(object source, RaceEndEventArgs e)
+		{
+			//what happens if race ends
 		}
 	}
 }

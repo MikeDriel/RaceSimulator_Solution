@@ -14,6 +14,8 @@ namespace Controller
 	public class Race
 	{
 		public event EventHandler<DriversChangedEventArgs> DriversChanged;
+		public event EventHandler<DriversChangedEventArgs> RaceEnd;
+
 
 		public Track Track { get; set; }
 		public List<IParticipant> Participants { get; set; }
@@ -231,11 +233,9 @@ namespace Controller
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
 		{
-			Console.Clear();
-			Console.WriteLine("Cleaning up");
 			Stop();
 			DriversChanged = null;
-			Console.WriteLine("Cleaning done");
+			Console.Clear();
 			GC.Collect(0);
 		}
 	}
