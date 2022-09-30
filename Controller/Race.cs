@@ -33,6 +33,7 @@ namespace Controller
 			_timer = new System.Timers.Timer(500);
 			_timer.Elapsed += OnTimedEvent;
 			RandomizeEquipment();
+			Start();
 		}
 
 		//Gets the sectiondata for the given section, if it doesn't exist, it creates it
@@ -222,12 +223,17 @@ namespace Controller
 			_timer.Start();
 		}
 
+		public void Stop()
+		{
+			_timer.Stop();
+		}
+
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
 		{
 			Console.Clear();
 			Console.WriteLine("Cleaning up");
-			_timer.Stop();
+			Stop();
 			DriversChanged = null;
 			Console.WriteLine("Cleaning done");
 			GC.Collect(0);
