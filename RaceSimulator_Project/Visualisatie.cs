@@ -14,12 +14,12 @@ namespace RaceSimulator_Project
 {
 	public static class Visualisatie
 	{
-		static int x;
-		static int y;
-		static Direction direction;
-		static Race Race;
+		public static int x { get; set; }
+		public static int y { get; set; }
+		public static Direction direction { get; set; }
+		public static Race Race { get; set; }
 
-		
+
 		public enum Direction
 		{
 			Up = 0,
@@ -158,13 +158,13 @@ namespace RaceSimulator_Project
 		#endregion
 
 		//Replaces the numbers in the track with the first letter of the drivers name
-		public static string ReplaceString(string stringMetNummer, IParticipant participant1, IParticipant participant2)
+		private static string ReplaceString(string stringMetNummer, IParticipant participant1, IParticipant participant2)
 		{
-
+			
 			return stringMetNummer.Replace("1", participant1.Name[0].ToString()).Replace("2", participant2.Name[0].ToString());
 		}
 
-		public static string ReplaceString(string stringMetNummer, IParticipant participant)
+		private static string ReplaceString(string stringMetNummer, IParticipant participant)
 		{
 			if (Race.GetSectionData(participant.CurrentSection).Left == participant)
 			{

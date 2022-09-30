@@ -50,8 +50,8 @@ namespace Controller
 		{
 			foreach (IParticipant participant in Participants)
 			{
-				participant.Equipment.Quality = _random.Next(1, 11);
-				participant.Equipment.Performance = _random.Next(1, 11);
+				participant.Equipment.Quality = _random.Next(5, 11);
+				participant.Equipment.Performance = _random.Next(5, 11);
 			}
 		}
 
@@ -99,18 +99,18 @@ namespace Controller
 
 		public void CheckForMoveDriver()
 		{
-			//_timer.Stop(); // just 4 testing
 			foreach (IParticipant participant in Participants)
 			{
 				//Calculate the distance the driver can move
 				participant.DistanceCovered += participant.Equipment.Speed * participant.Equipment.Performance;
+
 				if (participant.DistanceCovered >= 100)
 				{
 					participant.DistanceCovered += -100;
 					MoveDriver(participant);
 				}
 			}
-			//_timer.Start(); // just 4 testing
+
 		}
 
 		public void MoveDriver(IParticipant participant)
@@ -187,11 +187,33 @@ namespace Controller
 			else return false;
 		}
 
+		//Checks if all drivers are finished
+		public Boolean CheckIfAllDriversFinished()
+		{
+			foreach (IParticipant participant in Participants)
+			{
+				if (participant.CurrentSection != null)
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
 		//TimerEvent
 		public void OnTimedEvent(object source, EventArgs e)
 		{
-			CheckForMoveDriver();
-			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
+			int times = 0;
+			if (CheckIfAllDriversFinished() == true && times == 0)
+			{
+				CleanUp();
+				times++;
+			}
+			else
+			{
+				CheckForMoveDriver();
+				DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
+			}
 		}
 
 		//Start timer
@@ -200,15 +222,13 @@ namespace Controller
 			_timer.Start();
 		}
 
-		
-
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
 		{
 			Console.Clear();
 			Console.WriteLine("Cleaning up");
-			DriversChanged = null;
 			_timer.Stop();
+			DriversChanged = null;
 			Console.WriteLine("Cleaning done");
 			GC.Collect(0);
 		}

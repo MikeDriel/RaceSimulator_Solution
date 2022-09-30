@@ -22,7 +22,7 @@ namespace RaceSimulatorTest
 		[Test]
 		public void DataGetsInitialized()
 		{
-			Assert.Pass();
+			Assert.AreEqual(Visualisatie.Y);
 		}
 	}
 }
