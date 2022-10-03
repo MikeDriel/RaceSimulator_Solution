@@ -26,6 +26,7 @@ namespace Controller
 
 		private int AmountOfLoops = 2;
 
+		
 		//Constructor for Race
 		public Race(Track track, List<IParticipant> participants)
 		{
@@ -59,7 +60,6 @@ namespace Controller
 				participant.Equipment.Performance = _random.Next(5, 11);
 			}
 		}
-
 
 		//Places drivers on the startgrid and behind it until no more participants are left in the list
 		public void PlaceDriversOnStart(Track track, List<IParticipant> participants)
@@ -184,7 +184,6 @@ namespace Controller
 				}
 				i++;
 			}
-
 		}
 
 		//Checks if drivers touch the finish
