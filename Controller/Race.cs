@@ -14,7 +14,7 @@ namespace Controller
 	public class Race
 	{
 		public event EventHandler<DriversChangedEventArgs> DriversChanged;
-		public event EventHandler<DriversChangedEventArgs> RaceEnd;
+		public event EventHandler<RaceEndEventArgs> RaceEnd;
 
 
 		public Track Track { get; set; }
@@ -23,6 +23,8 @@ namespace Controller
 		private Random _random { get; set; }
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
+
+		private int AmountOfLoops = 2;
 
 		//Constructor for Race
 		public Race(Track track, List<IParticipant> participants)
@@ -166,6 +168,17 @@ namespace Controller
 						{
 							nextSectionData.Right = null;
 						}
+
+						//If there are no more drivers on the track it will cleanup and start the next race
+						if (CheckIfAllDriversFinished() == true)
+						{
+							CleanUp();
+							Data.NextRace();
+							Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
+
+							RaceEnd.Invoke(this, new RaceEndEventArgs(Data.CurrentRace.Participants));
+							Data.CurrentRace.Start();
+						}
 					}
 					return;
 				}
@@ -181,7 +194,7 @@ namespace Controller
 			{
 				participant.Loops += 1;
 				//Number determines the amount of laps the drivers have to do
-				if (participant.Loops == 1)
+				if (participant.Loops == AmountOfLoops)
 				{
 					return true;
 				}
@@ -203,20 +216,12 @@ namespace Controller
 			return true;
 		}
 
+
 		//TimerEvent
 		public void OnTimedEvent(object source, EventArgs e)
 		{
-			int times = 0;
-			if (CheckIfAllDriversFinished() == true && times == 0)
-			{
-				CleanUp();
-				times++;
-			}
-			else
-			{
-				CheckForMoveDriver();
-				DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
-			}
+			CheckForMoveDriver();
+			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
 		}
 
 		//Start timer
@@ -225,6 +230,7 @@ namespace Controller
 			_timer.Start();
 		}
 
+		//Stops timer
 		public void Stop()
 		{
 			_timer.Stop();
@@ -233,9 +239,23 @@ namespace Controller
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
 		{
-			Stop();
-			DriversChanged = null;
 			Console.Clear();
+			Stop();
+			foreach (IParticipant participant in Participants)
+			{
+				participant.CurrentSection = null;
+				participant.DistanceCovered = 0;
+				participant.Loops = 0;
+			}
+			//DriversChanged = null;
+			_timer = null;
+			Console.Clear();
+			Console.WriteLine("Next race in 3..");
+			Thread.Sleep(1000);
+			Console.WriteLine("Next race in 2..");
+			Thread.Sleep(1000);
+			Console.WriteLine("Next race in 1..");
+			Thread.Sleep(1000);
 			GC.Collect(0);
 		}
 	}

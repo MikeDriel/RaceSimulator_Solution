@@ -27,7 +27,7 @@ namespace Controller
 			//Competition.Participants.Add(new Driver("Pieter", 0, new Car(10, 10, 10, false), TeamColors.Blue));
 			//Competition.Participants.Add(new Driver("KoopaTroopa", 0, new Car(10, 10, 10, false), TeamColors.Yellow));
 		}
-		
+
 		//Adds tracks to the competition
 		public static void AddTracks()
 		{
@@ -80,16 +80,42 @@ namespace Controller
 					SectionType.StraightV
 				};
 				return builder;
-				}
+			}
 
-				else if (trackName.Equals("Slang"))
+			else if (trackName.Equals("Slang"))
+			{
+				SectionType[] builder = new SectionType[]
 				{
-					SectionType[] builder = new SectionType[]
-					{
-						SectionType.Straight,
+					SectionType.LeftCornerV,
 
-					};
-					return builder;
+					SectionType.StartGrid,
+					SectionType.Straight,
+					SectionType.Finish,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+
+					SectionType.RightCorner,
+
+					SectionType.StraightV,
+					SectionType.StraightV,
+
+					SectionType.LeftCorner,
+
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+
+					SectionType.RightCornerV,
+
+					SectionType.StraightV,
+					SectionType.StraightV
+
+				};
+				return builder;
 			}
 			return null;
 		}

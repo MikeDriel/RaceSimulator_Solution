@@ -278,7 +278,8 @@ namespace RaceSimulator_Project
 
 		public static void OnRaceEnd(object source, RaceEndEventArgs e)
 		{
-			//what happens if race ends
+			Initialize(Data.CurrentRace);
+			DrawTrack(Data.CurrentRace.Track);
 		}
 	}
 }
