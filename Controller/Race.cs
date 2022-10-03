@@ -125,6 +125,10 @@ namespace Controller
 			{
 				if (section == participant.CurrentSection)
 				{
+					if (participant.Equipment.IsBroken = true)
+					{
+						return;
+					}
 
 					//This part checks the fist section of the track with the drivers
 					SectionData sectionData = GetSectionData(section);
@@ -215,11 +219,28 @@ namespace Controller
 			return true;
 		}
 
+		//Checks for Crash
+		public void CheckForCrash()
+		{
+			foreach (IParticipant participant in Participants)
+			{
+				int isBreak = _random.Next(1, 1);
+				if (isBreak == 1)
+				{
+					participant.Equipment.IsBroken = true;
+				}
+				else
+				{
+					return;
+				}
+			}
+		}
 
 		//TimerEvent
 		public void OnTimedEvent(object source, EventArgs e)
 		{
 			CheckForMoveDriver();
+			CheckForCrash();
 			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
 		}
 
