@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-	public class RaceEndEventArgs
+	public class RaceEndEventArgs : EventArgs
 	{
-		public Track Track { get; set; }
+		public List<IParticipant> Participants { get; set; }
 
-		public RaceEndEventArgs(Track track)
+		public RaceEndEventArgs(List<IParticipant> participants)
 		{
-			Track = track;
+			Participants = participants;
 		}
 	}
 }

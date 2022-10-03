@@ -161,13 +161,27 @@ namespace RaceSimulator_Project
 		//Replaces the numbers in the track with the first letter of the drivers name
 		private static string ReplaceString(string stringMetNummer, IParticipant participant1, IParticipant participant2)
 		{
-			
-			return stringMetNummer.Replace("1", participant1.Name[0].ToString()).Replace("2", participant2.Name[0].ToString());
+			if (participant1.Equipment.IsBroken == true && participant2.Equipment.IsBroken == false)
+			{
+				return stringMetNummer.Replace("1", "X").Replace("2", participant2.Name[0].ToString()); ;
+			}
+			else if (participant2.Equipment.IsBroken == true && participant1.Equipment.IsBroken == false)
+			{
+				return stringMetNummer.Replace("2", "X").Replace("1", participant1.Name[0].ToString()); ;
+			}
+			else
+			{
+				return stringMetNummer.Replace("1", participant1.Name[0].ToString()).Replace("2", participant2.Name[0].ToString());
+			}
 		}
 
 		private static string ReplaceString(string stringMetNummer, IParticipant participant)
 		{
-			if (Race.GetSectionData(participant.CurrentSection).Left == participant)
+			if (participant.Equipment.IsBroken == true)
+			{
+				return stringMetNummer.Replace("1", "X");
+			}
+			else if (Race.GetSectionData(participant.CurrentSection).Left == participant)
 			{
 				return stringMetNummer.Replace("1", participant.Name[0].ToString());
 			}
@@ -278,7 +292,8 @@ namespace RaceSimulator_Project
 
 		public static void OnRaceEnd(object source, RaceEndEventArgs e)
 		{
-			//what happens if race ends
+			Initialize(Data.CurrentRace);
+			DrawTrack(Data.CurrentRace.Track);
 		}
 	}
 }
