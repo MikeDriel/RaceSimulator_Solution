@@ -125,7 +125,7 @@ namespace Controller
 			{
 				if (section == participant.CurrentSection)
 				{
-					if (participant.Equipment.IsBroken = true)
+					if (participant.Equipment.IsBroken == true)
 					{
 						return;
 					}
@@ -224,7 +224,7 @@ namespace Controller
 		{
 			foreach (IParticipant participant in Participants)
 			{
-				int isBreak = _random.Next(1, 1);
+				int isBreak = _random.Next(1, 20);
 				if (isBreak == 1)
 				{
 					participant.Equipment.IsBroken = true;

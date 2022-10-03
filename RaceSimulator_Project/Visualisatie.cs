@@ -81,7 +81,7 @@ namespace RaceSimulator_Project
 						PrintToConsole(_finishVertical, Race.GetSectionData(section));
 						break;
 					case SectionType.LeftCornerV:
-						DetermineDirection(SectionType.LeftCornerV, direction); 
+						DetermineDirection(SectionType.LeftCornerV, direction);
 						PrintToConsole(_LeftCornerVertical, Race.GetSectionData(section));
 						break;
 					case SectionType.RightCornerV:
@@ -161,13 +161,27 @@ namespace RaceSimulator_Project
 		//Replaces the numbers in the track with the first letter of the drivers name
 		private static string ReplaceString(string stringMetNummer, IParticipant participant1, IParticipant participant2)
 		{
-			
-			return stringMetNummer.Replace("1", participant1.Name[0].ToString()).Replace("2", participant2.Name[0].ToString());
+			if (participant1.Equipment.IsBroken == true && participant2.Equipment.IsBroken == false)
+			{
+				return stringMetNummer.Replace("1", "X").Replace("2", participant2.Name[0].ToString()); ;
+			}
+			else if (participant2.Equipment.IsBroken == true && participant1.Equipment.IsBroken == false)
+			{
+				return stringMetNummer.Replace("2", "X").Replace("1", participant1.Name[0].ToString()); ;
+			}
+			else
+			{
+				return stringMetNummer.Replace("1", participant1.Name[0].ToString()).Replace("2", participant2.Name[0].ToString());
+			}
 		}
 
 		private static string ReplaceString(string stringMetNummer, IParticipant participant)
 		{
-			if (Race.GetSectionData(participant.CurrentSection).Left == participant)
+			if (participant.Equipment.IsBroken == true)
+			{
+				return stringMetNummer.Replace("1", "X");
+			}
+			else if (Race.GetSectionData(participant.CurrentSection).Left == participant)
 			{
 				return stringMetNummer.Replace("1", participant.Name[0].ToString());
 			}
@@ -177,7 +191,7 @@ namespace RaceSimulator_Project
 			}
 			return null;
 		}
-		
+
 
 		//Print the track to the console
 		public static void PrintToConsole(string[] tekenArray, SectionData sectionData)
@@ -194,7 +208,7 @@ namespace RaceSimulator_Project
 				{
 					temp = ReplaceString(s, sectionData.Left);
 				}
-				else if (sectionData.Right != null )
+				else if (sectionData.Right != null)
 				{
 					temp = ReplaceString(s, sectionData.Right);
 				}
@@ -257,7 +271,7 @@ namespace RaceSimulator_Project
 						direction = Direction.Right;
 					}
 					break;
-				case SectionType.LeftCornerV: 
+				case SectionType.LeftCornerV:
 					if (directionOfTrack == Direction.Up)
 					{
 						direction = Direction.Right;
@@ -269,7 +283,7 @@ namespace RaceSimulator_Project
 					break;
 			}
 		}
-		
+
 		public static void OnDriversChanged(object source, DriversChangedEventArgs e)
 		{
 			Console.Clear();
