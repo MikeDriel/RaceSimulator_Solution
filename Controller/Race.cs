@@ -92,8 +92,6 @@ namespace Controller
 							sectionData.Right = participants[i + 1];
 
 							participants[i + 1].CurrentSection = track.Sections.ElementAt(index - (i / 2));
-
-
 						}
 					}
 					return;
@@ -115,7 +113,6 @@ namespace Controller
 					MoveDriver(participant);
 				}
 			}
-
 		}
 
 		public void MoveDriver(IParticipant participant)
@@ -158,6 +155,7 @@ namespace Controller
 					{
 						nextSectionData.Right = participant;
 					}
+					else Overtaking(participant, nextSectionData.Right);
 					participant.CurrentSection = Track.Sections.ElementAt(i + 1);
 
 					//Checks if the drivers go over a finish section for the x'th amount of time and then makes them go poof to the shadow realm
@@ -219,11 +217,78 @@ namespace Controller
 			return true;
 		}
 
+		public void Overtaking(IParticipant sundayDriver, IParticipant fastDriver)
+		{
+
+			Section sundagSectionVoor = sundayDriver.CurrentSection;
+			Section fastSectionAchter = fastDriver.CurrentSection;
+			
+			SectionData zondagseVoorste = GetSectionData(sundagSectionVoor);
+			SectionData snelleAchtersteData = GetSectionData(fastSectionAchter);
+
+			
+
+			if (zondagseVoorste.Left == sundayDriver)
+			{
+				if (snelleAchtersteData.Right == fastDriver)
+				{
+					//Overtaking
+					zondagseVoorste.Left = fastDriver;
+					snelleAchtersteData.Right = sundayDriver;
+
+					//Swap the current section of the drivers
+					sundagSectionVoor = fastSectionAchter;
+					fastSectionAchter = sundagSectionVoor;
+
+					//Overtaking is successful
+					return;
+				}
+				else return;
+			}
+			else if (zondagseVoorste.Right == sundayDriver)
+			{
+				if (snelleAchtersteData.Left == fastDriver)
+				{
+					//Overtaking
+					zondagseVoorste.Right = fastDriver;
+					snelleAchtersteData.Left = sundayDriver;
+
+					//Swap the current section of the drivers
+					sundagSectionVoor = fastSectionAchter;
+					fastSectionAchter = sundagSectionVoor;
+
+					//Overtaking is successful
+					return;
+				}
+				else return;
+			}
+			else return;
+		}
+	
+
+
+
 		//Checks for Crash
 		public void CheckForCrash()
 		{
 			foreach (IParticipant participant in Participants)
 			{
+				if (participant.Equipment.IsBroken == true)
+				{
+					int recover = _random.Next(1, 20);
+					if (recover <= 5)
+					{
+						participant.Equipment.Quality -= 1;
+						participant.Equipment.IsBroken = false;
+					}
+					else
+					{
+						return;
+					}
+				}
+				
+
+
 				int isBreak = _random.Next(1, 20);
 				if (isBreak == 1)
 				{
