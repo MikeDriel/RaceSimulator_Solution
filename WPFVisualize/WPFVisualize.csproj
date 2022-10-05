@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Graphics\CornerNE.png" />
+    <None Remove="Graphics\CornerNW.png" />
+    <None Remove="Graphics\CornerSE.png" />
+    <None Remove="Graphics\CornerSW.png" />
+    <None Remove="Graphics\SpaceShip.png" />
+    <None Remove="Graphics\StraightH.png" />
+    <None Remove="Graphics\StraightV.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Graphics\CornerNE.png" />
+    <Content Include="Graphics\CornerNW.png" />
+    <Content Include="Graphics\CornerSE.png" />
+    <Content Include="Graphics\CornerSW.png" />
+    <Content Include="Graphics\SpaceShip.png" />
+    <Content Include="Graphics\StraightH.png" />
+    <Content Include="Graphics\StraightV.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>
