@@ -10,9 +10,12 @@ Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Pa
 
 Visualisatie.Initialize(Data.CurrentRace);
 
+//Data.CurrentRace.DriversChanged += Visualisatie.OnDriversChanged;
+//Data.CurrentRace.RaceEnd += Visualisatie.OnRaceEnd;
+
 Visualisatie.DrawTrack(Data.CurrentRace.Track);
 
-Data.CurrentRace.Start();
+//Data.CurrentRace.Start();
 
 for (; ; )
 {

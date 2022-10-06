@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFVisualize
+namespace WPFApp
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -23,6 +24,25 @@ namespace WPFVisualize
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			Data.Initialize();
+			Data.NextRace();
+			Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
+
+			WPFVisualize.Initialize(Data.CurrentRace);
+			Data.CurrentRace.Start();
+
+			TrackImage.HorizontalAlignment = HorizontalAlignment.Left;
+			TrackImage.VerticalAlignment = VerticalAlignment.Top;
+			
+			TrackImage.Width = WPFVisualize.XimageScale * WPFVisualize.imageSize;
+			TrackImage.Height = WPFVisualize.YimageScale * WPFVisualize.imageSize;
+			
+			this.TrackImage.Source = null;
+			this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
+
+
+			
 		}
 	}
 }

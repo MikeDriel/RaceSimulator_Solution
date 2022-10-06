@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllerTest", "Controlle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceSimulatorTest", "RaceSimulatorTest\RaceSimulatorTest.csproj", "{D50F65BA-C04B-4F2B-A616-E20AE10967F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFVisualize", "WPFVisualize\WPFVisualize.csproj", "{5479F01A-F5C4-48FA-95CD-155479A284C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFApp", "WPFVisualize\WPFApp.csproj", "{5479F01A-F5C4-48FA-95CD-155479A284C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
