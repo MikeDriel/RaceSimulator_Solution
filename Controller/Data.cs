@@ -32,20 +32,27 @@ namespace Controller
 		public static void AddTracks()
 		{
 			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
-			Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
-			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Vierkant")));
-			Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
-			Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
+			//Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
+			//Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Zandvoort")));
+			//Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
+			//Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
 		}
-
+		
 		//Adds the track and participants to the current race
-		public static void NextRace()
+		public static Race NextRace()
 		{
 			Track currentTrack = Competition.NextTrack();
 			if (currentTrack != null)
 			{
-				CurrentRace = new Race(currentTrack, Competition.Participants);
+				return CurrentRace = new Race(currentTrack, Competition.Participants);
 			}
+			else if (currentTrack == null)
+			{
+				Console.Clear();
+				Console.WriteLine("No more tracks, Race is done");
+				return null;
+			}
+			return null;
 		}
 
 		//builder for the different races sorted by name
@@ -116,18 +123,21 @@ namespace Controller
 				};
 				return builder;
 			}
-			if (trackName.Equals("Vierkant"))
+			if (trackName.Equals("Zandvoort"))
 			{
 				SectionType[] builder = new SectionType[]
 				{
 					SectionType.LeftCornerV,
 
 					SectionType.StartGrid,
-					SectionType.Straight,
 					SectionType.Finish,
 
 					SectionType.RightCorner,
 
+					SectionType.StraightV,
+					SectionType.StraightV,
+					SectionType.StraightV,
+					SectionType.StraightV,
 					SectionType.StraightV,
 					SectionType.StraightV,
 
@@ -135,12 +145,15 @@ namespace Controller
 
 					SectionType.Straight,
 					SectionType.Straight,
-					SectionType.Straight,
 
 					SectionType.RightCornerV,
 
 					SectionType.StraightV,
-					SectionType.StraightV
+					SectionType.StraightV,
+					SectionType.StraightV,
+					SectionType.StraightV,
+					SectionType.StraightV,
+					SectionType.StraightV,
 				};
 				return builder;
 			}

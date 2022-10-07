@@ -295,10 +295,11 @@ namespace RaceSimulator_Project
 			Console.Clear();
 			Data.CurrentRace.CleanUp();
 			Data.CurrentRace = null;
-			Data.NextRace();
-			Initialize(Data.CurrentRace);
-			Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
-			DrawTrack(Data.CurrentRace.Track);
+			if (Data.NextRace() != null) {
+				Initialize(Data.CurrentRace);
+				Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
+				DrawTrack(Data.CurrentRace.Track);
+			}
 		}
 	}
 }
