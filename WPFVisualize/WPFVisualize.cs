@@ -45,8 +45,8 @@ namespace WPFApp
 
 			//Image properties
 			imageSize = 200;
-			XimageScale = 10;
-			YimageScale = 10;
+			XimageScale = 5;
+			YimageScale = 5;
 			
 			//Track grote
 			XtrackScale = 10;

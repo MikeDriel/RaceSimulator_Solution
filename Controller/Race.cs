@@ -24,7 +24,7 @@ namespace Controller
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
 
-		private int AmountOfLoops = 2;
+		private int AmountOfLoops = 1;
 
 		
 		//Constructor for Race
@@ -37,8 +37,8 @@ namespace Controller
 			_positions = new Dictionary<Section, SectionData>();
 			_timer = new System.Timers.Timer(500);
 			_timer.Elapsed += OnTimedEvent;
-			RandomizeEquipment();
 			Start();
+			RandomizeEquipment();
 		}
 
 		//Gets the sectiondata for the given section, if it doesn't exist, it creates it
@@ -174,12 +174,7 @@ namespace Controller
 						//If there are no more drivers on the track it will cleanup and start the next race
 						if (CheckIfAllDriversFinished() == true)
 						{
-							CleanUp();
-							Data.NextRace();
-							Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
-
 							RaceEnd.Invoke(this, new RaceEndEventArgs(Data.CurrentRace.Participants));
-							Data.CurrentRace.Start();
 						}
 					}
 					return;
@@ -265,9 +260,6 @@ namespace Controller
 			else return;
 		}
 	
-
-
-
 		//Checks for Crash
 		public void CheckForCrash()
 		{
@@ -301,14 +293,6 @@ namespace Controller
 			}
 		}
 
-		//TimerEvent
-		public void OnTimedEvent(object source, EventArgs e)
-		{
-			CheckForMoveDriver();
-			CheckForCrash();
-			DriversChanged.Invoke(this, new DriversChangedEventArgs(Track));
-		}
-
 		//Start timer
 		public void Start()
 		{
@@ -320,28 +304,39 @@ namespace Controller
 		{
 			_timer.Stop();
 		}
+		
+		//TimerEvent
+		public void OnTimedEvent(object source, EventArgs e)
+		{
+			CheckForMoveDriver();
+			CheckForCrash();
+			DriversChanged?.Invoke(this, new DriversChangedEventArgs(Track));
+		}
+		
 
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
 		{
-			//Console.Clear();
-			Stop();
 			foreach (IParticipant participant in Participants)
 			{
 				participant.CurrentSection = null;
 				participant.DistanceCovered = 0;
 				participant.Loops = 0;
 			}
-			//DriversChanged = null;
+
+			_timer.Stop();
 			_timer = null;
-			//Console.Clear();
+			DriversChanged = null;
+			GC.Collect(0);
+			
+
 			Console.WriteLine("Next race in 3..");
 			Thread.Sleep(1000);
 			Console.WriteLine("Next race in 2..");
 			Thread.Sleep(1000);
 			Console.WriteLine("Next race in 1..");
 			Thread.Sleep(1000);
-			GC.Collect(0);
+			
 		}
 	}
 }

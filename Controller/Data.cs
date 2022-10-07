@@ -36,7 +36,6 @@ namespace Controller
 			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Vierkant")));
 			Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
 			Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
-
 		}
 
 		//Adds the track and participants to the current race
@@ -114,6 +113,34 @@ namespace Controller
 					SectionType.StraightV,
 					SectionType.StraightV
 
+				};
+				return builder;
+			}
+			if (trackName.Equals("Vierkant"))
+			{
+				SectionType[] builder = new SectionType[]
+				{
+					SectionType.LeftCornerV,
+
+					SectionType.StartGrid,
+					SectionType.Straight,
+					SectionType.Finish,
+
+					SectionType.RightCorner,
+
+					SectionType.StraightV,
+					SectionType.StraightV,
+
+					SectionType.LeftCorner,
+
+					SectionType.Straight,
+					SectionType.Straight,
+					SectionType.Straight,
+
+					SectionType.RightCornerV,
+
+					SectionType.StraightV,
+					SectionType.StraightV
 				};
 				return builder;
 			}

@@ -289,10 +289,15 @@ namespace RaceSimulator_Project
 			Console.Clear();
 			DrawTrack(e.Track);
 		}
-
+		
 		public static void OnRaceEnd(object source, RaceEndEventArgs e)
 		{
+			Console.Clear();
+			Data.CurrentRace.CleanUp();
+			Data.CurrentRace = null;
+			Data.NextRace();
 			Initialize(Data.CurrentRace);
+			Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
 			DrawTrack(Data.CurrentRace.Track);
 		}
 	}
