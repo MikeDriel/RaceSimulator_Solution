@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace WPFApp
@@ -26,6 +27,8 @@ namespace WPFApp
 		public static int YimageScale { get; set; }
 		public static int XtrackScale { get; set; }
 		public static int YtrackScale { get; set; }
+
+		public static Graphics Graphics { get; set; }
 
 		public enum Direction
 		{
@@ -45,16 +48,12 @@ namespace WPFApp
 
 			//Image properties
 			imageSize = 200;
-			XimageScale = 5;
-			YimageScale = 5;
+			XimageScale = 10;
+			YimageScale = 10;
 			
 			//Track grote
-			XtrackScale = 10;
-			YtrackScale = 10;
-
-
-			Data.CurrentRace.DriversChanged += OnDriversChanged;
-			Data.CurrentRace.RaceEnd += OnRaceEnd;
+			XtrackScale = 9;
+			YtrackScale = 9;
 		}
 
 		//Calls certain functions depending on the SectionType of the section
@@ -62,7 +61,7 @@ namespace WPFApp
 		{
 
 			Bitmap bitmap = new Bitmap(XtrackScale * imageSize, YtrackScale * imageSize);
-			Graphics graphics = Graphics.FromImage(bitmap);
+			Graphics = Graphics.FromImage(bitmap);
 
 			foreach (Section section in track.Sections)
 			{
@@ -71,40 +70,40 @@ namespace WPFApp
 				{
 					//Horizontals
 					case SectionType.StartGrid:
-						graphics.DrawImage(PictureController.CloneImageFromCache(_StartGridHorizontal), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_StartGridHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.Straight:
-						graphics.DrawImage(PictureController.CloneImageFromCache(_StraightHorizontal), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_StraightHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.Finish:
-						graphics.DrawImage(PictureController.CloneImageFromCache(_finishHorizontal), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_finishHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.LeftCorner:
 						DetermineDirection(SectionType.LeftCorner, direction);
-						graphics.DrawImage(PictureController.CloneImageFromCache(_LeftCornerHorizontal), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_LeftCornerHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.RightCorner:
 						DetermineDirection(SectionType.RightCorner, direction);
-						graphics.DrawImage(PictureController.CloneImageFromCache(_RightCornerHorizontal), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_RightCornerHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
 
 					//Verticals
 					case SectionType.StartGridV:
-						graphics.DrawImage(PictureController.CloneImageFromCache(_StartGridVertical), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_StartGridVertical), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.StraightV:
-						graphics.DrawImage(PictureController.CloneImageFromCache(_StraightVertical),  ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_StraightVertical),  ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.FinishV:
-						graphics.DrawImage(PictureController.CloneImageFromCache(_finishVertical), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_finishVertical), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.LeftCornerV:
 						DetermineDirection(SectionType.LeftCornerV, direction);
-						graphics.DrawImage(PictureController.CloneImageFromCache(_LeftCornerVertical), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_LeftCornerVertical), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.RightCornerV:
 						DetermineDirection(SectionType.RightCornerV, direction);
-						graphics.DrawImage(PictureController.CloneImageFromCache(_RightCornerVertical), ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_RightCornerVertical), ImageCalculationX(), ImageCalculationY());
 
 						break;
 				}
@@ -197,27 +196,15 @@ namespace WPFApp
 					break;
 			}
 		}
-
+		
 		public static int ImageCalculationX()
 		{
 			return Xposition * imageSize;
 		}
-
+		
 		public static int ImageCalculationY()
 		{
 			return Yposition * imageSize;
-		}
-
-		public static void OnDriversChanged(object source, DriversChangedEventArgs e)
-		{
-			//Console.Clear();
-			//DrawTrack(e.Track);
-		}
-
-		public static void OnRaceEnd(object source, RaceEndEventArgs e)
-		{
-			//Initialize(Data.CurrentRace);
-			//DrawTrack(Data.CurrentRace.Track);
 		}
 	}
 }
