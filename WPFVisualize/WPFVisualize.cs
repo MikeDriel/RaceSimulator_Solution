@@ -196,7 +196,14 @@ namespace WPFApp
 					break;
 			}
 		}
-		
+
+		//place picture of driver on the WPF window on top of the track
+		public static void PlacePictureOnTrack(IParticipant participant, Graphics g, )
+		{
+			
+		}
+
+
 		public static int ImageCalculationX()
 		{
 			return Xposition * imageSize;
