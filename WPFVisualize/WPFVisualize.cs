@@ -47,7 +47,7 @@ namespace WPFApp
 			Race = race;
 
 			//Image properties
-			imageSize = 200;
+			imageSize = 170;
 			XimageScale = 10;
 			YimageScale = 10;
 			
