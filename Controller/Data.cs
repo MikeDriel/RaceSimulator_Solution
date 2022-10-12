@@ -48,8 +48,8 @@ namespace Controller
 			}
 			else if (currentTrack == null)
 			{
-				Console.Clear();
-				Console.WriteLine("No more tracks, Race is done");
+				//Console.Clear();
+				//Console.WriteLine("No more tracks, Race is done");
 				return null;
 			}
 			return null;

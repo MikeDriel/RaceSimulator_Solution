@@ -9,10 +9,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
+using Track = Model.Track;
 
 namespace WPFApp
 {
@@ -20,13 +22,18 @@ namespace WPFApp
 	{
 		public static int Xposition { get; set; }
 		public static int Yposition { get; set; }
-		public static int imageSize { get; set; }
 		public static Direction direction { get; set; }
 		public static Race Race { get; set; }
-		public static int XimageScale { get; set; }
-		public static int YimageScale { get; set; }
-		public static int XtrackScale { get; set; }
-		public static int YtrackScale { get; set; }
+
+		//Track Width and Height
+		public static int TrackWidth { get; set; }
+		public static int TrackHeight { get; set; }
+
+		public static int imageSize { get; set; }
+
+
+
+
 
 		public static Graphics Graphics { get; set; }
 
@@ -48,19 +55,17 @@ namespace WPFApp
 
 			//Image properties
 			imageSize = 170;
-			XimageScale = 10;
-			YimageScale = 10;
 			
-			//Track grote
-			XtrackScale = 9;
-			YtrackScale = 9;
+			CalculateTrackSize();
+
+			TrackWidth *= imageSize;
+			TrackHeight *= imageSize;
 		}
 
 		//Calls certain functions depending on the SectionType of the section
 		public static BitmapSource DrawTrack(Track track)
 		{
-
-			Bitmap bitmap = new Bitmap(XtrackScale * imageSize, YtrackScale * imageSize);
+			Bitmap bitmap = new Bitmap(TrackWidth, TrackHeight);
 			Graphics = Graphics.FromImage(bitmap);
 
 			foreach (Section section in track.Sections)
@@ -92,7 +97,7 @@ namespace WPFApp
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_StartGridVertical), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.StraightV:
-						Graphics.DrawImage(PictureController.CloneImageFromCache(_StraightVertical),  ImageCalculationX(), ImageCalculationY());
+						Graphics.DrawImage(PictureController.CloneImageFromCache(_StraightVertical), ImageCalculationX(), ImageCalculationY());
 						break;
 					case SectionType.FinishV:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_finishVertical), ImageCalculationX(), ImageCalculationY());
@@ -198,17 +203,40 @@ namespace WPFApp
 		}
 
 		//place picture of driver on the WPF window on top of the track
-		public static void PlacePictureOnTrack(IParticipant participant, Graphics g, )
+		public static void PlacePictureOnTrack(IParticipant participant, Graphics g)
 		{
-			
+
 		}
 
+		public static void CalculateTrackSize()
+		{
+			TrackWidth = 0;
+			TrackHeight = 0;
+			foreach (Section section in Race.Track.Sections)
+			{
+				DetermineDirection(section.SectionTypes, direction);
+
+				if (direction == Direction.Right)
+				{
+					TrackWidth++;
+				}
+
+				else if (direction == Direction.Down)
+				{
+					TrackHeight++;
+				}
+			}
+			TrackWidth++;
+			TrackWidth++;
+			TrackHeight++;
+			Console.WriteLine("xd");
+		}
 
 		public static int ImageCalculationX()
 		{
 			return Xposition * imageSize;
 		}
-		
+
 		public static int ImageCalculationY()
 		{
 			return Yposition * imageSize;
