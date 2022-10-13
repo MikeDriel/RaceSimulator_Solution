@@ -22,7 +22,6 @@
     <Content Include="Graphics\CornerNW.png" />
     <Content Include="Graphics\CornerSE.png" />
     <Content Include="Graphics\CornerSW.png" />
-    <Content Include="Graphics\SpaceShip.png" />
     <Content Include="Graphics\StraightH.png" />
     <Content Include="Graphics\StraightV.png" />
   </ItemGroup>

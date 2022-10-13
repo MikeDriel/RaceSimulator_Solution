@@ -26,11 +26,18 @@ namespace ControllerTest
 			Assert.IsNotNull(result);
 		}
 
-		[Test]
-		public void CurrentRaceNotNull()
-		{
-			Race result = Data.CurrentRace;
-			Assert.IsNotNull(result);
-		}
+		//[Test]
+		//public void ()
+		//{
+		//	Race result = Data.CurrentRace;
+		//	Assert.IsNotNull(result);
+		//}
+
+		//[Test]
+		//public void CurrentRaceNotNull()
+		//{
+		//	Race result = Data.CurrentRace;
+		//	Assert.IsNotNull(result);
+		//}
 	}
 }
