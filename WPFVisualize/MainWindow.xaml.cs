@@ -28,20 +28,21 @@ namespace WPFApp
 		private Window window2;
 		public MainWindow()
 		{
+			
+
 			Data.Initialize();
 			Data.NextRace();
 			Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
-
+			
+			
+			
 			WPFVisualize.Initialize(Data.CurrentRace);
+
 			Data.CurrentRace.DriversChanged += OnDriversChanged;
 			Data.CurrentRace.RaceEnd += OnRaceEnd;
-			InitializeComponent();
-			
-
-			
 
 			Data.CurrentRace.Start();
-
+			InitializeComponent();
 			TrackImage.HorizontalAlignment = HorizontalAlignment.Left;
 			TrackImage.VerticalAlignment = VerticalAlignment.Top;
 

@@ -25,6 +25,6 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="1239,659,0,0" Grid.Row="1" VerticalAlignment="Top" Height="178" Width="580"/>
+        <Label Content="Label" HorizontalAlignment="Right" Margin="0,18,0,0" Grid.Row="1" VerticalAlignment="Top" Height="1039" Width="324" Background="Red"/>
     </Grid>
 </Window>
