@@ -24,18 +24,21 @@ namespace WPFApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private Window window1;
+		private Window window2;
 		public MainWindow()
 		{
-			InitializeComponent();
-
 			Data.Initialize();
 			Data.NextRace();
 			Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
 
 			WPFVisualize.Initialize(Data.CurrentRace);
-
 			Data.CurrentRace.DriversChanged += OnDriversChanged;
 			Data.CurrentRace.RaceEnd += OnRaceEnd;
+			InitializeComponent();
+			
+
+			
 
 			Data.CurrentRace.Start();
 
@@ -79,7 +82,7 @@ namespace WPFApp
 			Data.CurrentRace.DriversChanged += OnDriversChanged;
 			Data.CurrentRace.RaceEnd += OnRaceEnd;
 
-			InitializeComponent();
+			//Initializes race
 			WPFVisualize.Initialize(Data.CurrentRace);
 
 			//Drawing track
@@ -94,6 +97,23 @@ namespace WPFApp
 
 			Data.CurrentRace.Start();
 
+		}
+
+		private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Shutdown();
+		}
+
+		private void MenuItem_OpenWindow1_Click(object sender, RoutedEventArgs e)
+		{
+			window1 = new Window1();
+			window1.Show();
+		}
+
+		private void MenuItem_OpenWindow2_Click(object sender, RoutedEventArgs e)
+		{
+			window2 = new Window2();
+			window2.Show();
 		}
 	}
 }
