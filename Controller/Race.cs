@@ -130,15 +130,6 @@ namespace Controller
 					//This part checks the fist section of the track with the drivers
 					SectionData sectionData = GetSectionData(section);
 
-					if (sectionData.Left == participant)
-					{
-						sectionData.Left = null;
-					}
-					else if (sectionData.Right == participant)
-					{
-						sectionData.Right = null;
-					}
-
 					if (Track.Sections.Count <= (i + 1))
 					{
 						i = -1;
@@ -146,36 +137,56 @@ namespace Controller
 
 					//This part checks the second section behind the first one of the track with the drivers
 					SectionData nextSectionData = GetSectionData(Track.Sections.ElementAt(i + 1));
-
-					if (nextSectionData.Left == null)
+					
+					
+					if (nextSectionData.Left == null || nextSectionData.Right == null)
 					{
-						nextSectionData.Left = participant;
+						if (sectionData.Left == participant)
+						{
+							sectionData.Left = null;
+						}
+						else if (sectionData.Right == participant)
+						{
+							sectionData.Right = null;
+						}
+
+						
+
+
+						if (nextSectionData.Left == null)
+						{
+							nextSectionData.Left = participant;
+						}
+						else if (nextSectionData.Right == null)
+						{
+							nextSectionData.Right = participant;
+						}
+						//else Overtaking(participant, nextSectionData.Right);
+						participant.CurrentSection = Track.Sections.ElementAt(i + 1);
+
+						//Checks if the drivers go over a finish section for the x'th amount of time and then makes them go poof to the shadow realm
+						if (CheckFinish(participant) == true)
+						{
+							participant.CurrentSection = null;
+							if (nextSectionData.Left == participant)
+							{
+								nextSectionData.Left = null;
+							}
+							else if (nextSectionData.Right == participant)
+							{
+								nextSectionData.Right = null;
+							}
+
+							//If there are no more drivers on the track it will cleanup and start the next race
+							if (CheckIfAllDriversFinished() == true)
+							{
+								RaceEnd.Invoke(this, new RaceEndEventArgs(Data.CurrentRace.Participants));
+							}
+						}
 					}
-					else if (nextSectionData.Right == null)
+					else
 					{
-						nextSectionData.Right = participant;
-					}
-					else Overtaking(participant, nextSectionData.Right);
-					participant.CurrentSection = Track.Sections.ElementAt(i + 1);
-
-					//Checks if the drivers go over a finish section for the x'th amount of time and then makes them go poof to the shadow realm
-					if (CheckFinish(participant) == true)
-					{
-						participant.CurrentSection = null;
-						if (nextSectionData.Left == participant)
-						{
-							nextSectionData.Left = null;
-						}
-						else if (nextSectionData.Right == participant)
-						{
-							nextSectionData.Right = null;
-						}
-
-						//If there are no more drivers on the track it will cleanup and start the next race
-						if (CheckIfAllDriversFinished() == true)
-						{
-							RaceEnd.Invoke(this, new RaceEndEventArgs(Data.CurrentRace.Participants));
-						}
+						participant.DistanceCovered = 100;
 					}
 					return;
 				}

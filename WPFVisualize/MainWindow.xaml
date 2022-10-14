@@ -12,10 +12,6 @@
         <Controller:DataContext_MainWindow/>
     </Window.DataContext>
     <Grid Background="#FF151515">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="431*"/>
-        </Grid.RowDefinitions>
         <Image x:Name="TrackImage" Grid.Row="1" Margin="-2,20,0,0" Height="400" VerticalAlignment="Top" HorizontalAlignment="Left" Width="400"/>
         <DockPanel LastChildFill="False" Height="20" VerticalAlignment="Top" Width="2560" Grid.RowSpan="2">
             <Menu Width="NaN" DockPanel.Dock="Top" Height="20">
