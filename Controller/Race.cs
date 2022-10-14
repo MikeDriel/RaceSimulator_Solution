@@ -222,54 +222,6 @@ namespace Controller
 			}
 			return true;
 		}
-
-		public void Overtaking(IParticipant sundayDriver, IParticipant fastDriver)
-		{
-
-			Section sundagSectionVoor = sundayDriver.CurrentSection;
-			Section fastSectionAchter = fastDriver.CurrentSection;
-			
-			SectionData zondagseVoorste = GetSectionData(sundagSectionVoor);
-			SectionData snelleAchtersteData = GetSectionData(fastSectionAchter);
-
-			
-
-			if (zondagseVoorste.Left == sundayDriver)
-			{
-				if (snelleAchtersteData.Right == fastDriver)
-				{
-					//Overtaking
-					zondagseVoorste.Left = fastDriver;
-					snelleAchtersteData.Right = sundayDriver;
-
-					//Swap the current section of the drivers
-					sundagSectionVoor = fastSectionAchter;
-					fastSectionAchter = sundagSectionVoor;
-
-					//Overtaking is successful
-					return;
-				}
-				else return;
-			}
-			else if (zondagseVoorste.Right == sundayDriver)
-			{
-				if (snelleAchtersteData.Left == fastDriver)
-				{
-					//Overtaking
-					zondagseVoorste.Right = fastDriver;
-					snelleAchtersteData.Left = sundayDriver;
-
-					//Swap the current section of the drivers
-					sundagSectionVoor = fastSectionAchter;
-					fastSectionAchter = sundagSectionVoor;
-
-					//Overtaking is successful
-					return;
-				}
-				else return;
-			}
-			else return;
-		}
 	
 		//Checks for Crash
 		public void CheckForCrash()
