@@ -60,7 +60,7 @@ namespace WPFApp
 			}
 			return null;
 		}
-		
+
 		public static BitmapSource CreateBitmapSourceFromGdiBitmap(Bitmap bitmap)
 		{
 			if (bitmap == null)

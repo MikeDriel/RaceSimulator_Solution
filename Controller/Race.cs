@@ -52,7 +52,7 @@ namespace Controller
 		}
 
 		//Randomizes equipment for all participants
-		public void RandomizeEquipment()
+		private void RandomizeEquipment()
 		{
 			foreach (IParticipant participant in Participants)
 			{
@@ -100,7 +100,7 @@ namespace Controller
 			}
 		}
 
-		public void CheckForMoveDriver()
+		private void CheckForMoveDriver()
 		{
 			foreach (IParticipant participant in Participants)
 			{
@@ -115,13 +115,15 @@ namespace Controller
 			}
 		}
 
-		public void MoveDriver(IParticipant participant)
+		private void MoveDriver(IParticipant participant)
 		{
 			int i = 0;
 			foreach (Section section in Track.Sections)
 			{
+				//Checks if overtaking is possible
 				if (section == participant.CurrentSection)
 				{
+					//checks if equipment is broken
 					if (participant.Equipment.IsBroken == true)
 					{
 						return;
@@ -130,6 +132,7 @@ namespace Controller
 					//This part checks the fist section of the track with the drivers
 					SectionData sectionData = GetSectionData(section);
 
+					//Makes sure out of bounds in the tracklist doesnt happen
 					if (Track.Sections.Count <= (i + 1))
 					{
 						i = -1;
@@ -141,6 +144,8 @@ namespace Controller
 					
 					if (nextSectionData.Left == null || nextSectionData.Right == null)
 					{
+						//check for this section
+						//TODO: REFACTOR THIS
 						if (sectionData.Left == participant)
 						{
 							sectionData.Left = null;
@@ -150,9 +155,7 @@ namespace Controller
 							sectionData.Right = null;
 						}
 
-						
-
-
+						//check for next section
 						if (nextSectionData.Left == null)
 						{
 							nextSectionData.Left = participant;
@@ -184,6 +187,7 @@ namespace Controller
 							}
 						}
 					}
+					//Sets distance to 100 if inhalen can't 
 					else
 					{
 						participant.DistanceCovered = 100;
@@ -195,7 +199,7 @@ namespace Controller
 		}
 
 		//Checks if drivers touch the finish
-		public Boolean CheckFinish(IParticipant participant)
+		private Boolean CheckFinish(IParticipant participant)
 		{
 			if (participant.CurrentSection.SectionTypes == SectionType.Finish)
 			{
@@ -211,7 +215,7 @@ namespace Controller
 		}
 
 		//Checks if all drivers are finished
-		public Boolean CheckIfAllDriversFinished()
+		private Boolean CheckIfAllDriversFinished()
 		{
 			foreach (IParticipant participant in Participants)
 			{
@@ -224,10 +228,11 @@ namespace Controller
 		}
 	
 		//Checks for Crash
-		public void CheckForCrash()
+		private void CheckForCrash()
 		{
 			foreach (IParticipant participant in Participants)
 			{
+				//check for recover
 				if (participant.Equipment.IsBroken == true)
 				{
 					int recover = _random.Next(1, 20);
@@ -241,9 +246,8 @@ namespace Controller
 						return;
 					}
 				}
-				
 
-
+				//check for break
 				int isBreak = _random.Next(1, 20);
 				if (isBreak == 1)
 				{

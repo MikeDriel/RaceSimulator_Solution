@@ -132,10 +132,10 @@ namespace WPFApp
 		private const string Player4 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player4.png";
 
 		//BrokenDrivers
-		private const string Player1Broke = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player1.png";
-		private const string Player2Broke = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player2.png";
-		private const string Player3Broke = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player3.png";
-		private const string Player4Broke = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player4.png";
+		private const string Player1Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player1Broken.png";
+		private const string Player2Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player2Broken.png";
+		private const string Player3Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player3Broken.png";
+		private const string Player4Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player4Broken.png";
 		#endregion
 
 
@@ -223,20 +223,40 @@ namespace WPFApp
 				yPos += (imageSize / 2);
 			}
 
-			switch (participant.Name)
+			if (participant.Equipment.IsBroken)
 			{
-				case "Mike":
-					g.DrawImage(PictureController.CloneImageFromCache(Player1), xPos, yPos);
-					break;
-				case "Jan":
-					g.DrawImage(PictureController.CloneImageFromCache(Player2), xPos, yPos);
-					break;
-				case "Thomas":
-					g.DrawImage(PictureController.CloneImageFromCache(Player3), xPos, yPos);
-					break;
-				case "Yasmine":
-					g.DrawImage(PictureController.CloneImageFromCache(Player4), xPos, yPos);
-					break;
+				switch (participant.Name)
+				{
+					case "Mike":
+						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player1Broken)), xPos, yPos);
+						break;
+					case "Jan":
+						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player2Broken)), xPos, yPos);
+						break;
+					case "Thomas":
+						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player3Broken)), xPos, yPos);
+						break;
+					case "Yasmine":
+						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player4Broken)), xPos, yPos);
+						break;
+				}
+			}
+			else {
+				switch (participant.Name)
+				{
+					case "Mike":
+						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player1)), xPos, yPos);
+						break;
+					case "Jan":
+						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player2)), xPos, yPos);
+						break;
+					case "Thomas":
+						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player3)), xPos, yPos);
+						break;
+					case "Yasmine":
+						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player4)), xPos, yPos);
+						break;
+				}
 			}
 		}
 
@@ -257,7 +277,28 @@ namespace WPFApp
 				}
 			}
 		}
-		
+
+		public static Bitmap RotateImage(Bitmap bitmap)
+		{
+			switch (direction)
+			{
+				case Direction.Right:
+					bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+					break;
+				case Direction.Left:
+					bitmap.RotateFlip(RotateFlipType.Rotate270FlipNone);
+					break;
+				case Direction.Up:
+					bitmap.RotateFlip(RotateFlipType.Rotate180FlipNone);
+					break;
+				case Direction.Down:
+					bitmap.RotateFlip(RotateFlipType.RotateNoneFlipNone);
+					break;
+			}
+			return bitmap;
+		}
+
+
 		public static void CalculateTrackSize()
 		{
 			TrackWidth = 2;
