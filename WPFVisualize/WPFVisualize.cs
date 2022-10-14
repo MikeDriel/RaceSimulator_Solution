@@ -48,7 +48,7 @@ namespace WPFApp
 			Race = race;
 
 			//Image properties
-			imageSize = 266;
+			imageSize = 330;
 			
 			CalculateTrackSize();
 
