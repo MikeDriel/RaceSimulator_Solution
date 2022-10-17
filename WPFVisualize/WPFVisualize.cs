@@ -41,14 +41,14 @@ namespace WPFApp
 
 		public static void Initialize(Race race)
 		{
-			Xposition = 1;
-			Yposition = 1;
+			Xposition = 0;
+			Yposition = 0;
 
 			direction = Direction.Right;
 			Race = race;
 
 			//Image properties
-			imageSize = 330;
+			imageSize = 200;
 			
 			CalculateTrackSize();
 
@@ -283,10 +283,10 @@ namespace WPFApp
 			switch (direction)
 			{
 				case Direction.Right:
-					bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+					bitmap.RotateFlip(RotateFlipType.Rotate270FlipNone);
 					break;
 				case Direction.Left:
-					bitmap.RotateFlip(RotateFlipType.Rotate270FlipNone);
+					bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
 					break;
 				case Direction.Up:
 					bitmap.RotateFlip(RotateFlipType.Rotate180FlipNone);
