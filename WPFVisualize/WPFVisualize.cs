@@ -105,7 +105,7 @@ namespace WPFApp
 				DetermineDirection(section.SectionTypes, direction);
 				MoveImagePointer();
 			}
-			return (PictureController.CreateBitmapSourceFromGdiBitmap(bitmap);
+			return (PictureController.CreateBitmapSourceFromGdiBitmap(bitmap));
 		}
 
 

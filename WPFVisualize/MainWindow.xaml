@@ -21,5 +21,6 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
+        <Label x:Name="TrackNameLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Height="33" Width="210" Background="#FF151515" Margin="590,25,0,0" Foreground="White" Content="{Binding TrackName}"/>
     </Grid>
 </Window>
