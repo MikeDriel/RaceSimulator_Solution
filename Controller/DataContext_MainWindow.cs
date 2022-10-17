@@ -16,7 +16,11 @@ namespace Controller
 
 		public string TrackName { get; set; }
 
+		public string metersMoved { get; set; }
+
 		public event PropertyChangedEventHandler PropertyChanged;
+
+		
 
 		public DataContext_MainWindow()
 		{
@@ -31,17 +35,31 @@ namespace Controller
 		
 		public void OnRaceEnd(object sender, RaceEndEventArgs e)
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(""));
+			Data.CurrentRace.DriversChanged += OnDriversChanged;
+			Data.CurrentRace.RaceEnd += OnRaceEnd;
+			
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TrackName"));
 		}
 
 		private void OnDriversChanged(object sender, DriversChangedEventArgs e)
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(""));
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetersMoved1"));
 		}
 
 		public void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			TrackName =  Data.CurrentRace.Track.Name;
+			switch (e.PropertyName)
+			{
+				case "TrackName":
+					TrackName = Data.CurrentRace.Track.Name;
+					break;
+				case "Participants":
+					Participants = Data.CurrentRace.Participants;
+					break;
+				case "MetersMoved1":
+					metersMoved = Data.CurrentRace.Participants[0].DistanceCovered.ToString();
+					break;
+			}
 		}
 	}
 }

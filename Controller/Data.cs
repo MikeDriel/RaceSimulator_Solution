@@ -124,6 +124,7 @@ namespace Controller
 					SectionType.LeftCornerV,
 
 					SectionType.StartGrid,
+					SectionType.Straight,
 					SectionType.Finish,
 
 					SectionType.RightCorner,
@@ -132,11 +133,11 @@ namespace Controller
 					SectionType.StraightV,
 					SectionType.StraightV,
 					SectionType.StraightV,
-					SectionType.StraightV,
-					SectionType.StraightV,
+					
 
 					SectionType.LeftCorner,
 
+					SectionType.Straight,
 					SectionType.Straight,
 					SectionType.Straight,
 
@@ -146,8 +147,7 @@ namespace Controller
 					SectionType.StraightV,
 					SectionType.StraightV,
 					SectionType.StraightV,
-					SectionType.StraightV,
-					SectionType.StraightV,
+					
 				};
 				return builder;
 			}
