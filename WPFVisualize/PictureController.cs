@@ -15,7 +15,8 @@ namespace WPFApp
 	public static class PictureController
 	{
 		public static Dictionary<string, Bitmap> ImageCache = new Dictionary<string, Bitmap>();
-		
+		public static BitmapSource CachedBitmap = null;
+
 
 		public static Bitmap GetBitmapUrl(string url)
 		{
@@ -41,24 +42,6 @@ namespace WPFApp
 			Bitmap newBitmap = GetBitmapUrl(image);
 			Bitmap clone = newBitmap.Clone(new Rectangle(0, 0, newBitmap.Width, newBitmap.Height), PixelFormat.Format32bppArgb);
 			return (clone);
-		}
-
-		public static Bitmap CreateEmptyBitmap(int x, int y)
-		{
-			if (ImageCache.ContainsKey("empty"))
-			{
-
-				Bitmap newBitmap = new Bitmap(x, y);
-				Graphics g = Graphics.FromImage(newBitmap);
-
-				{
-					g.FillRectangle(new SolidBrush(Color.White), 0, 0, x, y);
-
-					ImageCache.Add("empty", newBitmap);
-					return newBitmap.Clone() as Bitmap;
-				}
-			}
-			return null;
 		}
 
 		public static BitmapSource CreateBitmapSourceFromGdiBitmap(Bitmap bitmap)

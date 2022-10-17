@@ -284,7 +284,6 @@ namespace Controller
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
 		{
-			Console.Clear();
 			foreach (IParticipant participant in Participants)
 			{
 				participant.CurrentSection = null;
@@ -305,7 +304,6 @@ namespace Controller
 			Thread.Sleep(1000);
 			Console.WriteLine("Next race in 1..");
 			Thread.Sleep(1000);
-			Console.Clear();
 		}
 	}
 }

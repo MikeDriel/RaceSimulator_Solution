@@ -292,6 +292,7 @@ namespace RaceSimulator_Project
 		
 		public static void OnRaceEnd(object source, RaceEndEventArgs e)
 		{
+			Console.Clear();
 			Data.CurrentRace.CleanUp();
 			if (Data.NextRace() != null) {
 				Initialize(Data.CurrentRace);
@@ -301,6 +302,7 @@ namespace RaceSimulator_Project
 
 			else if (Data.NextRace() == null)
 			{
+				Console.Clear();
 				Console.WriteLine("No more tracks, Race is done");
 			}
 		}
