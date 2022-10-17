@@ -32,10 +32,10 @@ namespace Controller
 		public static void AddTracks()
 		{
 			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
-			Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
-			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Zandvoort")));
-			Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
-			Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
+			//Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
+			//Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Zandvoort")));
+			//Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
+			//Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
 		}
 		
 		//Adds the track and participants to the current race
@@ -45,12 +45,6 @@ namespace Controller
 			if (currentTrack != null)
 			{
 				return CurrentRace = new Race(currentTrack, Competition.Participants);
-			}
-			else if (currentTrack == null)
-			{
-				//Console.Clear();
-				//Console.WriteLine("No more tracks, Race is done");
-				return null;
 			}
 			return null;
 		}

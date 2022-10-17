@@ -24,7 +24,7 @@ namespace Controller
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
 
-		private int AmountOfLoops = 3;
+		private int AmountOfLoops = 1;
 
 		
 		//Constructor for Race
@@ -284,6 +284,7 @@ namespace Controller
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
 		{
+			Console.Clear();
 			foreach (IParticipant participant in Participants)
 			{
 				participant.CurrentSection = null;
@@ -294,6 +295,7 @@ namespace Controller
 			_timer.Stop();
 			_timer = null;
 			DriversChanged = null;
+			Data.CurrentRace = null;
 			GC.Collect(0);
 			
 
@@ -303,7 +305,7 @@ namespace Controller
 			Thread.Sleep(1000);
 			Console.WriteLine("Next race in 1..");
 			Thread.Sleep(1000);
-			
+			Console.Clear();
 		}
 	}
 }

@@ -292,13 +292,16 @@ namespace RaceSimulator_Project
 		
 		public static void OnRaceEnd(object source, RaceEndEventArgs e)
 		{
-			Console.Clear();
 			Data.CurrentRace.CleanUp();
-			Data.CurrentRace = null;
 			if (Data.NextRace() != null) {
 				Initialize(Data.CurrentRace);
 				Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
 				DrawTrack(Data.CurrentRace.Track);
+			}
+
+			else if (Data.NextRace() == null)
+			{
+				Console.WriteLine("No more tracks, Race is done");
 			}
 		}
 	}

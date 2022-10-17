@@ -70,34 +70,45 @@ namespace WPFApp
 		{
 			Data.CurrentRace.CleanUp();
 			Data.CurrentRace = null;
+
 			if (Data.NextRace() != null)
 			{
 				WPFVisualize.Initialize(Data.CurrentRace);
 				Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
+
+				//Clearing cache
+				PictureController.EmptyCache();
+
+				//Subscribes events 
+				Data.CurrentRace.DriversChanged += OnDriversChanged;
+				Data.CurrentRace.RaceEnd += OnRaceEnd;
+
+				//Initializes race
+				WPFVisualize.Initialize(Data.CurrentRace);
+
+				//Drawing track
+				this.TrackImage.Dispatcher.BeginInvoke(
+				DispatcherPriority.Render,
+				new Action(() =>
+				{
+					this.TrackImage.Source = null;
+					this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
+
+				}));
+
+				//start timer
+				Data.CurrentRace.Start();
 			}
 
-			//Clearing cache
-			PictureController.EmptyCache();
-
-			//Subscribes events 
-			Data.CurrentRace.DriversChanged += OnDriversChanged;
-			Data.CurrentRace.RaceEnd += OnRaceEnd;
-
-			//Initializes race
-			WPFVisualize.Initialize(Data.CurrentRace);
-
-			//Drawing track
-			this.TrackImage.Dispatcher.BeginInvoke(
-			DispatcherPriority.Render,
-			new Action(() =>
+			else if (Data.NextRace() == null)
 			{
-				this.TrackImage.Source = null;
-				this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
-
-			}));
-
-			Data.CurrentRace.Start();
-
+				//Dispatcher for closing the main window and opening scores
+				Application.Current.Dispatcher.Invoke((Action)delegate {
+					window1 = new Window1();
+					window1.Show();
+					this.Close();
+				});
+			}
 		}
 
 		private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)

@@ -13,8 +13,6 @@ Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Pa
 
 Visualisatie.DrawTrack(Data.CurrentRace.Track);
 
-//Data.CurrentRace.Start();
-
 for (; ; )
 {
 	Thread.Sleep(500);
