@@ -49,7 +49,7 @@ namespace WPFApp
 
 			//Image properties
 			imageSize = 200;
-			
+
 			CalculateTrackSize();
 
 			TrackWidth *= imageSize;
@@ -64,7 +64,7 @@ namespace WPFApp
 
 			foreach (Section section in track.Sections)
 			{
-				
+
 				switch (section.SectionTypes)
 				{
 					//Horizontals
@@ -105,7 +105,7 @@ namespace WPFApp
 				DetermineDirection(section.SectionTypes, direction);
 				MoveImagePointer();
 			}
-			return (PictureController.CreateBitmapSourceFromGdiBitmap(bitmap));
+			return (PictureController.CreateBitmapSourceFromGdiBitmap(bitmap);
 		}
 
 
@@ -219,7 +219,7 @@ namespace WPFApp
 			}
 			else if (sideOfRoad.Equals("Right"))
 			{
-				xPos += (imageSize  / 2);
+				xPos += (imageSize / 2);
 				yPos += (imageSize / 2);
 			}
 
@@ -241,7 +241,8 @@ namespace WPFApp
 						break;
 				}
 			}
-			else {
+			else
+			{
 				switch (participant.Name)
 				{
 					case "Mike":
