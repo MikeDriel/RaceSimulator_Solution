@@ -15,8 +15,6 @@ namespace WPFApp
 	public static class PictureController
 	{
 		public static Dictionary<string, Bitmap> ImageCache = new Dictionary<string, Bitmap>();
-		public static BitmapSource CachedBitmap = null;
-
 
 		public static Bitmap GetBitmapUrl(string url)
 		{
