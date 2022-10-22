@@ -238,8 +238,14 @@ namespace Controller
 					int recover = _random.Next(1, 20);
 					if (recover <= 5)
 					{
-						participant.Equipment.Quality -= 1;
-						participant.Equipment.IsBroken = false;
+						if (participant.Equipment.Quality == 1)
+						{
+							participant.Equipment.Quality = 1;
+						}
+						else {
+							participant.Equipment.Quality -= 1;
+							participant.Equipment.IsBroken = false;
+						}
 					}
 					else
 					{

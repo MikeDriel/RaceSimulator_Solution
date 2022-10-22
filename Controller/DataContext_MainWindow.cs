@@ -1,65 +1,54 @@
-﻿using Model;
-using System;
-using System.Collections.Generic;
+﻿using Controller;
+using Model;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
 	public class DataContext_MainWindow : INotifyPropertyChanged
 	{
-		public List<IParticipant> Participants { get; set; }
+		private string _trackName;
+		private string _metersMoved;
+		private List<IParticipant> _participants;
 
-		public string TrackName { get; set; }
+		public List<IParticipant> Participants { get { return _participants; } set { _participants = value; OnPropertyChanged(); } }
 
-		public string metersMoved { get; set; }
+		public string TrackName { get { return _trackName; } set { _trackName = value; OnPropertyChanged(); } }
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public string metersMoved { get { return _metersMoved; } set { _metersMoved = value; OnPropertyChanged(); } }
 
-		
+
+
+
+
+		public event PropertyChangedEventHandler? PropertyChanged;
+
+
 
 		public DataContext_MainWindow()
 		{
-			Data.CurrentRace.DriversChanged += OnDriversChanged;
+			//Data.CurrentRace.DriversChanged += OnDriversChanged;
 			Data.CurrentRace.RaceEnd += OnRaceEnd;
-			PropertyChanged += OnPropertyChanged;
 
 			TrackName = Data.CurrentRace.Track.Name;
 			Participants = Data.CurrentRace.Participants;
 		}
 
-		
+
 		public void OnRaceEnd(object sender, RaceEndEventArgs e)
 		{
-			Data.CurrentRace.DriversChanged += OnDriversChanged;
-			Data.CurrentRace.RaceEnd += OnRaceEnd;
-			
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TrackName"));
+			TrackName = Data.CurrentRace.Track.Name;
+			Participants = Data.CurrentRace.Participants;
 		}
 
 		private void OnDriversChanged(object sender, DriversChangedEventArgs e)
 		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetersMoved1"));
+
 		}
 
-		public void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		public void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
-			switch (e.PropertyName)
-			{
-				case "TrackName":
-					TrackName = Data.CurrentRace.Track.Name;
-					break;
-				case "Participants":
-					Participants = Data.CurrentRace.Participants;
-					break;
-				case "MetersMoved1":
-					metersMoved = Data.CurrentRace.Participants[0].DistanceCovered.ToString();
-					break;
-			}
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
