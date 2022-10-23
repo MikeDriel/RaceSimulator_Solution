@@ -20,12 +20,12 @@ namespace Controller
 		//Adds participants to the competition
 		public static void AddParticipants()
 		{
-			Competition.Participants.Add(new Driver("Mike", 0, new Car(5, 5, 5, false), TeamColors.Red));
-			Competition.Participants.Add(new Driver("Jan", 0, new Car(5, 5, 5, false), TeamColors.Green));
-			Competition.Participants.Add(new Driver("Thomas", 0, new Car(5, 5, 5, false), TeamColors.Grey));
-			Competition.Participants.Add(new Driver("Yasmine", 0, new Car(5, 1, 5, false), TeamColors.Purple));
-			//Competition.Participants.Add(new Driver("Pieter", 0, new Car(10, 10, 10, false), TeamColors.Blue));
-			//Competition.Participants.Add(new Driver("KoopaTroopa", 0, new Car(10, 10, 10, false), TeamColors.Yellow));
+			Competition.Participants.Add(new Driver("Mike", 0, new Car(), TeamColors.Red));
+			Competition.Participants.Add(new Driver("Jan", 0, new Car(), TeamColors.Green));
+			Competition.Participants.Add(new Driver("Thomas", 0, new Car(), TeamColors.Grey));
+			Competition.Participants.Add(new Driver("Yasmine", 0, new Car(), TeamColors.Purple));
+			//Competition.Participants.Add(new Driver("Pieter", 0, new Car(), TeamColors.Blue));
+			//Competition.Participants.Add(new Driver("KoopaTroopa", 0, new Car(), TeamColors.Yellow));
 		}
 
 		//Adds tracks to the competition

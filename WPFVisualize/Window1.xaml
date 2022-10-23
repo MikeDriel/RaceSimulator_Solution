@@ -10,20 +10,21 @@
 
 
     <Grid>
-        <DataGrid ItemsSource="{Binding Path=DriverData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="True">
+        <DataGrid ItemsSource="{Binding Path=DriverData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False">
             <DataGrid.DataContext>
                 <Controller:DataContext_Window1/>
             </DataGrid.DataContext>
-        
-        <DataGrid.Columns>
-            <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Laps" Binding="{Binding Laps}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Distance in Section" Binding="{Binding DistanceCovered}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Quality" Binding="{Binding Equipment.Quality}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Performance" Binding="{Binding Equipment.Performance}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Speed" Binding="{Binding Equipment.Speed}"></DataGridTextColumn>
-            <DataGridCheckBoxColumn Header="IsBroken" Binding="{Binding Equipment.IsBroken}"></DataGridCheckBoxColumn>
-        </DataGrid.Columns>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Points" Binding="{Binding Points}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Laps" Binding="{Binding Laps}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Distance in Section" Binding="{Binding DistanceCovered}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Quality" Binding="{Binding Equipment.Quality}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Performance" Binding="{Binding Equipment.Performance}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Speed" Binding="{Binding Equipment.Speed}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="IsBroken" Binding="{Binding Equipment.IsBroken}"></DataGridCheckBoxColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>

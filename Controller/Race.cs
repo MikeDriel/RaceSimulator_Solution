@@ -26,7 +26,9 @@ namespace Controller
 
 		private int AmountOfLoops = 3;
 
-		
+		private int counter = 1;
+
+
 		//Constructor for Race
 		public Race(Track track, List<IParticipant> participants)
 		{
@@ -58,7 +60,15 @@ namespace Controller
 			{
 				participant.Equipment.Quality = _random.Next(5, 11);
 				participant.Equipment.Performance = _random.Next(5, 11);
+				UpdateSpeed(participant);
+				participant.IsFinished = false;
 			}
+		}
+
+		//Updates Speed Variable
+		private void UpdateSpeed(IParticipant participant)
+		{
+			participant.Equipment.Speed = participant.Equipment.Quality * participant.Equipment.Performance;
 		}
 
 		//Places drivers on the startgrid and behind it until no more participants are left in the list
@@ -104,13 +114,19 @@ namespace Controller
 		{
 			foreach (IParticipant participant in Participants)
 			{
-				//Calculate the distance the driver can move
-				participant.DistanceCovered += participant.Equipment.Speed * participant.Equipment.Performance;
-
-				if (participant.DistanceCovered >= 100)
+				if (participant.IsFinished == false)
 				{
-					participant.DistanceCovered += -100;
-					MoveDriver(participant);
+					if (participant.Equipment.IsBroken == false)
+					{
+						//Calculate the distance the driver can move
+						participant.DistanceCovered += participant.Equipment.Speed;
+
+						if (participant.DistanceCovered >= 100)
+						{
+							participant.DistanceCovered -= 100;
+							MoveDriver(participant);
+						}
+					}
 				}
 			}
 		}
@@ -140,8 +156,8 @@ namespace Controller
 
 					//This part checks the second section behind the first one of the track with the drivers
 					SectionData nextSectionData = GetSectionData(Track.Sections.ElementAt(i + 1));
-					
-					
+
+
 					if (nextSectionData.Left == null || nextSectionData.Right == null)
 					{
 						//check for this section
@@ -203,10 +219,14 @@ namespace Controller
 		{
 			if (participant.CurrentSection.SectionTypes == SectionType.Finish)
 			{
-				participant.Laps += 1;
+				participant.Laps += 1; //Add lap
+				
 				//Number determines the amount of laps the drivers have to do
-				if (participant.Laps == AmountOfLoops)
+				if (participant.Laps >= AmountOfLoops)
 				{
+					participant.Points += (5 / counter); //Add point
+					counter++;
+					participant.IsFinished = true;
 					return true;
 				}
 				else return false;
@@ -226,7 +246,7 @@ namespace Controller
 			}
 			return true;
 		}
-	
+
 		//Checks for Crash
 		private void CheckForCrash()
 		{
@@ -243,26 +263,20 @@ namespace Controller
 							participant.Equipment.Quality = 1;
 							participant.Equipment.IsBroken = false;
 						}
-						else {
+						else
+						{
 							participant.Equipment.Quality -= 1;
 							participant.Equipment.IsBroken = false;
+							UpdateSpeed(participant);
 						}
-					}
-					else
-					{
-						return;
 					}
 				}
 
 				//check for break
-				int isBreak = _random.Next(1, 20);
+				int isBreak = _random.Next(1, 40);
 				if (isBreak == 1)
 				{
 					participant.Equipment.IsBroken = true;
-				}
-				else
-				{
-					return;
 				}
 			}
 		}
@@ -278,7 +292,7 @@ namespace Controller
 		{
 			_timer.Stop();
 		}
-		
+
 		//TimerEvent
 		public void OnTimedEvent(object source, EventArgs e)
 		{
@@ -286,7 +300,7 @@ namespace Controller
 			CheckForCrash();
 			DriversChanged?.Invoke(this, new DriversChangedEventArgs(Track));
 		}
-		
+
 
 		//This function will clean up the last eventHandeler reference so the garbage collector can clean up the memory
 		public void CleanUp()
@@ -303,7 +317,7 @@ namespace Controller
 			DriversChanged = null;
 			Data.CurrentRace = null;
 			GC.Collect(0);
-			
+
 
 			Console.WriteLine("Next race in 3..");
 			Thread.Sleep(1000);

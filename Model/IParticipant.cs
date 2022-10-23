@@ -1,6 +1,8 @@
-﻿namespace Model
+﻿using System.ComponentModel;
+
+namespace Model
 {
-	public interface IParticipant
+	public interface IParticipant : INotifyPropertyChanged
 	{
 		public string Name { get; set; }
 		int Points { get; set; }
@@ -9,7 +11,7 @@
 		public Section CurrentSection { get; set; }
 		public int DistanceCovered { get; set; }
 		public int Laps { get; set; }
-
+		public bool IsFinished { get; set; }
 	}
 	
 	public enum TeamColors
