@@ -24,7 +24,7 @@ namespace Controller
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
 
-		private int AmountOfLoops = 1;
+		private int AmountOfLoops = 3;
 
 		
 		//Constructor for Race
@@ -203,9 +203,9 @@ namespace Controller
 		{
 			if (participant.CurrentSection.SectionTypes == SectionType.Finish)
 			{
-				participant.Loops += 1;
+				participant.Laps += 1;
 				//Number determines the amount of laps the drivers have to do
-				if (participant.Loops == AmountOfLoops)
+				if (participant.Laps == AmountOfLoops)
 				{
 					return true;
 				}
@@ -241,6 +241,7 @@ namespace Controller
 						if (participant.Equipment.Quality == 1)
 						{
 							participant.Equipment.Quality = 1;
+							participant.Equipment.IsBroken = false;
 						}
 						else {
 							participant.Equipment.Quality -= 1;
@@ -294,7 +295,7 @@ namespace Controller
 			{
 				participant.CurrentSection = null;
 				participant.DistanceCovered = 0;
-				participant.Loops = 0;
+				participant.Laps = 0;
 			}
 
 			_timer.Stop();

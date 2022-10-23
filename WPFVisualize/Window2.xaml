@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApp"
         mc:Ignorable="d"
-        Title="Window2" Height="450" Width="800">
+        Title="Competition Info" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
     </Grid>
 </Window>
