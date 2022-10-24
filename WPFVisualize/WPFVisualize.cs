@@ -214,8 +214,8 @@ namespace WPFApp
 
 			if (sideOfRoad.Equals("Left"))
 			{
-				xPos += (imageSize / 3);
-				yPos += (imageSize / 4);
+				xPos += (imageSize / 5);
+				yPos += (imageSize / 5);
 			}
 			else if (sideOfRoad.Equals("Right"))
 			{
