@@ -41,6 +41,8 @@ namespace WPFApp
 
 		public static void Initialize(Race race)
 		{
+			DetermineImageSources();
+			
 			Xposition = 0;
 			Yposition = 0;
 
@@ -112,30 +114,30 @@ namespace WPFApp
 		//THE TRACKS ARE HERE!!!
 		#region graphics
 		//Horizontal
-		private const string _StartGridHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\StartH.png";
-		private const string _StraightHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\StraightH.png";
-		private const string _finishHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\FinishH.png";
-		private const string _LeftCornerHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\CornerNW.png";
-		private const string _RightCornerHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\CornerSW.png";
+		private const string _StartGridHorizontal = "Graphics\\StartH.png";
+		private const string _StraightHorizontal = "Graphics\\StraightH.png";
+		private const string _finishHorizontal = "Graphics\\FinishH.png";
+		private const string _LeftCornerHorizontal = "Graphics\\CornerNW.png";
+		private const string _RightCornerHorizontal = "Graphics\\CornerSW.png";
 
 		//Vertical
-		private const string _StartGridVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\StartV.png";
-		private const string _StraightVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\StraightV.png";
-		private const string _finishVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\FinishV.png";
-		private const string _LeftCornerVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\CornerSE.png";
-		private const string _RightCornerVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\CornerNE.png";
+		private const string _StartGridVertical = "Graphics\\StartV.png";
+		private const string _StraightVertical = "Graphics\\StraightV.png";
+		private const string _finishVertical = "Graphics\\FinishV.png";
+		private const string _LeftCornerVertical = "Graphics\\CornerSE.png";
+		private const string _RightCornerVertical = "Graphics\\CornerNE.png";
 
 		//Drivers
-		private const string Player1 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player1.png";
-		private const string Player2 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player2.png";
-		private const string Player3 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player3.png";
-		private const string Player4 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player4.png";
+		private const string Player1 = "Graphics\\Player1.png";
+		private const string Player2 = "Graphics\\Player2.png";
+		private const string Player3 = "Graphics\\Player3.png";
+		private const string Player4 = "Graphics\\Player4.png";
 
 		//BrokenDrivers
-		private const string Player1Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player1Broken.png";
-		private const string Player2Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player2Broken.png";
-		private const string Player3Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player3Broken.png";
-		private const string Player4Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player4Broken.png";
+		private const string Player1Broken = "Graphics\\Player1Broken.png";
+		private const string Player2Broken = "Graphics\\Player2Broken.png";
+		private const string Player3Broken = "Graphics\\Player3Broken.png";
+		private const string Player4Broken = "Graphics\\Player4Broken.png";
 		#endregion
 
 
@@ -225,39 +227,11 @@ namespace WPFApp
 
 			if (participant.Equipment.IsBroken)
 			{
-				switch (participant.Name)
-				{
-					case "Mike":
-						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player1Broken)), xPos, yPos);
-						break;
-					case "Jan":
-						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player2Broken)), xPos, yPos);
-						break;
-					case "Thomas":
-						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player3Broken)), xPos, yPos);
-						break;
-					case "Yasmine":
-						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player4Broken)), xPos, yPos);
-						break;
-				}
+				g.DrawImage(RotateImage(PictureController.CloneImageFromCache(participant.ImagePathBroken)), xPos, yPos);
 			}
 			else
 			{
-				switch (participant.Name)
-				{
-					case "Mike":
-						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player1)), xPos, yPos);
-						break;
-					case "Jan":
-						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player2)), xPos, yPos);
-						break;
-					case "Thomas":
-						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player3)), xPos, yPos);
-						break;
-					case "Yasmine":
-						g.DrawImage(RotateImage(PictureController.CloneImageFromCache(Player4)), xPos, yPos);
-						break;
-				}
+				g.DrawImage(RotateImage(PictureController.CloneImageFromCache(participant.ImagePath)), xPos, yPos);
 			}
 		}
 
@@ -299,7 +273,6 @@ namespace WPFApp
 			return bitmap;
 		}
 
-
 		public static void CalculateTrackSize()
 		{
 			TrackWidth = 2;
@@ -320,6 +293,32 @@ namespace WPFApp
 			}
 		}
 
+		public static void DetermineImageSources()
+		{
+			foreach (IParticipant participant in Data.CurrentRace.Participants)
+			{
+				switch (participant.TeamColor)
+				{
+					case TeamColors.Blue:
+						participant.ImagePath = Player1;
+						participant.ImagePathBroken = Player1Broken;
+						break;
+					case TeamColors.Purple:
+						participant.ImagePath = Player2;
+						participant.ImagePathBroken = Player2Broken;
+						break;
+					case TeamColors.Green:
+						participant.ImagePath = Player3;
+						participant.ImagePathBroken = Player3Broken;
+						break;
+					case TeamColors.Yellow:
+						participant.ImagePath = Player4;
+						participant.ImagePathBroken = Player4Broken;
+						break;
+				}
+			}
+		}
+		
 		public static int ImageCalculationX()
 		{
 			return Xposition * imageSize;

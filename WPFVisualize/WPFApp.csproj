@@ -12,18 +12,78 @@
     <None Remove="Graphics\CornerNW.png" />
     <None Remove="Graphics\CornerSE.png" />
     <None Remove="Graphics\CornerSW.png" />
+    <None Remove="Graphics\FinishH.png" />
+    <None Remove="Graphics\FinishV.png" />
+    <None Remove="Graphics\Player1.png" />
+    <None Remove="Graphics\Player1Broken.png" />
+    <None Remove="Graphics\Player2.png" />
+    <None Remove="Graphics\Player2Broken.png" />
+    <None Remove="Graphics\Player3.png" />
+    <None Remove="Graphics\Player3Broken.png" />
+    <None Remove="Graphics\Player4.png" />
+    <None Remove="Graphics\Player4Broken.png" />
     <None Remove="Graphics\SpaceShip.png" />
+    <None Remove="Graphics\StartH.png" />
+    <None Remove="Graphics\StartV.png" />
     <None Remove="Graphics\StraightH.png" />
     <None Remove="Graphics\StraightV.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Graphics\CornerNE.png" />
-    <Content Include="Graphics\CornerNW.png" />
-    <Content Include="Graphics\CornerSE.png" />
-    <Content Include="Graphics\CornerSW.png" />
-    <Content Include="Graphics\StraightH.png" />
-    <Content Include="Graphics\StraightV.png" />
+    <Content Include="Graphics\CornerNE.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\CornerNW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\CornerSE.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\CornerSW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\FinishH.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\FinishV.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\Player1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\Player1Broken.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\Player2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\Player2Broken.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\Player3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\Player3Broken.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\Player4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\Player4Broken.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\StartH.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\StartV.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\StraightH.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\StraightV.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
