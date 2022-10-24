@@ -33,11 +33,11 @@ namespace Controller
 		{
 			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
 			Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
-			//Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Zandvoort")));
-			//Competition.Tracks.Enqueue(new Track("RainbowRoad", TrackBuilder("Vierkant")));
+			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Zandvoort")));
+			Competition.Tracks.Enqueue(new Track("Loopa", TrackBuilder("Loopa")));
 			//Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
 		}
-		
+
 		//Adds the track and participants to the current race
 		public static Race NextRace()
 		{
@@ -133,7 +133,7 @@ namespace Controller
 					SectionType.StraightV,
 					SectionType.StraightV,
 					SectionType.StraightV,
-					
+
 
 					SectionType.LeftCorner,
 
@@ -147,7 +147,37 @@ namespace Controller
 					SectionType.StraightV,
 					SectionType.StraightV,
 					SectionType.StraightV,
-					
+
+				};
+				return builder;
+			}
+			if (trackName.Equals("Loopa"))
+			{
+				SectionType[] builder = new SectionType[]
+				{
+					SectionType.LeftCornerV,
+
+					SectionType.StartGrid,
+					SectionType.Straight,
+					SectionType.Finish,
+
+					SectionType.RightCorner,
+
+					SectionType.StraightV,
+					SectionType.StraightV,
+
+					SectionType.LeftCorner,
+
+					SectionType.RightCornerV,
+					SectionType.RightCorner,
+					SectionType.Straight,
+					SectionType.LeftCornerV,
+					SectionType.LeftCorner,
+
+					SectionType.RightCornerV,
+
+					SectionType.StraightV,
+					SectionType.StraightV
 				};
 				return builder;
 			}
