@@ -28,14 +28,14 @@ namespace WPFApp
 		private Window window2;
 		public MainWindow()
 		{
-			
+
 
 			Data.Initialize();
 			Data.NextRace();
 			Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
-			
-			
-			
+
+
+
 			WPFVisualize.Initialize(Data.CurrentRace);
 
 			Data.CurrentRace.DriversChanged += OnDriversChanged;
@@ -46,8 +46,8 @@ namespace WPFApp
 			TrackImage.HorizontalAlignment = HorizontalAlignment.Left;
 			TrackImage.VerticalAlignment = VerticalAlignment.Top;
 
-			TrackImage.Width = WPFVisualize.TrackWidth/2;
-			TrackImage.Height = WPFVisualize.TrackHeight/2;
+			TrackImage.Width = WPFVisualize.TrackWidth / 2;
+			TrackImage.Height = WPFVisualize.TrackHeight / 2;
 
 			this.TrackImage.Source = null;
 			this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
@@ -69,7 +69,6 @@ namespace WPFApp
 		private void OnRaceEnd(object sender, RaceEndEventArgs e)
 		{
 			Data.CurrentRace.CleanUp();
-			Data.CurrentRace = null;
 
 			if (Data.NextRace() != null)
 			{
@@ -99,17 +98,18 @@ namespace WPFApp
 				//start timer
 				Data.CurrentRace.Start();
 			}
-
-			else if (Data.NextRace() == null)
+			else
 			{
 				//Dispatcher for closing the main window and opening scores
-				Application.Current.Dispatcher.Invoke((Action)delegate {
-					window1 = new Window1();
-					window1.Show();
+				Application.Current.Dispatcher.Invoke((Action)delegate
+				{
+					window2 = new Window2();
+					window2.Show();
 					this.Close();
 				});
 			}
 		}
+
 
 		private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
 		{

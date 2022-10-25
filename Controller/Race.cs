@@ -24,7 +24,7 @@ namespace Controller
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
 
-		private int AmountOfLoops = 3;
+		private int AmountOfLoops = 1;
 
 		private int counter = 1;
 
@@ -313,9 +313,9 @@ namespace Controller
 			}
 
 			_timer.Stop();
-			_timer = null;
+			_timer.Dispose();
 			DriversChanged = null;
-			Data.CurrentRace = null;
+			//Data.CurrentRace = null;
 			GC.Collect(0);
 
 

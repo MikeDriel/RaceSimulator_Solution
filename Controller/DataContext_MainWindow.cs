@@ -24,7 +24,14 @@ namespace Controller
 
 		public void OnRaceEnd(object sender, RaceEndEventArgs e)
 		{
-			TrackName = Data.CurrentRace.Track.Name;
+			if (Data.NextRace() is null)
+			{
+				TrackName = "The competition is over!";
+			}
+			else
+			{
+				TrackName = Data.CurrentRace.Track.Name;
+			}
 		}
 
 		public void OnPropertyChanged([CallerMemberName] string propertyName = null)

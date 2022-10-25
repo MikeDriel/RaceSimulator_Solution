@@ -27,11 +27,6 @@ namespace Controller
 				}
 				DriverData = new BindingList<IParticipant>(leaderboardData.ToList());
 		}
-	
-		public void OnRaceEnd(object sender, RaceEndEventArgs e)
-		{
-
-		}
 
 		public void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
