@@ -27,12 +27,12 @@ namespace Model
         {
 			if (Tracks.Count > 0)
 			{
-				CompetitionEnd.Invoke(this, new EventArgs());
 				return Tracks.Dequeue();
 			}
 			else
 			{
 				Winner = Participants.OrderByDescending(x => x.Points).First();
+				CompetitionEnd.Invoke(this, new EventArgs());
 				return null;
 			}
 		}

@@ -24,8 +24,8 @@ namespace WPFApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private Window window1;
-		private Window window2;
+		private static Window window1;
+		private static Window window2;
 		public MainWindow()
 		{
 
@@ -51,6 +51,8 @@ namespace WPFApp
 
 			this.TrackImage.Source = null;
 			this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
+
+			window2 = new Window2();
 		}
 
 
@@ -92,7 +94,6 @@ namespace WPFApp
 				{
 					this.TrackImage.Source = null;
 					this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
-
 				}));
 
 				//start timer
@@ -100,16 +101,19 @@ namespace WPFApp
 			}
 			else
 			{
-				//Dispatcher for closing the main window and opening scores
-				Application.Current.Dispatcher.Invoke((Action)delegate
-				{
-					window2 = new Window2();
-					window2.Show();
-					this.Close();
-				});
+				OpenWindow2AndCloseMain();
 			}
 		}
 
+		public void OpenWindow2AndCloseMain()
+		{
+			//Dispatcher for closing the main window and opening scores
+			Application.Current.Dispatcher.Invoke((Action)delegate
+			{
+				window2.Show();
+				this.Close();
+			});
+		}
 
 		private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
 		{
@@ -124,7 +128,6 @@ namespace WPFApp
 
 		private void MenuItem_OpenWindow2_Click(object sender, RoutedEventArgs e)
 		{
-			window2 = new Window2();
 			window2.Show();
 		}
 	}
