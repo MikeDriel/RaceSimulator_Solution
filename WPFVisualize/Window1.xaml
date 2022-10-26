@@ -16,6 +16,15 @@
             </DataGrid.DataContext>
 
             <DataGrid.Columns>
+
+                <DataGridTemplateColumn Header="Pictures">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding DriverBitmap}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <DataGridTextColumn Header="Points" Binding="{Binding Points}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Laps" Binding="{Binding Laps}"></DataGridTextColumn>

@@ -11,7 +11,7 @@
         <Controller:DataContext_Window2/>
     </Window.DataContext>
     <Grid>
-        <Image Source="C:\Users\Calcium\OneDrive - Windesheim Office365\Jaar 2\Semester 1\Programmeren in C#\PROJECT C#\RaceSimulator_Solution\WPFVisualize\Graphics\Podium.png" Stretch="Fill" />
+        <Image Source="/Graphics/Podium.png" Stretch="Fill" />
         <Label x:Name="WinnaarText" Content="{Binding WinnerText}" HorizontalAlignment="Center" VerticalAlignment="Top" Height="85" Width="724" FontSize="30" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,10,0,0"/>
         <Image Source="{Binding WinnerURL}" HorizontalAlignment="Left" Height="147" Margin="330,100,0,0" VerticalAlignment="Top" Width="147"/>
     </Grid>
