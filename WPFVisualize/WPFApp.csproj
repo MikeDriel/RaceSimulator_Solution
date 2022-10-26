@@ -28,6 +28,7 @@
     <None Remove="Graphics\StartV.png" />
     <None Remove="Graphics\StraightH.png" />
     <None Remove="Graphics\StraightV.png" />
+    <None Remove="Player3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -98,6 +99,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Controller\Controller.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Player3.png" />
   </ItemGroup>
 
 </Project>

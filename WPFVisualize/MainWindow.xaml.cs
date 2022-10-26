@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -25,6 +26,7 @@ namespace WPFApp
 	public partial class MainWindow : Window
 	{
 		private static Window WindowDriverInfo;
+		private static Window WindowCompetitionInfo;
 		private static Window WinnerScreen;
 		public MainWindow()
 		{
@@ -47,6 +49,7 @@ namespace WPFApp
 			new Action(() =>
 			{
 				WindowDriverInfo = new WindowDriverInfo();
+				WindowCompetitionInfo = new WindowCompetitionInfo();
 				WinnerScreen = new WinnerScreen();
 			}));
 		}
@@ -77,6 +80,8 @@ namespace WPFApp
 			{
 				Application.Current.Dispatcher.Invoke((Action)delegate
 				{
+					this.TrackImage.Source = null;
+					EndMessage.Visibility = Visibility.Visible;
 					WinnerScreen.Show();
 				});
 			}
@@ -107,7 +112,7 @@ namespace WPFApp
 
 		private void MenuItem_OpenCompetitionInfo_Click(object sender, RoutedEventArgs e)
 		{
-			WinnerScreen.Show();
+			WindowCompetitionInfo.Show();
 		}
 
 		private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)

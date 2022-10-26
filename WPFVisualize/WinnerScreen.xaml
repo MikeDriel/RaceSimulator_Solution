@@ -13,6 +13,6 @@
     <Grid>
         <Image Source="C:\Users\Calcium\OneDrive - Windesheim Office365\Jaar 2\Semester 1\Programmeren in C#\PROJECT C#\RaceSimulator_Solution\WPFVisualize\Graphics\Podium.png" Stretch="Fill" />
         <Label x:Name="WinnaarText" Content="{Binding WinnerText}" HorizontalAlignment="Center" VerticalAlignment="Top" Height="55" Width="724" FontSize="30" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,10,0,0"/>
-        <Image Source="{Binding WinnerURL}" Height="103" Margin="348,119,348,0" VerticalAlignment="Top"/>
+        <Image Source="{Binding WinnerURL}" Margin="0,119,0,212" HorizontalAlignment="Center" Width="104"/>
     </Grid>
 </Window>

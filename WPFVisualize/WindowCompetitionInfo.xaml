@@ -1,0 +1,42 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApp"
+        xmlns:Controller="clr-namespace:Controller;assembly=Controller" x:Class="WPFApp.WindowCompetitionInfo"
+        mc:Ignorable="d"
+        Title="Competition Info" Height="450" Width="675" ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <Controller:DataContext_CompetitionInfo/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="542*"/>
+            <ColumnDefinition Width="133*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding DriverData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False" HorizontalAlignment="Left" Margin="160,10,0,10">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn Header="Pictures">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImagePath}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Points" Binding="{Binding Points}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ListView Margin="390,10,0,10" HorizontalAlignment="Left" Width="171" Grid.ColumnSpan="2" ItemsSource="{Binding CompetitionData}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
