@@ -33,24 +33,14 @@ namespace WPFApp
 			Data.Initialize();
 			Data.NextRace();
 			Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
-
-
-
 			WPFVisualize.Initialize(Data.CurrentRace);
 
 			Data.CurrentRace.DriversChanged += OnDriversChanged;
 			Data.CurrentRace.RaceEnd += OnRaceEnd;
 
-			Data.CurrentRace.Start();
 			InitializeComponent();
-			TrackImage.HorizontalAlignment = HorizontalAlignment.Left;
-			TrackImage.VerticalAlignment = VerticalAlignment.Top;
 
-			//TrackImage.Width = WPFVisualize.TrackWidth;
-			//TrackImage.Height = WPFVisualize.TrackHeight;
-
-			this.TrackImage.Source = null;
-			this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
+			BitMapSourceDispatcher();
 
 			this.Dispatcher.BeginInvoke(
 			DispatcherPriority.Render,
@@ -64,14 +54,7 @@ namespace WPFApp
 
 		private void OnDriversChanged(object sender, DriversChangedEventArgs e)
 		{
-			this.TrackImage.Dispatcher.BeginInvoke(
-			DispatcherPriority.Render,
-			new Action(() =>
-			{
-				this.TrackImage.Source = null;
-				this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
-
-			}));
+			BitMapSourceDispatcher();
 		}
 
 		private void OnRaceEnd(object sender, RaceEndEventArgs e)
@@ -83,42 +66,33 @@ namespace WPFApp
 				WPFVisualize.Initialize(Data.CurrentRace);
 				Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
 
-				//Clearing cache
-				PictureController.EmptyCache();
-
 				//Subscribes events 
 				Data.CurrentRace.DriversChanged += OnDriversChanged;
 				Data.CurrentRace.RaceEnd += OnRaceEnd;
 
-				//Initializes race
-				WPFVisualize.Initialize(Data.CurrentRace);
-
 				//Drawing track
-				this.TrackImage.Dispatcher.BeginInvoke(
-				DispatcherPriority.Render,
-				new Action(() =>
-				{
-					this.TrackImage.Source = null;
-					this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
-				}));
-
-				//start timer
-				Data.CurrentRace.Start();
+				BitMapSourceDispatcher();
 			}
 			else
 			{
-				OpenWindow2AndCloseMain();
+				Application.Current.Dispatcher.Invoke((Action)delegate
+				{
+					window2.Show();
+				});
 			}
 		}
 
-		public void OpenWindow2AndCloseMain()
+		private void BitMapSourceDispatcher()
 		{
-			//Dispatcher for closing the main window and opening scores
-			Application.Current.Dispatcher.Invoke((Action)delegate
+
+			this.TrackImage.Dispatcher.BeginInvoke(
+			DispatcherPriority.Render,
+			new Action(() =>
 			{
-				window2.Show();
-				//this.Hide();
-			});
+				this.TrackImage.Source = null;
+				this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
+			}));
+
 		}
 
 		private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)

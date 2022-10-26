@@ -220,7 +220,7 @@ namespace Controller
 			if (participant.CurrentSection.SectionType == SectionTypes.Finish)
 			{
 				participant.Laps += 1; //Add lap
-				
+
 				//Number determines the amount of laps the drivers have to do
 				if (participant.Laps >= AmountOfLoops)
 				{
@@ -315,16 +315,7 @@ namespace Controller
 			_timer.Stop();
 			_timer.Dispose();
 			DriversChanged = null;
-			//Data.CurrentRace = null;
 			GC.Collect(0);
-
-
-			Console.WriteLine("Next race in 3..");
-			Thread.Sleep(1000);
-			Console.WriteLine("Next race in 2..");
-			Thread.Sleep(1000);
-			Console.WriteLine("Next race in 1..");
-			Thread.Sleep(1000);
 		}
 	}
 }

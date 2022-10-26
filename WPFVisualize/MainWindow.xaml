@@ -11,7 +11,7 @@
         <Controller:DataContext_MainWindow/>
     </Window.DataContext>
     <Grid Background="#FF151515">
-        <Image x:Name="TrackImage"/>
+        <Image x:Name="TrackImage" Margin="0,24,0,0"/>
         <DockPanel LastChildFill="False" Height="20" VerticalAlignment="Top" Width="2560" Grid.RowSpan="2">
             <Menu Width="NaN" DockPanel.Dock="Top" Height="20">
                 <MenuItem Header="Menu">
