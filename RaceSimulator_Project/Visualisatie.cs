@@ -296,18 +296,17 @@ namespace RaceSimulator_Project
 			Data.CurrentRace.CleanUp();
 			if (Data.NextRace() != null)
 			{
-				Initialize(Data.CurrentRace);
-				Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
-				DrawTrack(Data.CurrentRace.Track);
-
-
-
 				Console.WriteLine("Next race in 3..");
 				Thread.Sleep(1000);
 				Console.WriteLine("Next race in 2..");
 				Thread.Sleep(1000);
 				Console.WriteLine("Next race in 1..");
 				Thread.Sleep(1000);
+				Console.Clear();
+
+				Initialize(Data.CurrentRace);
+				Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
+				DrawTrack(Data.CurrentRace.Track);
 			}
 
 			else

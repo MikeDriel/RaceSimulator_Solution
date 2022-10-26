@@ -32,7 +32,7 @@ namespace Model
 			else
 			{
 				Winner = Participants.OrderByDescending(x => x.Points).First();
-				CompetitionEnd.Invoke(this, new EventArgs());
+				CompetitionEnd?.Invoke(this, new EventArgs());
 				return null;
 			}
 		}
