@@ -24,8 +24,8 @@ namespace WPFApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private static Window window1;
-		private static Window window2;
+		private static Window WindowDriverInfo;
+		private static Window WinnerScreen;
 		public MainWindow()
 		{
 
@@ -46,8 +46,8 @@ namespace WPFApp
 			DispatcherPriority.Render,
 			new Action(() =>
 			{
-				window1 = new Window1();
-				window2 = new Window2();
+				WindowDriverInfo = new WindowDriverInfo();
+				WinnerScreen = new WinnerScreen();
 			}));
 		}
 
@@ -77,7 +77,7 @@ namespace WPFApp
 			{
 				Application.Current.Dispatcher.Invoke((Action)delegate
 				{
-					window2.Show();
+					WinnerScreen.Show();
 				});
 			}
 		}
@@ -100,14 +100,14 @@ namespace WPFApp
 			Application.Current.Shutdown();
 		}
 
-		private void MenuItem_OpenWindow1_Click(object sender, RoutedEventArgs e)
+		private void MenuItem_OpenDriverInfo_Click(object sender, RoutedEventArgs e)
 		{
-			window1.Show();
+			WindowDriverInfo.Show();
 		}
 
-		private void MenuItem_OpenWindow2_Click(object sender, RoutedEventArgs e)
+		private void MenuItem_OpenCompetitionInfo_Click(object sender, RoutedEventArgs e)
 		{
-			window2.Show();
+			WinnerScreen.Show();
 		}
 
 		private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)

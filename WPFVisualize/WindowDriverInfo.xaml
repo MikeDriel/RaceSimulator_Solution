@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApp"
-        xmlns:Controller="clr-namespace:Controller;assembly=Controller" x:Class="WPFApp.Window1"
+        xmlns:Controller="clr-namespace:Controller;assembly=Controller" x:Class="WPFApp.WindowDriverInfo"
         mc:Ignorable="d"
         Title="Race Information" Height="450" Width="800" ResizeMode="NoResize">
 

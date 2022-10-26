@@ -15,9 +15,9 @@
         <DockPanel LastChildFill="False" Height="20" VerticalAlignment="Top" Width="2560" Grid.RowSpan="2">
             <Menu Width="NaN" DockPanel.Dock="Top" Height="20">
                 <MenuItem Header="Menu">
-                    <MenuItem Header="MenuItem1" Click="MenuItem_OpenWindow1_Click"/>
-                    <MenuItem Header="MenuItem2" Click="MenuItem_OpenWindow2_Click"/>
-                    <MenuItem Header="CloseProgram" Click="MenuItem_Exit_Click"/>
+                    <MenuItem Header="Driver Information" Click="MenuItem_OpenDriverInfo_Click"/>
+                    <MenuItem Header="Competition Info" Click="MenuItem_OpenCompetitionInfo_Click"/>
+                    <MenuItem Header="Close Program" Click="MenuItem_Exit_Click"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
