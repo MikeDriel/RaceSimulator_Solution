@@ -117,7 +117,7 @@ namespace WPFApp
 			Application.Current.Dispatcher.Invoke((Action)delegate
 			{
 				window2.Show();
-				this.Close();
+				//this.Hide();
 			});
 		}
 
