@@ -56,6 +56,7 @@ namespace WPFApp
 			DispatcherPriority.Render,
 			new Action(() =>
 			{
+				window1 = new Window1();
 				window2 = new Window2();
 			}));
 		}
@@ -127,7 +128,6 @@ namespace WPFApp
 
 		private void MenuItem_OpenWindow1_Click(object sender, RoutedEventArgs e)
 		{
-			window1 = new Window1();
 			window1.Show();
 		}
 
