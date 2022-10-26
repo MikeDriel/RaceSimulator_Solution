@@ -60,7 +60,6 @@ namespace WPFApp
 		public static BitmapSource DrawTrack(Track track)
 		{
 			Bitmap bitmap = new Bitmap(TrackWidth * imageSize, TrackHeight * imageSize);
-			Debug.WriteLine(TrackWidth + "x" + TrackHeight);
 			Graphics = Graphics.FromImage(bitmap);
 			
 			foreach (Section section in track.Sections)
@@ -112,31 +111,30 @@ namespace WPFApp
 
 		//THE TRACKS ARE HERE!!!
 		#region graphics
-		//Horizontal
-		private const string _StartGridHorizontal = "Graphics\\StartH.png";
-		private const string _StraightHorizontal = "Graphics\\StraightH.png";
-		private const string _finishHorizontal = "Graphics\\FinishH.png";
-		private const string _LeftCornerHorizontal = "Graphics\\CornerNW.png";
-		private const string _RightCornerHorizontal = "Graphics\\CornerSW.png";
+		private const string _StartGridHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\StartH.png";
+		private const string _StraightHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\StraightH.png";
+		private const string _finishHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\FinishH.png";
+		private const string _LeftCornerHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\CornerNW.png";
+		private const string _RightCornerHorizontal = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\CornerSW.png";
 
 		//Vertical
-		private const string _StartGridVertical = "Graphics\\StartV.png";
-		private const string _StraightVertical = "Graphics\\StraightV.png";
-		private const string _finishVertical = "Graphics\\FinishV.png";
-		private const string _LeftCornerVertical = "Graphics\\CornerSE.png";
-		private const string _RightCornerVertical = "Graphics\\CornerNE.png";
+		private const string _StartGridVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\StartV.png";
+		private const string _StraightVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\StraightV.png";
+		private const string _finishVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\FinishV.png";
+		private const string _LeftCornerVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\CornerSE.png";
+		private const string _RightCornerVertical = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\CornerNE.png";
 
 		//Drivers
-		private const string Player1 = "Graphics\\Player1.png";
-		private const string Player2 = "Graphics\\Player2.png";
-		private const string Player3 = "Graphics\\Player3.png";
-		private const string Player4 = "Graphics\\Player4.png";
+		private const string Player1 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player1.png";
+		private const string Player2 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player2.png";
+		private const string Player3 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player3.png";
+		private const string Player4 = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player4.png";
 
 		//BrokenDrivers
-		private const string Player1Broken = "Graphics\\Player1Broken.png";
-		private const string Player2Broken = "Graphics\\Player2Broken.png";
-		private const string Player3Broken = "Graphics\\Player3Broken.png";
-		private const string Player4Broken = "Graphics\\Player4Broken.png";
+		private const string Player1Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player1Broken.png";
+		private const string Player2Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player2Broken.png";
+		private const string Player3Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player3Broken.png";
+		private const string Player4Broken = "C:\\Users\\Calcium\\OneDrive - Windesheim Office365\\Jaar 2\\Semester 1\\Programmeren in C#\\PROJECT C#\\RaceSimulator_Solution\\WPFVisualize\\Graphics\\Player4Broken.png";
 		#endregion
 
 
