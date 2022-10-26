@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFApp"
         xmlns:Controller="clr-namespace:Controller;assembly=Controller" x:Class="WPFApp.Window2"
         mc:Ignorable="d"
-        Title="Competition Info" Height="450" Width="800">
+        Title="Competition Info" Height="450" Width="800" Closing="OnClosing">
     <Window.DataContext>
         <Controller:DataContext_Window2/>
     </Window.DataContext>

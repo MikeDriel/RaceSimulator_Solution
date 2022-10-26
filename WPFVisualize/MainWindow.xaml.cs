@@ -52,7 +52,12 @@ namespace WPFApp
 			this.TrackImage.Source = null;
 			this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);
 
-			window2 = new Window2();
+			this.Dispatcher.BeginInvoke(
+			DispatcherPriority.Render,
+			new Action(() =>
+			{
+				window2 = new Window2();
+			}));
 		}
 
 
@@ -129,6 +134,11 @@ namespace WPFApp
 		private void MenuItem_OpenWindow2_Click(object sender, RoutedEventArgs e)
 		{
 			window2.Show();
+		}
+
+		private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			Application.Current.Shutdown();
 		}
 	}
 }
