@@ -24,14 +24,15 @@ namespace Controller
 
 		public void OnRaceEnd(object sender, RaceEndEventArgs e)
 		{
-			if (Data.NextRace() is null)
-			{
-				TrackName = "The competition is over!";
-			}
-			else
-			{
+			//TODO: FUCKED
+			//if (Data.NextRace() is null)
+			//{
+			//	TrackName = "The competition is over!";
+			//}
+			//else
+			//{
 				TrackName = Data.CurrentRace.Track.Name;
-			}
+			//}
 		}
 
 		public void OnPropertyChanged([CallerMemberName] string propertyName = null)

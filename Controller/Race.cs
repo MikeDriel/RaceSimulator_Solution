@@ -199,7 +199,7 @@ namespace Controller
 							//If there are no more drivers on the track it will cleanup and start the next race
 							if (CheckIfAllDriversFinished() == true)
 							{
-								RaceEnd.Invoke(this, new RaceEndEventArgs(Data.CurrentRace.Participants));
+								RaceEnd?.Invoke(this, new RaceEndEventArgs(Data.CurrentRace.Participants));
 							}
 						}
 					}
