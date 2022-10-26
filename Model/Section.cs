@@ -8,16 +8,16 @@ namespace Model
 {
     public class Section
     {
-        public SectionType SectionTypes { get; set; }
+        public SectionTypes SectionType { get; set; }
 
-		public Section(SectionType sectionTypes)
+		public Section(SectionTypes sectionTypes)
 		{
-			SectionTypes = sectionTypes;
+			SectionType = sectionTypes;
 		}
 	}
 
 	//Enum for the different types of sections
-	public enum SectionType
+	public enum SectionTypes
     {
         StartGrid,
         Straight,

@@ -12,7 +12,7 @@
     <Grid>
         <DataGrid ItemsSource="{Binding Path=DriverData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False">
             <DataGrid.DataContext>
-                <Controller:DataContext_Window1/>
+                <Controller:DataContext_CompetitionInfo/>
             </DataGrid.DataContext>
 
             <DataGrid.Columns>

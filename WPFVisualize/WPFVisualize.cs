@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace WPFApp
 		public static void Initialize(Race race)
 		{
 			DetermineImageSources();
-			
+
 			Xposition = 0;
 			Yposition = 0;
 
@@ -50,61 +51,59 @@ namespace WPFApp
 			Race = race;
 
 			//Image properties
-			imageSize = 200;
+			imageSize = 240;
 
 			CalculateTrackSize();
-
-			TrackWidth *= imageSize;
-			TrackHeight *= imageSize;
 		}
 
 		//Calls certain functions depending on the SectionType of the section
 		public static BitmapSource DrawTrack(Track track)
 		{
-			Bitmap bitmap = new Bitmap(TrackWidth, TrackHeight);
+			Bitmap bitmap = new Bitmap(TrackWidth * imageSize, TrackHeight * imageSize);
+			Debug.WriteLine(TrackWidth + "x" + TrackHeight);
 			Graphics = Graphics.FromImage(bitmap);
-
+			
 			foreach (Section section in track.Sections)
 			{
 
-				switch (section.SectionTypes)
+				switch (section.SectionType)
 				{
 					//Horizontals
-					case SectionType.StartGrid:
+					case SectionTypes.StartGrid:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_StartGridHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
-					case SectionType.Straight:
+					case SectionTypes.Straight:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_StraightHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
-					case SectionType.Finish:
+					case SectionTypes.Finish:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_finishHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
-					case SectionType.LeftCorner:
+					case SectionTypes.LeftCorner:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_LeftCornerHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
-					case SectionType.RightCorner:
+					case SectionTypes.RightCorner:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_RightCornerHorizontal), ImageCalculationX(), ImageCalculationY());
 						break;
 
 					//Verticals
-					case SectionType.StartGridV:
+					case SectionTypes.StartGridV:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_StartGridVertical), ImageCalculationX(), ImageCalculationY());
 						break;
-					case SectionType.StraightV:
+					case SectionTypes.StraightV:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_StraightVertical), ImageCalculationX(), ImageCalculationY());
 						break;
-					case SectionType.FinishV:
+					case SectionTypes.FinishV:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_finishVertical), ImageCalculationX(), ImageCalculationY());
 						break;
-					case SectionType.LeftCornerV:
+					case SectionTypes.LeftCornerV:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_LeftCornerVertical), ImageCalculationX(), ImageCalculationY());
 						break;
-					case SectionType.RightCornerV:
+					case SectionTypes.RightCornerV:
 						Graphics.DrawImage(PictureController.CloneImageFromCache(_RightCornerVertical), ImageCalculationX(), ImageCalculationY());
 						break;
 				}
 				PlaceAllPartcipants(Graphics, Race, section);
-				DetermineDirection(section.SectionTypes, direction);
+				DetermineDirection(section.SectionType, direction);
 				MoveImagePointer();
 			}
 			return (PictureController.CreateBitmapSourceFromGdiBitmap(bitmap));
@@ -142,11 +141,11 @@ namespace WPFApp
 
 
 		//Determine the direction of the track
-		public static void DetermineDirection(SectionType sectiontype, Direction directionOfTrack)
+		public static void DetermineDirection(SectionTypes sectiontype, Direction directionOfTrack)
 		{
 			switch (sectiontype)
 			{
-				case SectionType.RightCorner:
+				case SectionTypes.RightCorner:
 					if (directionOfTrack == Direction.Right)
 					{
 						direction = Direction.Down;
@@ -156,7 +155,7 @@ namespace WPFApp
 						direction = Direction.Left;
 					}
 					break;
-				case SectionType.LeftCorner:
+				case SectionTypes.LeftCorner:
 					if (directionOfTrack == Direction.Right)
 					{
 						direction = Direction.Up;
@@ -166,7 +165,7 @@ namespace WPFApp
 						direction = Direction.Left;
 					}
 					break;
-				case SectionType.RightCornerV:
+				case SectionTypes.RightCornerV:
 					if (directionOfTrack == Direction.Left)
 					{
 						direction = Direction.Up;
@@ -176,7 +175,7 @@ namespace WPFApp
 						direction = Direction.Right;
 					}
 					break;
-				case SectionType.LeftCornerV:
+				case SectionTypes.LeftCornerV:
 					if (directionOfTrack == Direction.Up)
 					{
 						direction = Direction.Right;
@@ -275,23 +274,55 @@ namespace WPFApp
 
 		public static void CalculateTrackSize()
 		{
-			TrackWidth = 2;
-			TrackHeight = 2;
-			foreach (Section section in Race.Track.Sections)
 			{
-				DetermineDirection(section.SectionTypes, direction);
+				int XCurrent = 0;
+				int YCurrent = 0;
+				int XMin = 0;
+				int YMin = 0;
+				int XMax = 0;
+				int YMax = 0;
 
-				if (direction == Direction.Right)
+				foreach (Section section in Race.Track.Sections)
 				{
-					TrackWidth++;
+					if (direction == Direction.Right)
+					{
+						XCurrent += 1;
+						if (XCurrent >= XMax)
+						{
+							XMax = XCurrent;
+						}
+					}
+					if (direction == Direction.Left)
+					{
+						XCurrent -= 1;
+						if (XCurrent <= XMin)
+						{
+							XMin = XCurrent;
+						}
+					}
+					if (direction == Direction.Up)
+					{
+						YCurrent += -1;
+						if (YCurrent <= YMin)
+						{
+							YMin = YCurrent;
+						}
+					}
+					if (direction == Direction.Down)
+					{
+						YCurrent += 1;
+						if (YCurrent >= YMax)
+						{
+							YMax = YCurrent;
+						}
+					}
+					DetermineDirection(section.SectionType, direction);
 				}
-
-				else if (direction == Direction.Down)
-				{
-					TrackHeight++;
-				}
+				TrackHeight = ((YMax - YMin) + 1);
+				TrackWidth = (XMax - XMin);
 			}
 		}
+
 
 		public static void DetermineImageSources()
 		{
@@ -318,7 +349,7 @@ namespace WPFApp
 				}
 			}
 		}
-		
+
 		public static int ImageCalculationX()
 		{
 			return Xposition * imageSize;

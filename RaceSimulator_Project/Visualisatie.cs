@@ -49,43 +49,43 @@ namespace RaceSimulator_Project
 		{
 			foreach (Section section in track.Sections)
 			{
-				switch (section.SectionTypes)
+				switch (section.SectionType)
 				{
 					//Horizontals
-					case SectionType.StartGrid:
+					case SectionTypes.StartGrid:
 						PrintToConsole(_StartGridHorizontal, Race.GetSectionData(section));
 						break;
-					case SectionType.Straight:
+					case SectionTypes.Straight:
 						PrintToConsole(_StraightHorizontal, Race.GetSectionData(section));
 						break;
-					case SectionType.Finish:
+					case SectionTypes.Finish:
 						PrintToConsole(_finishHorizontal, Race.GetSectionData(section));
 						break;
-					case SectionType.LeftCorner:
-						DetermineDirection(SectionType.LeftCorner, direction);
+					case SectionTypes.LeftCorner:
+						DetermineDirection(SectionTypes.LeftCorner, direction);
 						PrintToConsole(_LeftCornerHorizontal, Race.GetSectionData(section));
 						break;
-					case SectionType.RightCorner:
-						DetermineDirection(SectionType.RightCorner, direction);
+					case SectionTypes.RightCorner:
+						DetermineDirection(SectionTypes.RightCorner, direction);
 						PrintToConsole(_RightCornerHorizontal, Race.GetSectionData(section));
 						break;
 
 					//Verticals
-					case SectionType.StartGridV:
+					case SectionTypes.StartGridV:
 						PrintToConsole(_StartGridVertical, Race.GetSectionData(section));
 						break;
-					case SectionType.StraightV:
+					case SectionTypes.StraightV:
 						PrintToConsole(_StraightVertical, Race.GetSectionData(section));
 						break;
-					case SectionType.FinishV:
+					case SectionTypes.FinishV:
 						PrintToConsole(_finishVertical, Race.GetSectionData(section));
 						break;
-					case SectionType.LeftCornerV:
-						DetermineDirection(SectionType.LeftCornerV, direction);
+					case SectionTypes.LeftCornerV:
+						DetermineDirection(SectionTypes.LeftCornerV, direction);
 						PrintToConsole(_LeftCornerVertical, Race.GetSectionData(section));
 						break;
-					case SectionType.RightCornerV:
-						DetermineDirection(SectionType.RightCornerV, direction);
+					case SectionTypes.RightCornerV:
+						DetermineDirection(SectionTypes.RightCornerV, direction);
 						PrintToConsole(_RightCornerVertical, Race.GetSectionData(section));
 						break;
 				}
@@ -237,11 +237,11 @@ namespace RaceSimulator_Project
 		}
 
 		//Determine the direction of the track
-		public static void DetermineDirection(SectionType sectiontype, Direction directionOfTrack)
+		public static void DetermineDirection(SectionTypes sectiontype, Direction directionOfTrack)
 		{
 			switch (sectiontype)
 			{
-				case SectionType.RightCorner:
+				case SectionTypes.RightCorner:
 					if (directionOfTrack == Direction.Right)
 					{
 						direction = Direction.Down;
@@ -251,7 +251,7 @@ namespace RaceSimulator_Project
 						direction = Direction.Left;
 					}
 					break;
-				case SectionType.LeftCorner:
+				case SectionTypes.LeftCorner:
 					if (directionOfTrack == Direction.Right)
 					{
 						direction = Direction.Up;
@@ -261,7 +261,7 @@ namespace RaceSimulator_Project
 						direction = Direction.Left;
 					}
 					break;
-				case SectionType.RightCornerV:
+				case SectionTypes.RightCornerV:
 					if (directionOfTrack == Direction.Left)
 					{
 						direction = Direction.Up;
@@ -271,7 +271,7 @@ namespace RaceSimulator_Project
 						direction = Direction.Right;
 					}
 					break;
-				case SectionType.LeftCornerV:
+				case SectionTypes.LeftCornerV:
 					if (directionOfTrack == Direction.Up)
 					{
 						direction = Direction.Right;

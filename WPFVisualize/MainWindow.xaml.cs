@@ -46,8 +46,8 @@ namespace WPFApp
 			TrackImage.HorizontalAlignment = HorizontalAlignment.Left;
 			TrackImage.VerticalAlignment = VerticalAlignment.Top;
 
-			TrackImage.Width = WPFVisualize.TrackWidth / 2;
-			TrackImage.Height = WPFVisualize.TrackHeight / 2;
+			//TrackImage.Width = WPFVisualize.TrackWidth;
+			//TrackImage.Height = WPFVisualize.TrackHeight;
 
 			this.TrackImage.Source = null;
 			this.TrackImage.Source = WPFVisualize.DrawTrack(Data.CurrentRace.Track);

@@ -32,9 +32,9 @@ namespace Controller
 		public static void AddTracks()
 		{
 			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
-			//Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
-			//Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Zandvoort")));
-			//Competition.Tracks.Enqueue(new Track("Loopa", TrackBuilder("Loopa")));
+			Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
+			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Zandvoort")));
+			Competition.Tracks.Enqueue(new Track("Loopa", TrackBuilder("Loopa")));
 			//Competition.Tracks.Enqueue(new Track("KoopaTroopa", TrackBuilder("Vierkant")));
 		}
 
@@ -50,134 +50,134 @@ namespace Controller
 		}
 
 		//builder for the different races sorted by name
-		public static SectionType[] TrackBuilder(string trackName)
+		public static SectionTypes[] TrackBuilder(string trackName)
 		{
 
 			if (trackName.Equals("Vierkant"))
 			{
-				SectionType[] builder = new SectionType[]
+				SectionTypes[] builder = new SectionTypes[]
 				{
-					SectionType.LeftCornerV,
+					SectionTypes.LeftCornerV,
 
-					SectionType.StartGrid,
-					SectionType.Straight,
-					SectionType.Finish,
+					SectionTypes.StartGrid,
+					SectionTypes.Straight,
+					SectionTypes.Finish,
 
-					SectionType.RightCorner,
+					SectionTypes.RightCorner,
 
-					SectionType.StraightV,
-					SectionType.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
 
-					SectionType.LeftCorner,
+					SectionTypes.LeftCorner,
 
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
 
-					SectionType.RightCornerV,
+					SectionTypes.RightCornerV,
 
-					SectionType.StraightV,
-					SectionType.StraightV
+					SectionTypes.StraightV,
+					SectionTypes.StraightV
 				};
 				return builder;
 			}
 
 			else if (trackName.Equals("Slang"))
 			{
-				SectionType[] builder = new SectionType[]
+				SectionTypes[] builder = new SectionTypes[]
 				{
-					SectionType.LeftCornerV,
+					SectionTypes.LeftCornerV,
 
-					SectionType.StartGrid,
-					SectionType.Straight,
-					SectionType.Finish,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
+					SectionTypes.StartGrid,
+					SectionTypes.Straight,
+					SectionTypes.Finish,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
 
-					SectionType.RightCorner,
+					SectionTypes.RightCorner,
 
-					SectionType.StraightV,
-					SectionType.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
 
-					SectionType.LeftCorner,
+					SectionTypes.LeftCorner,
 
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
 
-					SectionType.RightCornerV,
+					SectionTypes.RightCornerV,
 
-					SectionType.StraightV,
-					SectionType.StraightV
+					SectionTypes.StraightV,
+					SectionTypes.StraightV
 
 				};
 				return builder;
 			}
 			if (trackName.Equals("Zandvoort"))
 			{
-				SectionType[] builder = new SectionType[]
+				SectionTypes[] builder = new SectionTypes[]
 				{
-					SectionType.LeftCornerV,
+					SectionTypes.LeftCornerV,
 
-					SectionType.StartGrid,
-					SectionType.Straight,
-					SectionType.Finish,
+					SectionTypes.StartGrid,
+					SectionTypes.Straight,
+					SectionTypes.Finish,
 
-					SectionType.RightCorner,
+					SectionTypes.RightCorner,
 
-					SectionType.StraightV,
-					SectionType.StraightV,
-					SectionType.StraightV,
-					SectionType.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
 
 
-					SectionType.LeftCorner,
+					SectionTypes.LeftCorner,
 
-					SectionType.Straight,
-					SectionType.Straight,
-					SectionType.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
+					SectionTypes.Straight,
 
-					SectionType.RightCornerV,
+					SectionTypes.RightCornerV,
 
-					SectionType.StraightV,
-					SectionType.StraightV,
-					SectionType.StraightV,
-					SectionType.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
 
 				};
 				return builder;
 			}
 			if (trackName.Equals("Loopa"))
 			{
-				SectionType[] builder = new SectionType[]
+				SectionTypes[] builder = new SectionTypes[]
 				{
-					SectionType.LeftCornerV,
+					SectionTypes.LeftCornerV,
 
-					SectionType.StartGrid,
-					SectionType.Straight,
-					SectionType.Finish,
+					SectionTypes.StartGrid,
+					SectionTypes.Straight,
+					SectionTypes.Finish,
 
-					SectionType.RightCorner,
+					SectionTypes.RightCorner,
 
-					SectionType.StraightV,
-					SectionType.StraightV,
+					SectionTypes.StraightV,
+					SectionTypes.StraightV,
 
-					SectionType.LeftCorner,
+					SectionTypes.LeftCorner,
 
-					SectionType.RightCornerV,
-					SectionType.RightCorner,
-					SectionType.Straight,
-					SectionType.LeftCornerV,
-					SectionType.LeftCorner,
+					SectionTypes.RightCornerV,
+					SectionTypes.RightCorner,
+					SectionTypes.Straight,
+					SectionTypes.LeftCornerV,
+					SectionTypes.LeftCorner,
 
-					SectionType.RightCornerV,
+					SectionTypes.RightCornerV,
 
-					SectionType.StraightV,
-					SectionType.StraightV
+					SectionTypes.StraightV,
+					SectionTypes.StraightV
 				};
 				return builder;
 			}

@@ -44,7 +44,7 @@ namespace RaceSimulatorTest
 			Visualisatie.Direction direction = Visualisatie.Direction.Right;
 
 			// Act
-			Visualisatie.DetermineDirection(SectionType.LeftCorner, direction);
+			Visualisatie.DetermineDirection(SectionTypes.LeftCorner, direction);
 
 
 			// Assert

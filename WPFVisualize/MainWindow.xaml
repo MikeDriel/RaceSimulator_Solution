@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:WPFVisualize"
         xmlns:Controller="clr-namespace:Controller;assembly=Controller" x:Class="WPFApp.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="800" ResizeMode="NoResize" Closing="OnClosing">
+        Title="{Binding TrackName}" Height="800" Width="800" Closing="OnClosing">
     <Window.DataContext>
         <Controller:DataContext_MainWindow/>
     </Window.DataContext>
     <Grid Background="#FF151515">
-        <Image x:Name="TrackImage" Grid.Row="1" Margin="-2,20,0,0" Height="400" VerticalAlignment="Top" HorizontalAlignment="Left" Width="400"/>
+        <Image x:Name="TrackImage"/>
         <DockPanel LastChildFill="False" Height="20" VerticalAlignment="Top" Width="2560" Grid.RowSpan="2">
             <Menu Width="NaN" DockPanel.Dock="Top" Height="20">
                 <MenuItem Header="Menu">
@@ -21,6 +21,6 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Label x:Name="TrackNameLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Height="33" Width="210" Background="#FF151515" Margin="590,25,0,0" Foreground="White" Content="{Binding TrackName}"/>
+        <!--<Label x:Name="TrackNameLabel" Background="#FF151515" Margin="990,25,0,726" Foreground="White" Content="{Binding TrackName}"/>-->
     </Grid>
 </Window>

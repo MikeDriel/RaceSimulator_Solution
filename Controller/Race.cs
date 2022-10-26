@@ -78,7 +78,7 @@ namespace Controller
 			int index = 0;
 			foreach (Section section in track.Sections)
 			{
-				if (section.SectionTypes == SectionType.StartGrid)
+				if (section.SectionType == SectionTypes.StartGrid)
 				{
 					for (int i = 0; i < participants.Count; i += 2)
 					{
@@ -217,7 +217,7 @@ namespace Controller
 		//Checks if drivers touch the finish
 		private Boolean CheckFinish(IParticipant participant)
 		{
-			if (participant.CurrentSection.SectionTypes == SectionType.Finish)
+			if (participant.CurrentSection.SectionType == SectionTypes.Finish)
 			{
 				participant.Laps += 1; //Add lap
 				

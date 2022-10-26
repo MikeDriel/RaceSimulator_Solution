@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-	public class DataContext_Window2 : INotifyPropertyChanged
+	public class DataContext_Winner : INotifyPropertyChanged
 	{
 		private string _winnerText = "There is no winner yet..";
 		private string _winnerURL { get; set; }
@@ -20,7 +20,7 @@ namespace Controller
 		public event PropertyChangedEventHandler? PropertyChanged;
 
 
-		public DataContext_Window2()
+		public DataContext_Winner()
 		{
 			Data.Competition.CompetitionEnd += OnCompetitionEnd;
 		}

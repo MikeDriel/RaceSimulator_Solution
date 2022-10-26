@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-	public class DataContext_Window1 : INotifyPropertyChanged
+	public class DataContext_CompetitionInfo : INotifyPropertyChanged
 	{
 		private BindingList<IParticipant> _driverData { get; set; }
 		public BindingList<IParticipant> DriverData { get {return _driverData;} set { _driverData = value; OnPropertyChanged(); } }
@@ -18,7 +18,7 @@ namespace Controller
 		public event PropertyChangedEventHandler? PropertyChanged;
 		
 		
-		public DataContext_Window1()
+		public DataContext_CompetitionInfo()
 		{
 				List<IParticipant> leaderboardData = new List<IParticipant>();
 				foreach (IParticipant participant in Data.CurrentRace.Participants)

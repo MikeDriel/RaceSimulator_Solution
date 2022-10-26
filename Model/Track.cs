@@ -12,17 +12,17 @@ namespace Model
 		public LinkedList<Section> Sections { get; set; }
 
 		//Constructor for Track
-		public Track(string name, SectionType[] sectionType)
+		public Track(string name, SectionTypes[] sectionType)
         {
             Name = name;
 			Sections = SectionTypeToLinkedList(sectionType);
 		}
 
 		//Converts the array of sectiontypes to a linkedlist of sections
-		public LinkedList<Section> SectionTypeToLinkedList(SectionType[] sectionTypes)
+		public LinkedList<Section> SectionTypeToLinkedList(SectionTypes[] sectionTypes)
         {
 			LinkedList<Section> sectionList = new LinkedList<Section>();
-			foreach (SectionType sectionType in sectionTypes)
+			foreach (SectionTypes sectionType in sectionTypes)
 			{
 				sectionList.AddLast(new Section(sectionType));
 			}
