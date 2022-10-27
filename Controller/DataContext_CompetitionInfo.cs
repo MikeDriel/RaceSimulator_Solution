@@ -35,6 +35,7 @@ namespace Controller
 		public void OnRaceEnd(object sender, RaceEndEventArgs e)
 		{
 			UpdateDriverData();
+			UpdateCompetitionData();
 
 			//OnRaceEnd Resubscribe
 			Data.CurrentRace.RaceEnd += OnRaceEnd;

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFApp"
         xmlns:Controller="clr-namespace:Controller;assembly=Controller" x:Class="WPFApp.WindowDriverInfo"
         mc:Ignorable="d"
-        Title="Driver Information" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Driver Information" Height="450" Width="800" ResizeMode="NoResize" Closing="Window_Closing">
     
 
 

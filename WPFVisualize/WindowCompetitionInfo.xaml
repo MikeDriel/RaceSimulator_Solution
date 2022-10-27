@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFApp"
         xmlns:Controller="clr-namespace:Controller;assembly=Controller" x:Class="WPFApp.WindowCompetitionInfo"
         mc:Ignorable="d"
-        Title="Competition Info" Height="450" Width="675" ResizeMode="NoResize">
+        Title="Competition Info" Height="450" Width="675" ResizeMode="NoResize" Closing="Window_Closing">
 
     <Window.DataContext>
         <Controller:DataContext_CompetitionInfo/>
@@ -16,7 +16,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid ItemsSource="{Binding DriverData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False" HorizontalAlignment="Left" Margin="160,10,0,10">
+        <DataGrid ItemsSource="{Binding DriverData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False" HorizontalAlignment="Left" Margin="160,51,0,10">
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn Header="Pictures">
@@ -31,10 +31,12 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid Margin="400,10,0,10" HorizontalAlignment="Left" Width="142" ItemsSource="{Binding CompetitionData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False">
+        <DataGrid Margin="400,51,0,10" HorizontalAlignment="Left" Width="142" ItemsSource="{Binding CompetitionData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="Tracks left in race" HorizontalAlignment="Left" Margin="400,20,0,0" VerticalAlignment="Top" Width="142"/>
+        <Label Content="Leaderboard" HorizontalAlignment="Left" Margin="160,20,0,0" VerticalAlignment="Top" Width="142"/>
     </Grid>
 </Window>
