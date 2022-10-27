@@ -15,6 +15,7 @@ namespace Controller
 	{
 		public event EventHandler<DriversChangedEventArgs> DriversChanged;
 		public event EventHandler<RaceEndEventArgs> RaceEnd;
+		public event EventHandler Finished;
 
 
 		public Track Track { get; set; }
@@ -24,7 +25,7 @@ namespace Controller
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
 
-		private int AmountOfLoops = 1;
+		private const int AmountOfLoops = 1;
 
 		private int counter = 1;
 
@@ -35,7 +36,7 @@ namespace Controller
 			Track = track;
 			Participants = participants;
 			_random = new Random(DateTime.Now.Millisecond);
-			StartTime = new DateTime();
+			StartTime = DateTime.Now;
 			_positions = new Dictionary<Section, SectionData>();
 			_timer = new System.Timers.Timer(500);
 			_timer.Elapsed += OnTimedEvent;
@@ -89,7 +90,7 @@ namespace Controller
 
 						SectionData sectionData = GetSectionData(track.Sections.ElementAt(index - (i / 2)));
 
-
+						//Checks on which side there is space for the participant
 						if (sectionData.Left == null)
 						{
 							sectionData.Left = participants[i];
@@ -110,6 +111,7 @@ namespace Controller
 			}
 		}
 
+		//Checks if drivers are allowed to move
 		private void CheckForMoveDriver()
 		{
 			foreach (IParticipant participant in Participants)
@@ -131,6 +133,7 @@ namespace Controller
 			}
 		}
 
+		//Moves driver to the next section
 		private void MoveDriver(IParticipant participant)
 		{
 			int i = 0;
@@ -160,8 +163,7 @@ namespace Controller
 
 					if (nextSectionData.Left == null || nextSectionData.Right == null)
 					{
-						//check for this section
-						//TODO: REFACTOR THIS
+						//check for current section
 						if (sectionData.Left == participant)
 						{
 							sectionData.Left = null;
@@ -224,6 +226,7 @@ namespace Controller
 				//Number determines the amount of laps the drivers have to do
 				if (participant.Laps >= AmountOfLoops)
 				{
+					participant.LapTime = Math.Truncate((DateTime.Now - StartTime).TotalSeconds * 100) / 100; ;
 					participant.Points += (5 / counter); //Add point
 					counter++;
 					participant.IsFinished = true;

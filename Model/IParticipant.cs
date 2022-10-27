@@ -14,8 +14,9 @@ namespace Model
 		public bool IsFinished { get; set; }
 		public string ImagePath { get; set; }
 		public string ImagePathBroken { get; set; }
+		public double LapTime { get; set; }
 
-	}
+}
 	
 	public enum TeamColors
 	{

@@ -22,6 +22,6 @@
             </Menu>
         </DockPanel>
         <Label x:Name="TrackNameLabel" Background="#FF151515" Margin="281,47,281,667" Foreground="White" Content="{Binding RaceName}" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="EndMessage" Margin="0,294,0,293" Visibility="Hidden" Content="The competition has ended check the results! :D " FontSize="36" Foreground="Red" />
+        <Label x:Name="EndMessage" Margin="0,294,0,0" Visibility="Hidden" Content="The competition has ended check the results! :D " FontSize="36" Foreground="Red" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Width="800" Height="197" VerticalAlignment="Top" />
     </Grid>
 </Window>

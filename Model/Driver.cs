@@ -17,6 +17,7 @@ namespace Model
 		private int _points;
 		private string _name;
 		private bool _isFinished;
+		private double _lapTime;
 
 
 
@@ -30,7 +31,9 @@ namespace Model
 		public bool IsFinished { get { return _isFinished; } set { _isFinished = value; OnPropertyChanged(); } }
 		public string ImagePath { get; set; }
 		public string ImagePathBroken { get; set; }
+		public double LapTime { get { return _lapTime; } set { _lapTime = value; OnPropertyChanged(); } }
 
+		//Constructor to input static values of driver
 		public Driver(string name, int points, IEquipment equipment, TeamColors teamColors)
 		{
 			Name = name;
