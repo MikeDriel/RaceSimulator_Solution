@@ -14,8 +14,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="542*"/>
-            <ColumnDefinition Width="133*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid ItemsSource="{Binding DriverData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False" HorizontalAlignment="Left" Margin="160,10,0,10">
             <DataGrid.Columns>
@@ -31,12 +30,11 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ListView Margin="390,10,0,10" HorizontalAlignment="Left" Width="171" Grid.ColumnSpan="2" ItemsSource="{Binding CompetitionData}" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+
+        <DataGrid Margin="400,10,0,10" HorizontalAlignment="Left" Width="142" ItemsSource="{Binding CompetitionData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

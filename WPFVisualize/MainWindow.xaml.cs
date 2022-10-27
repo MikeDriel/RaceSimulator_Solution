@@ -81,6 +81,7 @@ namespace WPFApp
 				Application.Current.Dispatcher.Invoke((Action)delegate
 				{
 					this.TrackImage.Source = null;
+					TrackNameLabel.Visibility = Visibility.Hidden;
 					EndMessage.Visibility = Visibility.Visible;
 					WinnerScreen.Show();
 				});

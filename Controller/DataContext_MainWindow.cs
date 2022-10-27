@@ -16,12 +16,13 @@ namespace Controller
 		{
 			Data.CurrentRace.RaceEnd += OnRaceEnd;
 
-			RaceName = "This the current race: " + Data.CurrentRace.Track.Name;
+			RaceName = Data.CurrentRace.Track.Name;
 		}
 
 		public void OnRaceEnd(object sender, RaceEndEventArgs e)
 		{
-			RaceName = "This the current race: " + Data.CurrentRace.Track.Name;
+			RaceName = Data.CurrentRace.Track.Name;
+			Data.CurrentRace.RaceEnd += OnRaceEnd;
 		}
 
 		public void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -7,6 +7,7 @@
         xmlns:Controller="clr-namespace:Controller;assembly=Controller" x:Class="WPFApp.WindowDriverInfo"
         mc:Ignorable="d"
         Title="Driver Information" Height="450" Width="800" ResizeMode="NoResize">
+    
 
 
     <Grid>
@@ -14,6 +15,21 @@
             <DataGrid.DataContext>
                 <Controller:DataContext_CompetitionInfo/>
             </DataGrid.DataContext>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.CellStyle>
 
             <DataGrid.Columns>
 
@@ -24,13 +40,15 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"> </DataGridTextColumn>
                 <DataGridTextColumn Header="Laps" Binding="{Binding Laps}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Distance in Section" Binding="{Binding DistanceCovered}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Distance in Section" Binding="{Binding DistanceCovered}">
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Quality" Binding="{Binding Equipment.Quality}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Performance" Binding="{Binding Equipment.Performance}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Speed" Binding="{Binding Equipment.Speed}"></DataGridTextColumn>
                 <DataGridCheckBoxColumn Header="IsBroken" Binding="{Binding Equipment.IsBroken}"></DataGridCheckBoxColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

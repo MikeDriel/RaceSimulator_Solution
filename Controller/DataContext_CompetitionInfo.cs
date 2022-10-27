@@ -15,14 +15,17 @@ namespace Controller
 		private BindingList<IParticipant> _driverData { get; set; }
 		public BindingList<IParticipant> DriverData { get { return _driverData; } set { _driverData = value; OnPropertyChanged(); } }
 
-		private BindingList<string> _competitionData { get; set; }
-		public BindingList<string> CompetitionData { get { return _competitionData; } set { _competitionData = value; OnPropertyChanged(); } }
+		private BindingList<Track> _competitionData { get; set; }
+		public BindingList<Track> CompetitionData { get { return _competitionData; } set { _competitionData = value; OnPropertyChanged(); } }
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 
 
 		public DataContext_CompetitionInfo()
 		{
+			//OnRaceEnd Subscribe
+			Data.CurrentRace.RaceEnd += OnRaceEnd;
+
 			List<IParticipant> leaderboardData = new List<IParticipant>();
 			foreach (IParticipant participant in Data.CurrentRace.Participants)
 			{
@@ -30,17 +33,31 @@ namespace Controller
 			}
 			DriverData = new BindingList<IParticipant>(leaderboardData.ToList());
 
-			List<string> competitionData = new List<string>();
-			foreach (Track track in Data.Competition.Tracks)
-			{
-				competitionData.Add(track.Name);
-			}
-			CompetitionData = new BindingList<string>(competitionData.ToList());
+			UpdateDriverData();
+		}
+
+		public void OnRaceEnd(object sender, RaceEndEventArgs e)
+		{
+			UpdateDriverData();
+
+			//OnRaceEnd Resubscribe
+			Data.CurrentRace.RaceEnd += OnRaceEnd;
 		}
 
 		public void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
+
+		private void UpdateDriverData()
+		{
+			List<Track> competitionData = new List<Track>();
+			foreach (Track track in Data.Competition.Tracks)
+			{
+				competitionData.Add(track);
+			}
+			CompetitionData = new BindingList<Track>(competitionData.ToList());
+		}
+
 	}
 }
