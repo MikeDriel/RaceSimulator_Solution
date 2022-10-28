@@ -38,7 +38,7 @@
         </DataGrid>
 
 
-        <DataGrid Margin="0,51,0,10" HorizontalAlignment="Center" Width="Auto" ItemsSource="{Binding LapTimeData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
+        <DataGrid Margin="0,51,0,10" HorizontalAlignment="Center" Width="Auto" ItemsSource="{Binding LapTimeData}" AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" Focusable="False" IsReadOnly="True" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Laptime" Binding="{Binding Value}"/>
             </DataGrid.Columns>

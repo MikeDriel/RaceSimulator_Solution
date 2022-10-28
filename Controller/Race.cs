@@ -15,7 +15,7 @@ namespace Controller
 	{
 		public event EventHandler<DriversChangedEventArgs> DriversChanged;
 		public event EventHandler<RaceEndEventArgs> RaceEnd;
-		public event EventHandler Finished;
+		public event EventHandler<FinishEventArgs> Finished;
 
 
 		public Track Track { get; set; }
@@ -227,6 +227,7 @@ namespace Controller
 				if (participant.Laps >= AmountOfLoops)
 				{
 					participant.LapTime = Math.Truncate((DateTime.Now - StartTime).TotalSeconds * 100) / 100; ;
+					Finished?.Invoke(this, new FinishEventArgs() { participant = participant });
 					participant.Points += (5 / counter); //Add point
 					counter++;
 					participant.IsFinished = true;

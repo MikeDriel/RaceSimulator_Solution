@@ -12,6 +12,7 @@ namespace Controller
 {
 	public class DataContext_CompetitionInfo : INotifyPropertyChanged
 	{
+		private List<LapTimeString> LapTimeStringList { get; set; }
 		private BindingList<IParticipant> _driverData { get; set; }
 		public BindingList<IParticipant> DriverData { get { return _driverData; } set { _driverData = value; OnPropertyChanged(); } }
 
@@ -24,15 +25,17 @@ namespace Controller
 		public event PropertyChangedEventHandler? PropertyChanged;
 
 
+
 		public DataContext_CompetitionInfo()
 		{
 			//OnRaceEnd Subscribe
 			Data.CurrentRace.RaceEnd += OnRaceEnd;
 			Data.CurrentRace.Finished += OnFinished;
+			LapTimeStringList = new List<LapTimeString>();
 
 
 			UpdateDriverData();
-			UpdateCompetitionData(); UpdateLaptimes();
+			UpdateCompetitionData(); 
 		}
 
 		public void OnRaceEnd(object sender, RaceEndEventArgs e)
@@ -42,11 +45,12 @@ namespace Controller
 
 			//OnRaceEnd Resubscribe
 			Data.CurrentRace.RaceEnd += OnRaceEnd;
+			Data.CurrentRace.Finished += OnFinished;
 		}
 
-		public void OnFinished(object sender, EventArgs e)
+		public void OnFinished(object sender, FinishEventArgs e)
 		{
-			UpdateLaptimes();
+			UpdateLaptimes(sender, e);
 		}
 
 		public void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -75,14 +79,11 @@ namespace Controller
 			CompetitionData = new BindingList<Track>(competitionData.ToList());
 		}
 
-		private void UpdateLaptimes()
+		private void UpdateLaptimes(object? obj, FinishEventArgs e)
 		{
-			List<LapTimeString> laptimes = new List<LapTimeString>();
-			foreach (IParticipant participant in Data.CurrentRace.Participants)
-			{
-				laptimes.Add(new LapTimeString(participant));
-			}
-			LapTimeData = new BindingList<LapTimeString>(laptimes.ToList());
+			
+			LapTimeStringList.Add(new LapTimeString(e.participant));
+			LapTimeData = new BindingList<LapTimeString>(LapTimeStringList.ToList());
 		}
 	}
 	
