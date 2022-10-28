@@ -61,21 +61,15 @@ namespace Controller
 		private void UpdateDriverData()
 		{
 
-			List<IParticipant> leaderboardData = new List<IParticipant>();
-			foreach (IParticipant participant in Data.CurrentRace.Participants)
-			{
-				leaderboardData.Add(participant);
-			}
+			List<IParticipant> leaderboardData = (from IParticipant participant in Data.CurrentRace.Participants
+												  select participant).ToList();
 			DriverData = new BindingList<IParticipant>(leaderboardData.OrderByDescending(x => x.Points).ToList());
 		}
 
 		private void UpdateCompetitionData()
 		{
-			List<Track> competitionData = new List<Track>();
-			foreach (Track track in Data.Competition.Tracks)
-			{
-				competitionData.Add(track);
-			}
+			List<Track> competitionData = (from Track track in Data.Competition.Tracks
+										   select track).ToList();
 			CompetitionData = new BindingList<Track>(competitionData.ToList());
 		}
 

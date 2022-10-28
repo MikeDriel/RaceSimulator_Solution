@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Microsoft.VisualBasic.FileIO;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -25,7 +26,7 @@ namespace Controller
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
 
-		private const int AmountOfLoops = 1;
+		private const int AmountOfLoops = 3;
 
 		private int counter = 1;
 
@@ -164,39 +165,18 @@ namespace Controller
 					if (nextSectionData.Left == null || nextSectionData.Right == null)
 					{
 						//check for current section
-						if (sectionData.Left == participant)
-						{
-							sectionData.Left = null;
-						}
-						else if (sectionData.Right == participant)
-						{
-							sectionData.Right = null;
-						}
+						DeleteDriverFromSection(sectionData, participant);
 
 						//check for next section
-						if (nextSectionData.Left == null)
-						{
-							nextSectionData.Left = participant;
-						}
-						else if (nextSectionData.Right == null)
-						{
-							nextSectionData.Right = participant;
-						}
-						//else Overtaking(participant, nextSectionData.Right);
+						AddDriverToSection(nextSectionData, participant);
+
+						//Makes sure doesnt go out of bounds
 						participant.CurrentSection = Track.Sections.ElementAt(i + 1);
 
 						//Checks if the drivers go over a finish section for the x'th amount of time and then makes them go poof to the shadow realm
 						if (CheckFinish(participant) == true)
 						{
-							participant.CurrentSection = null;
-							if (nextSectionData.Left == participant)
-							{
-								nextSectionData.Left = null;
-							}
-							else if (nextSectionData.Right == participant)
-							{
-								nextSectionData.Right = null;
-							}
+							DeleteDriverFromSection(nextSectionData, participant);
 
 							//If there are no more drivers on the track it will cleanup and start the next race
 							if (CheckIfAllDriversFinished() == true)
@@ -249,6 +229,30 @@ namespace Controller
 				}
 			}
 			return true;
+		}
+		
+		private void DeleteDriverFromSection(SectionData sectionData, IParticipant participant)
+		{
+			if (sectionData.Left == participant)
+			{
+				sectionData.Left = null;
+			}
+			else if (sectionData.Right == participant)
+			{
+				sectionData.Right = null;
+			}
+		}
+
+		private void AddDriverToSection(SectionData sectionData, IParticipant participant)
+		{
+			if (sectionData.Left == null)
+			{
+				sectionData.Left = participant;
+			}
+			else if (sectionData.Right == null)
+			{
+				sectionData.Right = participant;
+			}
 		}
 
 		//Checks for Crash
