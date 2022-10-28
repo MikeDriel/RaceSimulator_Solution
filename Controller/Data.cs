@@ -20,10 +20,10 @@ namespace Controller
 		//Adds participants to the competition
 		public static void AddParticipants()
 		{
-			Competition.Participants.Add(new Driver("Mike", 0, new Car(), TeamColors.Blue));
-			Competition.Participants.Add(new Driver("Jan", 0, new Car(), TeamColors.Green));
-			Competition.Participants.Add(new Driver("Thomas", 0, new Car(), TeamColors.Yellow));
-			Competition.Participants.Add(new Driver("Yasmine", 0, new Car(), TeamColors.Purple));
+			Competition.Participants.Add(new Runner("Mike", 0, new Car(), TeamColors.Blue));
+			Competition.Participants.Add(new Runner("Jan", 0, new Car(), TeamColors.Green));
+			Competition.Participants.Add(new Runner("Thomas", 0, new Car(), TeamColors.Yellow));
+			Competition.Participants.Add(new Runner("Yasmine", 0, new Car(), TeamColors.Purple));
 			//Competition.Participants.Add(new Driver("Pieter", 0, new Car(), TeamColors.Blue));
 			//Competition.Participants.Add(new Driver("KoopaTroopa", 0, new Car(), TeamColors.Yellow));
 		}
@@ -31,10 +31,10 @@ namespace Controller
 		//Adds tracks to the competition
 		public static void AddTracks()
 		{
-			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
+			Competition.Tracks.Enqueue(new Track("Loopa", TrackBuilder("Loopa")));
 			Competition.Tracks.Enqueue(new Track("Slang", TrackBuilder("Slang")));
 			Competition.Tracks.Enqueue(new Track("Zandvoort", TrackBuilder("Zandvoort")));
-			Competition.Tracks.Enqueue(new Track("Loopa", TrackBuilder("Loopa")));
+			Competition.Tracks.Enqueue(new Track("Vierkant", TrackBuilder("Vierkant")));
 		}
 
 		//Adds the track and participants to the current race
@@ -45,6 +45,8 @@ namespace Controller
 			{
 				return CurrentRace = new Race(currentTrack, Competition.Participants);
 			}
+			//Invokes the end of the competition and sets winner
+			Competition.EndCompetition();
 			return null;
 		}
 

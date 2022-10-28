@@ -18,8 +18,6 @@ namespace RaceSimulatorTest
 			Data.CurrentRace.PlaceDriversOnStart(Data.CurrentRace.Track, Data.CurrentRace.Participants);
 
 			Visualisatie.Initialize(Data.CurrentRace);
-
-			Visualisatie.DrawTrack(Data.CurrentRace.Track);
 		}
 
 
@@ -29,8 +27,6 @@ namespace RaceSimulatorTest
 			// Arrange
 			Race result = Data.CurrentRace;
 
-			// Act
-			Visualisatie.Initialize(result);
 
 			// Assert
 			Assert.AreEqual(Visualisatie.Race, result);
@@ -41,40 +37,24 @@ namespace RaceSimulatorTest
 		public void DetermineDirection_Direction_AreNotEqual()
 		{
 			// Arrange
-			Visualisatie.Direction direction = Visualisatie.Direction.Right;
+			Visualisatie.Direction direction = Visualisatie.Direction.Up;
 
 			// Act
 			Visualisatie.DetermineDirection(SectionTypes.LeftCorner, direction);
-
-
+			
 			// Assert
 			Assert.AreNotEqual(Visualisatie.direction, direction);
 		}
 
-		[Test]
-		public void OnDriversChanged_StateUnderTest_ExpectedBehavior()
-		{
-			// Arrange
+		//[Test]
+		//public void OnRaceEnd_CleanUp_RaceIsNull()
+		//{
+		//	// Arrange
+		//	Race result = Data.CurrentRace;
+		//	Data.CurrentRace.CleanUp();
 			
-
-			// Act
-
-
-			// Assert
-			//Assert.are();
-		}
-
-		[Test]
-		public void OnRaceEnd_CleanUp_RaceIsNull()
-		{
-			// Arrange
-			Race result = null;
-
-			// Act
-			//Visualisatie.OnRaceEnd(result);
-
-			// Assert
-			Assert.AreNotEqual(Data.CurrentRace, result);
-		}
+		//	// Assert
+		//	Assert.AreNotEqual(null, result);
+		//}
 	}
 }

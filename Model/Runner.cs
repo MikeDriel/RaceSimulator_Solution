@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-	public class Driver : IParticipant
+	public class Runner : IParticipant
 	{
 		public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -34,7 +34,7 @@ namespace Model
 		public double LapTime { get { return _lapTime; } set { _lapTime = value; OnPropertyChanged(); } }
 
 		//Constructor to input static values of driver
-		public Driver(string name, int points, IEquipment equipment, TeamColors teamColors)
+		public Runner(string name, int points, IEquipment equipment, TeamColors teamColors)
 		{
 			Name = name;
 			Points = points;

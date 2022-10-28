@@ -31,10 +31,14 @@ namespace Model
 			}
 			else
 			{
-				Winner = Participants.OrderByDescending(x => x.Points).First();
-				CompetitionEnd?.Invoke(this, new EventArgs());
 				return null;
 			}
+		}
+
+		public void EndCompetition()
+		{
+			Winner = Participants.OrderByDescending(x => x.Points).First();
+			CompetitionEnd?.Invoke(this, new EventArgs());
 		}
     }
 }

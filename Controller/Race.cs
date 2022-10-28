@@ -26,7 +26,7 @@ namespace Controller
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
 
-		private const int AmountOfLoops = 1;
+		private const int AmountOfLoops = 3;
 
 		private int counter = 1;
 
@@ -56,7 +56,7 @@ namespace Controller
 		}
 
 		//Randomizes equipment for all participants
-		private void RandomizeEquipment()
+		public void RandomizeEquipment()
 		{
 			foreach (IParticipant participant in Participants)
 			{
