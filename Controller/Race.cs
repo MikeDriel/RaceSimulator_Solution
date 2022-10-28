@@ -26,7 +26,7 @@ namespace Controller
 		private Dictionary<Section, SectionData> _positions { get; set; }
 		private System.Timers.Timer _timer { get; set; }
 
-		private const int AmountOfLoops = 3;
+		private const int AmountOfLoops = 1;
 
 		private int counter = 1;
 
@@ -176,6 +176,7 @@ namespace Controller
 						//Checks if the drivers go over a finish section for the x'th amount of time and then makes them go poof to the shadow realm
 						if (CheckFinish(participant) == true)
 						{
+							participant.CurrentSection = null;
 							DeleteDriverFromSection(nextSectionData, participant);
 
 							//If there are no more drivers on the track it will cleanup and start the next race
